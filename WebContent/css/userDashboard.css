@@ -1,0 +1,87 @@
+@charset "ISO-8859-1";
+
+.pageContent{
+	padding: 30px 60px;
+	min-width: 1300px;
+}
+.myCarbonFootprint{
+	background-color: rgb(244, 244, 244);
+	border-radius: 10px;
+	text-align: center;
+	padding: 20px;
+}
+.carbonFootprintDetails{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	margin: 20px 20px 10px;
+	gap: 40px;
+}
+
+.monthSelect, .monthSelect select{
+	font-size: 16px;
+}
+
+.detailItemBlock{
+	min-width: 150px;
+	width: auto;
+	height: 70px;
+	border: 1px solid rgb(173, 173, 173);
+	border-radius: 8px;
+	background-color: white;
+	display: flex;
+	font-size: 28px;
+	align-items: center;
+	padding: 5px 20px;
+	justify-content: space-between;
+}
+.water i{
+	color: #85b6ff;
+}
+.electric i{
+	color: #ffd233;
+}
+.recycle i{
+	color: #4ecb71;
+}
+
+.areaCarbonFootprint{
+	background-color: rgb(244, 244, 244);
+	border-radius: 10px;
+	padding: 20px;
+	margin-top: 20px;
+	display: flex;
+}
+
+.mapping{
+	width: 30%;
+	height: auto;
+	background-color: lightgray;
+	margin-right: 20px;
+}
+.areaCarbonTable h3{
+	text-align: center;
+	margin: 0 0 10px 0;
+}
+.areaCarbonTable table{
+	border-spacing: 0;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	border-radius: 10px;
+}
+.areaCarbonTable table th, .areaCarbonTable table td{
+	background-color: white;
+	padding: 5px 10px;
+	border-bottom: 1px solid lightgray;
+	text-align: center;
+}
+.areaCarbonTable table th:first-child{
+	border-radius: 10px 0 0 0;
+}
+.areaCarbonTable table th:last-child{
+	border-radius: 0 10px 0 0;
+}
+.areaCarbonTable table tr:last-child td:first-child{
+	border-radius: 0 0 0 10px;
+}
+.areaCarbonTable table tr:last-child td:last-child{
+	border-radius: 0 0 10px 0;
+}
