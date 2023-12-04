@@ -18,6 +18,7 @@
             <jsp:include page="sidebar.jsp" />
         </div>
 	    
+	      
 	    <% String month = (String)session.getAttribute("month"); %>
 	    
         <div class="pageWrapper">
@@ -26,10 +27,10 @@
         	<div class="pageNav">
 					Home > 
 					<a href="bills.jsp">Bills</a> >
-					<a href="electricBill.jsp">Electric Bills</a> >
+					<a href="waterBill.jsp">Water Bills</a> >
                     <%= month %>
 				</div>
-				<h2 class="pageTitle">Electric Bills</h2>
+				<h2 class="pageTitle">Water Bills</h2>
 				
 				<div class="reportContainer">
 					<table class="reportTable">
@@ -42,20 +43,20 @@
 							<td id="date">12.6.2023 - 12.7.2023</td>
 						</tr>
 						<tr>
-							<th>Electric Consumption(kWh):</th>
-							<td id="electricConsumption">186</td>
+							<th>Water Consumption(m&sup3):</th>
+							<td id="waterConsumption">17.00</td>
 						</tr>
 						<tr>
 							<th>Factor Prorate(Day):</th>
-							<td id="electricProrate">1.000000</td>
+							<td id="waterProrate">1.03333</td>
 						</tr>
 						<tr>
 							<th>Current Charge(RM):</th>
-							<td id=electricCharge>13.60</td>
+							<td id=waterCharge>13.60</td>
 						</tr>
 						<tr>
-							<th>Carbon Footprint(kWhCO2):</th>
-							<td id=CarbonFootprint>108.624</td>
+							<th>Carbon Footprint(m&sup3CO2):</th>
+							<td id=CarbonFootprint>7.123</td>
 						</tr>
 					</table>
 					
@@ -66,7 +67,6 @@
         	</div>
         </div>
         
-          
     </div>
 
 </body>
