@@ -13,7 +13,7 @@
 
 .itemblock{
 	width: auto;
-	height: 70px;
+	height: auto;
 	border-radius: 8px;
     padding: 15px;
 }
