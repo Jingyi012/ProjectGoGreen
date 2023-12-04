@@ -11,13 +11,11 @@
             padding: 0;
         }
 
-        #head 
-        {
+        #head {
             margin-left: 30px;
         }
 
-        #head p 
-        {
+        #head p {
             word-spacing: 0.5px;
         }
 
@@ -64,13 +62,30 @@
             font-size: 18px;
         }
 
-        h2 {
+        h2 
+        {
             margin-top: 20px;
             margin-left: 180px;
             font-size: 24px;
         }
         
+         #approve-button {
+            background-color: #4CAF50;
+            color: #FFFFFF;
+            margin-left: 50px;
+        }
+
+        #reject-button {
+            background-color: #FFC684;
+            color: #FFFFFF;
+            margin-left: 20px;
+        }
         
+        #button
+        {
+          display:flex;
+          margin-left:500px;
+        }
     </style>
 </head>
 <body>
@@ -84,7 +99,7 @@
             <div class="pageContent">
                 <form action="ProfileServlet" method="post" enctype="multipart/form-data">
                     <div id="head">
-                        <p>Home > Profile</p>
+                        <p>Home > Manage User</p>
                     </div>
                     <h2>Profile Information</h2>
                     <div id="content">
@@ -125,7 +140,7 @@
                         <div class="form-group">
                             <label for="Number of People Living In The House">Number of People Living In The House:</label>
                             <br>
-                            <input type="number" id="Number of People Living In The House" name="Number of People Living In The House" required>
+                            <input type="text" id="Number of People Living In The House" name="Number of People Living In The House" required>
                         </div>
 
                         <div class="form-group">
@@ -154,11 +169,24 @@
 
                     </div>
                     <br>
-                    <button type="submit" id="edit-button">Edit</button>
+                    <div id="button">
+                     <button type="button" id="approve-button" onclick="approve()">Approve</button>
+                     <button type="button" id="reject-button" onclick="reject()">Reject</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+     <script>
+        function approve() {
+     
+        	 window.alert('This participant is approved');
+        }
+
+        function reject() {
+          
+            alert('This participant is rejected');
+        }
+    </script>
 </body>
 </html>
-

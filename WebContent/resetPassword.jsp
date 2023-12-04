@@ -107,16 +107,16 @@
     {
     margin-top: 10px;
     margin-left:850px;
-    color: #000000;
+    color: #045BAC;
     font-size: 10px; 
     text-decoration:none;
 }
 
-   #continue-button {
+   #login-button {
     margin-top:10px;
     background-color: #FFC684;
     color: #FFFFFF;
-    margin-left:20px;
+    margin-left:730px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -126,17 +126,17 @@
   #bottom
   {
     display:flex;
-    margin-top:20px;
-    margin-left:20px;
-    font-size:23px;
+    margin-top:10px;
+    margin-left:658px;
   }
   
   
   
   
-  .login-link
+  .signup-link
   {
-   margin-top:19px;
+   margin-top:12px;
+   font-size:20px;
    text-decoration: underline;
   }
   
@@ -166,20 +166,15 @@
             width: 100%;
     }
     
-    .account
+    #field3
     {
-       margin-bottom:10px;
+      margin-right:72px;
     }
+    
  
 
         
     </style>
-    <script>
-    function navigateToReset() {
-
-        window.location.href = 'resetPassword.jsp';
-    }
-</script>
 </head>
 <body>
     <header>
@@ -189,7 +184,7 @@
             <h1>Puteri</h1>
         </div>
         <div id="button-container">
-             <a href="<%= request.getContextPath() %>/login.jsp" id="login">Login</a>
+            <a href="<%= request.getContextPath() %>/login.jsp" id="login">Login</a>
             <a href="<%= request.getContextPath() %>/register.jsp" id="signup">Sign Up</a>
         </div>
     </header>
@@ -197,21 +192,32 @@
         <img src="images/iskandar_logo.png" alt="" style="max-width: 100%; height: auto;">
     </div>
     <div id="line">
-        <a href="#">Forgot Password</a>
+        <a href="#">Reset Password</a>
         <form id="login-form">
    
+   <div id="field">
+            <div id="field1">
+        <label for="nric">NRIC:</label>
+        
+    </div>
+    
+        <div id="field2">
+         <input type="text" id="NRIC" name="NRIC" placeholder="Enter your NRIC">
+        
+    </div>
+    
+   </div>
             
-            <div>
-                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <div id="field3">
+                <label for="password">Confirm New Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
             </div>
         </form>
-    
-    <button type="submit" id="continue-button" onclick="navigateToReset()">Continue</button>
-    
-    <div id="bottom">
-    <p id="account">No account yet?</p>
-    <a href="<%= request.getContextPath() %>/login.jsp" class="login-link">Login here</a>
+        
     </div>
+ 
+    <button type="submit" id="login-button">Reset</button>
+    
      <footer>
       
     </footer>
