@@ -30,21 +30,22 @@
                 <div class="pageNav">
 					Home > 
 					<a href="bills.jsp">Bills</a> >
-					<a href="electricBill.jsp">Electric Bills</a> >
+					<a href="recycleBill.jsp">Recycle Bills</a> >
                     <%= month %>
 				</div>
-				<h2 class="pageTitle">Electric Bills</h2>
+				<h2 class="pageTitle">Recycle Bills</h2>
 				
 			  
+				
 				<div class="formContainer">
-					<form action="./electricMonthReport.jsp?month=<%= month %>">
-						<div class="billForm electric">
-							<label for="eBill">Insert Electric Consumption:</label>
-							<input type="text" id="eBill" name="eBill" placeholder="123kWh">
+					<form action="./recycleMonthReport.jsp?month=<%= month %>">
+						<div class="billForm recycle">
+							<label for="eBill">Insert Recycling Consumption:</label>
+							<input type="text" id="eBill" name="eBill" placeholder="123Kg">
 						</div>
 						
-						<div class="billFile electric">
-							<span>Upload Electric Bill as proof:</span>
+						<div class="billFile recycle">
+							<span>Upload Recycling Bill as proof:</span>
 							<label for="eFile" class="fileBox"><br>Choose File &nbsp<i class="fa fa-upload"></i></label>
 							<input type="file" id="eFile" name="eFile" placeholder="Choose file">
 						</div>

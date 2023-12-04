@@ -26,7 +26,7 @@
         				<i class="bi bi-calendar"></i>
         				<select>
         				<% 
-        				String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "Auggust", "September", "October", "November", "December"}; 
+        				String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}; 
             			for(int i=0; i<12; i++){ %>
         					<option><%= monthArray[i] %></option>
         				<% } %>
@@ -53,8 +53,8 @@
         		</div>
 
 				<div class="areaCarbonFootprint">
-					<div class="mapping">
-						This is Map
+					<div class="mapping" id="map1">
+						<iframe style="width: 100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.3816941312375!2d103.65650037803128!3d1.5376092944462916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da733232b8cc9d%3A0xe7509f37fa103de9!2sDATARAN%20MBIP!5e0!3m2!1szh-CN!2smy!4v1701625536222!5m2!1szh-CN!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 					</div>
 					<div class="areaCarbonTable">

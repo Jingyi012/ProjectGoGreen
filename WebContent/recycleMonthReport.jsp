@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-	<div class="pageContainer">
+	<div class="pageContainer">  
         <div class="sideBarContainer">
             <jsp:include page="sidebar.jsp" />
         </div>
@@ -26,10 +26,11 @@
         	<div class="pageNav">
 					Home > 
 					<a href="bills.jsp">Bills</a> >
-					<a href="electricBill.jsp">Electric Bills</a> >
+					<a href="recycleBill.jsp">Recycle Bills</a> >
                     <%= month %>
 				</div>
-				<h2 class="pageTitle">Electric Bills</h2>
+				<h2 class="pageTitle">Recycle Bills</h2>
+				
 				
 				<div class="reportContainer">
 					<table class="reportTable">
@@ -42,20 +43,12 @@
 							<td id="date">12.6.2023 - 12.7.2023</td>
 						</tr>
 						<tr>
-							<th>Electric Consumption(kWh):</th>
-							<td id="electricConsumption">186</td>
-						</tr>
-						<tr>
-							<th>Factor Prorate(Day):</th>
-							<td id="electricProrate">1.000000</td>
-						</tr>
-						<tr>
-							<th>Current Charge(RM):</th>
-							<td id=electricCharge>13.60</td>
+							<th>Recycle Weight(Kg):</th>
+							<td id="recycleWeight">30</td>
 						</tr>
 						<tr>
 							<th>Carbon Footprint(kWhCO2):</th>
-							<td id=CarbonFootprint>108.624</td>
+							<td id=CarbonFootprint>85.8</td>
 						</tr>
 					</table>
 					
@@ -66,7 +59,6 @@
         	</div>
         </div>
         
-          
     </div>
 
 </body>

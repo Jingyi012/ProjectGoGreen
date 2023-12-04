@@ -71,12 +71,16 @@
 				</div>
 				
 				<div class="moreDetails">
-					<div class="graph1">
-						<h4>Trend of Carbon Footprint</h4>
+					<div class="graph1Container">
+						<h3>Trend of Carbon Footprint 2023</h3>
+						<div id="graph1">
+							
+						
+						</div>
 					</div>
 					
 					<div class="categoryAvg">
-						<h4>User Average Carbon Footprint (kgCO<sub>2</sub>)</h4>
+						<h3>User Average Carbon Footprint (kgCO<sub>2</sub>)</h3>
 						<table>
 							<tr>
 								<td>Housing (High Rise)</td>
@@ -97,5 +101,43 @@
         	</div>
         </div>
     </div>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	  google.charts.load('current', {'packages':['corechart']});
+	  google.charts.setOnLoadCallback(drawChart);
+	
+	  function drawChart() {
+		    /* var monthData = [['Month', 'Carbon Footprint']]; */
+		    var monthData = [];
+		    var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		    var data = [1232, 1233, 4632, 1023, 3321, 5773, 2132, 3452, 3500, 4000, 3200, 3300];
+		    for (var i = 0; i < data.length; i++) {
+		        monthData.push([month[i], data[i]]);
+		    }
+
+		    /* var dataTable = google.visualization.arrayToDataTable(monthData); */
+		    var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Month');
+			data.addColumn('number', "Carbon Footprint");
+			data.addRows(monthData);
+
+		    var options = {
+		        hAxis: {
+		            title: 'Month'
+		        }, 
+		        vAxis: {
+		            title: 'Carbon Footprint (kgCO2)'
+		        },
+		        legend: { position: 'bottom' },
+		        width: 700, 
+		        height: 250
+		    };
+
+		    var chart = new google.visualization.LineChart(document.getElementById('graph1'));
+
+		    chart.draw(data, options);
+		}
+
+	</script>
 </body>
 </html>
