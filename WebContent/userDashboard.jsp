@@ -53,30 +53,61 @@
         		</div>
 
 				<div class="areaCarbonFootprint">
-					<div class="mapping" id="map1">
+					<div class="mapping">
 						<iframe style="width: 100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.3816941312375!2d103.65650037803128!3d1.5376092944462916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da733232b8cc9d%3A0xe7509f37fa103de9!2sDATARAN%20MBIP!5e0!3m2!1szh-CN!2smy!4v1701625536222!5m2!1szh-CN!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 					</div>
 					<div class="areaCarbonTable">
-						<h3>Total Carbon Footprint of Each Area</h3>
-						<table>
-							<tr>
-								<th>Area Name</th>
-								<th>Water Consumption (L)</th>
-								<th>Electric Consumption (kWh)</th>
-								<th>Recycle Weight (kg)</th>
-								<th>Total Participant (people)</th>
-								<th>Total Carbon Footprint (kgCO<sub>2</sub>)</th>
-							</tr>
-							<tr>
-								<td>Iskandar Puteri</td>
-								<td>1133</td>
-								<td>1234</td>
-								<td>334</td>
-								<td>1245</td>
-								<td>3341</td>
-							</tr>
-						</table>
+						<h3>Total Carbon Footprint of Each Area 2023</h3>
+						<div class="areaCarbonTableDetails">
+							<table>
+								<tr>
+									<th>Area Name</th>
+									<th>Water Consumption (L)</th>
+									<th>Electric Consumption (kWh)</th>
+									<th>Recycle Weight (kg)</th>
+									<th>Total Participant (people)</th>
+									<th>Total Carbon Footprint (kgCO<sub>2</sub>)</th>
+								</tr>
+								<% 
+								String[] areaDetails = {
+										"Pulai Indah",
+							            "Kangkar Pulai",
+							            "Pulai Utama",
+							            "Sri Pulai",
+							            "Taman Universiti",
+							            "Mutiara Rini",
+							            "Lima Kedai",
+							            "Nusa Bayu",
+							            "Gelang Patah",
+							            "Leisure Farm",
+							            "Tanjung Kupang",
+							            "Medini Iskandar",
+							            "Kota Iskandar",
+							            "Bukit Horizon",
+							            "Impian Emas",
+							            "Sri Skudai",
+							            "Skudai",
+							            "Skudai Baru",
+							            "Selesa Jaya",
+							            "Tun Aminah",
+							            "Nusa Bestari",
+							            "Bukit Indah",
+							            "Sutera Utama",
+							            "Perling"
+							        };
+								for(int i=0; i < areaDetails.length; i++){ %>
+								<tr>
+									<td><%= areaDetails[i] %></td>
+									<td>1133</td>
+									<td>1234</td>
+									<td>334</td>
+									<td>1245</td>
+									<td>3341</td>
+								</tr>
+								<% } %>
+							</table>
+						</div>
 
 					</div>
 
