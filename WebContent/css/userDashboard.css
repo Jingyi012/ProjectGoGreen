@@ -2,7 +2,6 @@
 
 .pageContent{
 	padding: 30px 60px;
-	min-width: 1300px;
 }
 .myCarbonFootprint{
 	background-color: rgb(244, 244, 244);
@@ -22,14 +21,14 @@
 }
 
 .detailItemBlock{
-	min-width: 150px;
+	min-width: 100px;
 	width: auto;
 	height: 70px;
 	border: 1px solid rgb(173, 173, 173);
 	border-radius: 8px;
 	background-color: white;
 	display: flex;
-	font-size: 28px;
+	font-size: 25px;
 	align-items: center;
 	padding: 5px 20px;
 	justify-content: space-between;
@@ -66,6 +65,7 @@
 	border-spacing: 0;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	border-radius: 10px;
+	font-size: 16px;
 }
 .areaCarbonTable table th, .areaCarbonTable table td{
 	background-color: white;
