@@ -48,6 +48,8 @@
 			z-index: 1;
 			padding: 15px 15px ;
 			border-top: 1px solid lightgray;
+			text-decoration: none;
+			color: black;
         }
         
 		.show {
@@ -95,10 +97,10 @@
                 	<span>User Name</span>
 					<i class="bi bi-caret-down-fill"></i>
             	</div>
-                <div class="logout">
+                <a class="logout" href="./LogoutServlet">
                 	<i class="bi bi-box-arrow-left"></i>
                 	<span>Logout</span>
-                </div>
+                </a>
             </div>
         </div>
         <script>

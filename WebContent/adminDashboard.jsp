@@ -197,7 +197,7 @@
 
 	      var options = {
 	        title: "Carbon Footprint at Each Area",
-	        bar: {groupWidth: "95%"},
+	        bar: {groupWidth: "50%"},
 	        legend: { position: "none" },
 	      };
 	      var chart = new google.visualization.BarChart(document.getElementById("barChart"));
