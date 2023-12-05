@@ -119,7 +119,7 @@ color:#FFFFDD;
 		</nav>
 		<div class="content">
 			<h1>The Way Forward to lead a <br>Sustainable Living from <br>within</h1>
-			<a href="#">Log In</a>
+			<a href="./login.jsp">Log In</a>
 		</div>
 	</div>
 
