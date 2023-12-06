@@ -6,14 +6,9 @@
     <title>GoGreen</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <style>
-        #head {
-            margin-left: 30px;
-        }
-
-        #head p {
-            word-spacing: 0.5px;
-        }
-
+	    .pageContent{
+			padding: 30px 60px;
+		}
         h2 
         {
             margin-left: 530px;
@@ -72,9 +67,10 @@
         <div class="pageWrapper">
             <jsp:include page="headerBar.jsp" />
             <div class="pageContent">
-                <div id="head">
-                    <p>Home > Manage User</p>
-                </div>
+            	<div class="pageNav">
+					Home > 
+					<a href="">Manage User</a>
+				</div>
                 <div id="content">
                 <h2>Manage User</h2>
 
