@@ -20,6 +20,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+         
         }
 
         h1 
@@ -69,8 +70,7 @@
         #content
         {   
             display:flex;
-            margin-top:10px;
-            margin-left:60px;
+            margin-left:30px;
         }
         
         
@@ -78,56 +78,75 @@
         #form1
         {
             margin-left: 10px; 
-            margin-top:20px;
+            
         }
         
         #form1 h1 
         {
         
             color: #045BAC; 
-            margin-left:400px;
+            margin-left:480px;
             
         }
         
         #field1
         {
-          margin-left:220px;
-          
+          display: flex;
+         width: 100%;
+         height: 80px;
+         margin-left:300px;
+         margin-bottom: -30px;
         
         
         }
         
          #field2
         {
-          margin-left:220px;
-          
-        
+            display: flex;
+         width: 100%;
+         height: 80px;
+          margin-left:300px;
+          margin-bottom: -30px;
         }
         
          #field3
         {
-          margin-left:220px;
-        
+          display: flex;
+         width: 100%;
+         height: 80px;
+   margin-left:300px;
+         margin-bottom: -30px;
         }
         
          #field4
         {
-          margin-left:220px;
-        
+            display: flex;
+         width: 100%;
+         height: 80px;
+         margin-left:300px;
+         margin-bottom: -30px;
         }
         
         
          #field5
         {
-          margin-left:220px;
-        
+         display: flex;
+         width: 100%;
+         height: 80px;
+         margin-left:300px;
+         margin-bottom: -30px;
         }
         
-         #field6
+          #field6
         {
-          margin-left:220px;
+            display: flex;
+         width: 100%;
+         height: 80px;
+          margin-left:300px;
+          margin-bottom: -30px;
         
         }
+        
         
         .form-group input[type="text"] {
     border: 1px solid #ccc;
@@ -155,53 +174,34 @@
     color: #333;
 }
         
-        .form-group {
+        .form-group 
+ {
     display: inline-block; 
     margin-right: 150px; 
-   
     
 }    
 
-      #termsForm {
-            margin-left: 280px;
+      #termsForm 
+      {
+            
+            margin-left: 380px;
         }
         
-         #login-button {
-    margin-top:10px;
+         #login-button 
+ {
+  
     background-color: #FFC684;
     color: #FFFFFF;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left:420px;
-}
-
-   #field6 .form-group 
-   {
-    display: flex;
-    align-items: center;
-   
- 
+    margin-left:520px;
 }
 
 
-#field6 .form-group div {
-    margin-right: 155px;
-}
-
-#field6 .form-group label {
-    margin-right: 10px;
-}
-
-#field6 input 
+#category 
 {
-    width: 160px;
-    padding: 5px; 
-    
-}
-
-#category {
     width: 173px;
     font-size: 11px; 
     padding: 10px;
@@ -215,23 +215,30 @@
     padding: 5px; 
 }
 
-.form-group input[type="file"] {
+.form-group input[type="file"] 
+{
 
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f0f0f0;
 }
 
+
 #image2 
 {
-
-    margin-left: 70px;
-    margin-top: 90px; 
-    width: 750px;
-    height: 200px;
-  
+    max-width: 900px;
+    height: 500px;
+    margin-left:80px;
+    margin-top:130px;
 }
 
+#content 
+{
+    max-width: 100%;
+    box-sizing: border-box; 
+    overflow: hidden; 
+    padding: 20px;
+}
 
     </style>
 </head>
@@ -248,9 +255,9 @@
         </div>
     </header>
     <div id="content">
-        <div id="image2">
-        <img id="image2" src="images/iskandar_logo.png" alt="" style="max-width: 100%; height: auto;">
-        </div>
+   
+        <img id="image2" src="images/iskandar_logo.png" alt="" style="max-width: 600px; height: 300px;">
+  
         <div id="form1">
             <h1>Sign up</h1>
             <form id="field1">
@@ -310,7 +317,32 @@
     <div class="form-group">
         <label for="Area">Area::</label>
         </br>
-        <input type="text" id="Area" name="Area" required>
+         <select id="category" name="category" required style="width: 170px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f0f0f0;">
+                                <option value="Pulai Indah">Pulai Indah</option>
+                                <option value="Kangkar Pulai">Kangkar Pulai</option>
+                                <option value="Pulai Utama">Pulai Utama</option>
+                                <option value="Sri Pulai">Sri Pulai</option>
+                                <option value="Taman Universiti">Taman Universiti</option>
+                                <option value="Mutiara Rini">Mutiara Rini</option>
+                                <option value="Lima Kedai">Lima Kedai</option>
+                                <option value="Nusa Bayu">Nusa Bayu</option>
+                                <option value="Gelang Patah">Gelang Patah</option>
+                                <option value="Leisure Farm">Leisure Farm</option>
+                                <option value="Tanjung Kupang">Tanjung Kupang</option>
+                                <option value="Medini Iskandar">Medini Iskandar</option>
+                                <option value="Kota Iskandar">Kota Iskandar</option>
+                                <option value="Bukit Horizon">Bukit Horizon</option>
+                                <option value="Impian Emas">Impian Emas</option>
+                                <option value="Sri Skudai">Sri Skudai</option>
+                                <option value="Skudai">Skudai</option>
+                                <option value="Skudai Baru">Skudai Baru</option>
+                                <option value="Selesa Jaya">Selesa Jaya</option>
+                                <option value="Tun Aminah">Tun Aminah</option>
+                                <option value="Nusa Bestari">Nusa Bestari</option>
+                                <option value="Bukit Indah">Bukit Indah</option>
+                                <option value="Sutera Utama">Sutera Utama</option>
+                                <option value="Perling">Perling</option>
+                            </select>
     </div>
 </form>
 
@@ -330,20 +362,19 @@
 </form>
 
       </br>
-    <form id="field6">
-    <div class="form-group">
-   <div>
-                <label for="password">PASSWORD:</label>
+      <form id="field6">
+  <div class="form-group">
+                             <label for="password">PASSWORD:</label>
+                             <br>
                 <input type="password" id="password" name="password" placeholder="Enter your password">
-            </div>
+                        </div>
 
-   <div>
-                <label for="Confirm password">Confirm PASSWORD:</label>
-                <input type="password" id="Confirm password" name="password" placeholder="Enter your password">
-            </div>
-     </div>
+   <div class="form-group">
+                               <label for="Cpassword">CONFRIM PASSWORD:</label>
+                             <br>
+                <input type="password" id="Cpassword" name="Cpassword" placeholder="Confirm your password">
+                        </div>
 </form>
-     
      </br>
      </br>
      <div id="termsForm">
@@ -353,9 +384,10 @@
                     I agree to all the statements in Terms of Service
                 </label>
             </form>
+ 
         </div>
        
-      </br>
+         </br>
       <button type="submit" id="login-button">Sign Up</button>
       
         </div>
