@@ -1,77 +1,103 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>GoGreen</title>
-
-<style>
-    body {
-        font-size: 16px;
-        margin: 0;
-        padding: 0;
-    }
-
-    #head {
-        margin-left: 30px;
-    }
-
-    #head p {
-        word-spacing: 0.5px;
-    }
-
-    .form-group {
-        display: inline-block;
-        margin-bottom: 20px;
-        margin-right: 200px;
-    }
-
-    .form-group label {
-        margin-bottom: 8px;
-        font-size: 18px;
-    }
-
-    .form-group input {
-        margin-bottom: 14px;
-        padding: 10px;
-        width: 300px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f0f0f0; 
-    }
-
-    #content {
-        margin-top: 30px;
-        margin-left: 180px;
-        margin-right: auto;
-    }
-
-    #submit-button {
-        margin-top: 20px;
-        background-color: #FFC684;
-        color: #FFFFFF;
-        padding: 14px 24px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-left: 570px;
-        font-size: 18px;
-    }
-
-    h2 {
-        margin-top: 20px;
-        margin-left: 180px;
-        font-size: 24px;
-    }
-</style>
-   
-       <script>
-        function showMessage() {
-            // You can customize the pop-up message here
-            alert("Profile information submitted successfully!");
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <title>GoGreen</title>
+    <style>
+        body {
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
         }
-    </script>
 
+        #head 
+        {
+            margin-left: 30px;
+        }
+
+     
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        #word {
+            margin-bottom: 14px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width:400px;
+            background-color: #f0f0f0; 
+        }
+        
+        
+        #word1{
+            margin-bottom: 14px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width:400px;
+            color:blue;
+            background-color: #f0f0f0; 
+            text-decoration:underline;
+        }
+        
+    #content 
+    {
+            margin-top: 30px;
+            margin-right: auto;
+            
+        }
+        
+        #edit-button 
+        {
+            margin-top: -40px;
+            background-color: #FFC684;
+            color: #FFFFFF;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 490px;
+            font-size: 18px;
+          
+        }
+
+         h2 {
+            margin-top: 20px;
+            font-size: 29px;
+        }}
+        
+#form {
+
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-row 
+{
+    display: flex;
+    width: 100%;
+    margin-bottom:5px;
+    gap: 200px; 
+    height: 80px; 
+}
+
+.pageContent{
+        padding: 30px 60px;
+    }
+
+ 
+
+    </style>
 </head>
 <body>
     <div class="pageContainer">
@@ -82,104 +108,112 @@
         <div class="pageWrapper">
             <jsp:include page="headerBar.jsp" />
             <div class="pageContent">
-                <div id="head">
-                    <p>Home > Profile > Edit Profile</p>
-                </div>
-                <h2>Profile Information</h2>
-                <div id="content">
-                    <form id="field1">
+             <div class="pageNav">
+					Home > 
+					<a href="profile.jsp">Profile</a>
+					>
+					<a href="editProfile.jsp">Edit Profile</a>
+				</div>
+				
+                <form>
+                 
+                    <div id="content">
+                    <h2>Profile Information</h2>
+             
+                    <div id="form">
+                          <div class="form-row">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <br>
+             <p id="word">Ali</p>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <br>
+             <p id="word">Zhen</p>
+        </div>
+    </div>
+    
+                       <div class="form-row">
+
                         <div class="form-group">
-                            <label for="firstName">First Name:</label>
+                            <label for="phoneNo">Phone Number:</label>
                             <br>
-                           <input type="text" id="firstName" name="firstName" value="${requestScope.firstName}" required><br>
+                            <p id="word">01112028239</p>
                         </div>
-                       
 
                         <div class="form-group">
-                            <label for="lastName">Last Name:</label>
+                            <label for="email">Email:</label>
                             <br>
-                           <input type="text" id="lastName" name="lastName" value="${requestScope.lastName}" required><br>
+                             <p id="word">abc123@gmail.com</p>
                         </div>
-                    </form> <br>
-                    <form id="field2">
+                        </div>
+                        
+                        <div class="form-row">
                         <div class="form-group">
-    <label for="phoneNo">Phone Number:</label>
-    <br>
-    <input type="tel" id="phoneNo" name="phoneNo" value="${requestScope.phoneNo}" pattern="[0-9]{10}" required>
-</div>
+                            <label for="category">Category:</label>
+                            <br>
+                             <p id="word">Housing(High Rise)</p>
 
-
-                       <div class="form-group">
-    <label for="email">Email:</label>
-    <br>
-    <input type="email" id="email" name="email" value="${requestScope.email}" required>
-</div>
-
-                    </form>
-                    <br>
-                    <form id="field3">
-            <div class="form-group">
-    <label for="category">Category:</label>
-    <br>
-    <select id="category" name="category"  required style="width: 320px; font-size: 16px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f0f0f0;">
-        <option value="Housing(High Rise)">Housing(High Rise)</option>
-        <option value="Housing(Landed)">Housing(Landed)</option>
-        <option value="Institution">Institution</option>
-    </select>
-</div>
-
-
+                        </div>
 
                         <div class="form-group">
                             <label for="Number of People Living In The House">Number of People Living In The House:</label>
                             <br>
-                            <input type="number" id="Number of People Living In The House" name="Number of People Living In The House" value="<%= request.getAttribute("numberOfPeople") %>" required>
+                           <p id="word">2</p>
                         </div>
-                    </form>
-                    <br>
-                    <form id="field4">
+                       </div>
+                         
+                       <div class="form-row">
                         <div class="form-group">
                             <label for="Address">Address:</label>
                             <br>
-                            <input type="text" id="Address" name="Address"value="<%= request.getAttribute("address") %>" required>
+                             <p id="word">lorong 4d,No.12 Taman buaya</p>
                         </div>
 
-                       <div class="form-group">
-    <label for="fileUpload">Proof of residency:</label>
-    <br>
-   <input type="text" id="fileUpload" name="fileUpload" value="${requestScope.fileUploadName}" readonly><br>
-</div>
+                        <div class="form-group">
+                            <label for="fileUpload">Proof of residency:</label>
+                            <br>
+                            <p id="word1">Proof.pdf</p>
+                        </div>
+                       </div>
+                       
+                      <div class="form-row">
+                        <div class="form-group">
+                            <label for="Area">Area:</label>
+                            <br>
+                              <p id="word">Pulai</p>
+                        </div>
 
-                    </form>
-
-                    <br>
-                    <form id="field5">
-                       <div class="form-group">
-    <label for="Area">Area:</label>
-    <br>
-    <input type="text" id="Area" name="Area" value="<%= request.getAttribute("area") %>" required>
-</div>
-
-
-                                    <div class="form-group">
-    <label for="fileUpload1">Identification Card:</label>
-    <br>
-    <input type="text" id="fileUpload1" name="fileUpload"1 value="${requestScope.fileUploadName}" readonly><br>
-
-</div>
-                    </form>
-
-                </div>
-                <br>
-       
-       
-
-        <button id="submit-button" onclick="showMessage()">Submit</button>
+                        <div class="form-group">
+                            <label for="fileUpload1">Identification Card:</label>
+                            <br>
+                            <p id="word1">Ic.pdf</p>
+                        </div>
+                    </div>
+                         </br>
+                         </br>
+                         </br>
+                     
+                            <button type="button" id="edit-button" onclick="redirectToOtherPage()">Submit</button>
+                         
+                    </div>
+                 </div>
+        
+                </form>
+           
 
             </div>
-        </div>
-
-    </div>
-
+           </div>
+          </div>
+          
+         <script>
+        function redirectToOtherPage() {
+         
+            window.location.href = 'profile.jsp'; 
+        }
+    </script>
+    
 </body>
 </html>
