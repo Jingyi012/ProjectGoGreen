@@ -43,6 +43,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-left:55px;
         }
         
         #line a {
@@ -75,8 +76,8 @@
 
         #image2
         {
-            margin-top:50px;
-            margin-left:580px;
+            margin-top:78px;
+            margin-left:240px;
         }
 
         #login-form {
@@ -106,7 +107,7 @@
     .forgot-password 
     {
     margin-top: 10px;
-    margin-left:850px;
+    margin-left:870px;
     color: #000000;
     font-size: 10px; 
     text-decoration:none;
@@ -116,27 +117,20 @@
     margin-top:10px;
     background-color: #FFC684;
     color: #FFFFFF;
-    margin-left:20px;
+    margin-left:374px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-  #bottom
-  {
-    display:flex;
-    margin-top:20px;
-    margin-left:20px;
-    font-size:23px;
-  }
-  
-  
+
   
   
   .login-link
   {
-   margin-top:19px;
+   margin-top:12px;
+   font-size:20px;
    text-decoration: underline;
   }
   
@@ -166,11 +160,24 @@
             width: 100%;
     }
     
-    .account
-    {
-       margin-bottom:10px;
-    }
+   
  
+     #content 
+    {
+    max-width: 800px; 
+    margin: 0 auto;
+  
+}
+
+
+ #bottom
+  {
+    display:flex;
+    margin-top:30px;
+    margin-left:300px;
+
+  
+  }
 
         
     </style>
@@ -193,11 +200,12 @@
             <a href="<%= request.getContextPath() %>/register.jsp" id="signup">Sign Up</a>
         </div>
     </header>
+    <div id="content">
     <div id="image2">
         <img src="images/iskandar_logo.png" alt="" style="max-width: 100%; height: auto;">
     </div>
     <div id="line">
-        <a href="#">Forgot Password</a>
+        <a href="#">FORGOT PASSWORD</a>
         <form id="login-form">
    
             
@@ -205,13 +213,14 @@
                  <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
         </form>
-    
+   </div>
     <button type="submit" id="continue-button" onclick="navigateToReset()">Continue</button>
     
     <div id="bottom">
-    <p id="account">No account yet?</p>
-    <a href="<%= request.getContextPath() %>/login.jsp" class="login-link">Login here</a>
+    <p id="account">NO ACCOUNT YET?</p>
+    <a href="<%= request.getContextPath() %>/login.jsp" class="login-link">LOGIN HERE</a>
     </div>
+   </div>
      <footer>
       
     </footer>
