@@ -38,11 +38,14 @@
             border-radius: 5px;
         }
 
-        #line {
+        #line 
+        {
             margin-top: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-left:25px;
+           
         }
         
         #line a {
@@ -76,7 +79,7 @@
         #image2
         {
             margin-top:50px;
-            margin-left:580px;
+            margin-left:230px;
         }
 
         #login-form {
@@ -84,6 +87,7 @@
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
+         
         }
 
        #login-form div {
@@ -116,7 +120,7 @@
     margin-top:10px;
     background-color: #FFC684;
     color: #FFFFFF;
-    margin-left:730px;
+    margin-left:370px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -128,10 +132,14 @@
     display:flex;
     margin-top:10px;
     margin-left:658px;
+    margin-bottom:100px;
+  
   }
   
-  
-  
+  #bottom a
+  {
+   margin-bottom:4px;
+  }
   
   .signup-link
   {
@@ -171,7 +179,14 @@
       margin-right:72px;
     }
     
+    
+     #content 
+    {
+    max-width: 800px; 
+    margin: 0 auto;
+
  
+}
 
         
     </style>
@@ -188,6 +203,7 @@
             <a href="<%= request.getContextPath() %>/register.jsp" id="signup">Sign Up</a>
         </div>
     </header>
+    <div id="content">
     <div id="image2">
         <img src="images/iskandar_logo.png" alt="" style="max-width: 100%; height: auto;">
     </div>
@@ -215,9 +231,9 @@
         </form>
         
     </div>
- 
+  
     <button type="submit" id="login-button">Reset</button>
-    
+     </div>
      <footer>
       
     </footer>
