@@ -63,6 +63,24 @@
 	font-weight: normal;
 	padding-bottom: 50px;
 }
+
+#btn{
+	text-decoration: none;
+	padding: 15px;
+	background-color: #f2bc85;
+	color: white;
+	border-radius: 15px;
+	border: none;
+	cursor: pointer;
+}
+  
+#btn:hover{
+	border: black solid 0.5px;
+}
+
+.download{	
+	text-align:center;
+}
 </style>
 </head>
 
@@ -95,6 +113,10 @@
 
 					</div>
 				</div>
+				
+				<div class="download">
+						<button type="download" value="Download" id="btn">Download</button>
+						</div>
 
 			</div>
 		</div>
