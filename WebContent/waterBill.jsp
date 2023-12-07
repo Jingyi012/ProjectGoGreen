@@ -36,7 +36,7 @@
         		<div class="calendar">
         			
         			<% 
-        			String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "Auggust", "September", "October", "November", "December"}; 
+        			String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}; 
         			Calendar cal = Calendar.getInstance();
 				    int currentMonth = cal.get(Calendar.MONTH) + 1;
 				    

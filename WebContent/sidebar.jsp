@@ -96,18 +96,18 @@
 		<hr>
 		<div class="navItems">
 		
-		<%-- <% if(session.getAttribute("userRole").equals("admin")){ %> --%>
+		<% if(session.getAttribute("userRole").equals("admin")){ %>
 			<a href="adminDashboard.jsp" class="navItem"><i class="bi bi-speedometer2"></i> Dashboard</a>
 			<a href="manageUser.jsp" class="navItem"><i class="bi bi-people-fill"></i> Manage User</a>
 			<a href="adminReport.jsp" class="navItem"><i class="bi bi-clipboard2-data"></i> Report</a> 
 			
-		<%-- <% } else { %>	 --%>
+		<% } else { %>
 			<a href="profile.jsp" class="navItem"><i class="bi bi-person-circle"></i> Profile</a>
 			<a href="userDashboard.jsp" class="navItem"><i class="bi bi-speedometer2"></i> Dashboard</a>
 			<a href="bills.jsp" class="navItem"><i class="bi bi-receipt"></i> Bills</a>
 			<a href="certificate.jsp" class="navItem"><i class="bi bi-award"></i> Certificate</a>
 		
-		<%-- <% } %> --%>
+		<% } %>
 		
 		</div>
 		

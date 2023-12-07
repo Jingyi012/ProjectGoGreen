@@ -11,7 +11,7 @@
 }
 .carbonFootprintDetails{
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	margin: 20px 20px 10px;
 	gap: 40px;
 }
@@ -52,7 +52,7 @@
 }
 
 .mapping{
-	width: 30%;
+	width: 45%;
 	height: auto;
 	background-color: lightgray;
 	margin-right: 20px;
@@ -61,6 +61,12 @@
 	text-align: center;
 	margin: 0 0 10px 0;
 }
+
+.areaCarbonTableDetails{
+	height: 400px;
+	overflow: scroll;
+}
+
 .areaCarbonTable table{
 	border-spacing: 0;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

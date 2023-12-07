@@ -43,10 +43,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-left:45px;
         }
         
         #line a {
-            font-size: 24px;
+            font-size: 18px;
         }
 
         #image1 
@@ -75,8 +76,8 @@
 
         #image2
         {
-            margin-top:50px;
-            margin-left:580px;
+            margin-top:20px;
+            margin-left:230px;
         }
 
         #login-form {
@@ -105,19 +106,20 @@
         
     .forgot-password 
     {
-    margin-top: 10px;
-    margin-left:850px;
+
+    margin-left:190px;
     color: #045BAC;
     font-size: 10px; 
     text-decoration:none;
 }
 
-   #login-button {
+   #login-button 
+{
     margin-top:10px;
     background-color: #FFC684;
     color: #FFFFFF;
-    margin-left:730px;
     padding: 10px 20px;
+    margin-left:10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -127,11 +129,9 @@
   {
     display:flex;
     margin-top:10px;
-    margin-left:658px;
+    margin-left:30px;
+   
   }
-  
-  
-  
   
   .signup-link
   {
@@ -165,6 +165,27 @@
             bottom: 0;
             width: 100%;
     }
+    
+    #content 
+    {
+    max-width: 800px; 
+    margin: 0 auto;
+}
+
+    #pass a
+    {
+      font-size:14px;
+      margin-left:200px;
+    }
+    
+    
+    .pageContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
  
 
         
@@ -172,6 +193,7 @@
 </head>
 <body>
     <header>
+  
         <div id="image1">
             <img src="images/mbip.png" alt="" style="max-width: 100%; height: auto;">
             <h1>Iskandar</h1> 
@@ -182,12 +204,13 @@
             <a href="<%= request.getContextPath() %>/register.jsp" id="signup">Sign Up</a>
         </div>
     </header>
+    <div id="content">
     <div id="image2">
         <img src="images/iskandar_logo.png" alt="" style="max-width: 100%; height: auto;">
     </div>
     <div id="line">
         <a href="#">LOG IN</a>
-        <form id="login-form">
+      <form id="login-form" method="post" action="LoginServlet">
    
    <div id="field">
             <div id="field1">
@@ -201,33 +224,24 @@
     </div>
     
    </div>
-            
             <div>
                 <label for="password">PASSWORD:</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password">
             </div>
-        </form>
         
-    </div>
-    <div>
+    <div id="pass">
     <a href="<%= request.getContextPath() %>/forgotPassword.jsp"class="forgot-password">Forgot Password?</a>
     </div>
     <button type="submit" id="login-button">Log In</button>
-    
+  </form>
     <div id="bottom">
     <p>No account yet?</p>
-    <a href="<%= request.getContextPath() %>/register.jsp" class="signup-link">Sign up here</a>
+    <a href="<%= request.getContextPath() %>/register.jsp" class="signup-link">SIGN UP HERE</a>
     </div>
+   </div>
+  </div>
      <footer>
       
     </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-

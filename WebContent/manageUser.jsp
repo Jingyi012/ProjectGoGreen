@@ -4,24 +4,18 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>GoGreen</title>
-    <!-- Include Bootstrap Icons CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <style>
-        #head {
-            margin-left: 30px;
-        }
-
-        #head p {
-            word-spacing: 0.5px;
-        }
-
+	    .pageContent{
+			padding: 30px 60px;
+		}
         h2 
         {
-            margin-left: 540px;
+            margin-left: 530px;
         }
 
         table {
-            width: 50%;
+            width: 180%;
             margin: auto;
             border-collapse: collapse;
             margin-top: 20px;
@@ -36,17 +30,32 @@
             text-align: left;
         }
 
-        /* Center the "No" column */
+    
         th:first-child,
         td:first-child {
             text-align: center;
         }
 
-        /* Apply styles to the validation icons */
+
         .validation-icon {
             color: green;
-            cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+            cursor: pointer; 
         }
+        
+            #content 
+    {
+    display:inline-block;
+    margin: 0 auto;
+}
+
+#form-row
+{
+
+  margin-left:175px;
+}
+
+
+ 
     </style>
 </head>
 <body>
@@ -58,12 +67,14 @@
         <div class="pageWrapper">
             <jsp:include page="headerBar.jsp" />
             <div class="pageContent">
-                <div id="head">
-                    <p>Home > Manage User</p>
-                </div>
+            	<div class="pageNav">
+					Home > 
+					<a href="">Manage User</a>
+				</div>
+                <div id="content">
                 <h2>Manage User</h2>
 
-                <form>
+                <form id="form-row">
                     <table>
                         <tr>
                             <td>No</td>
@@ -73,12 +84,14 @@
                         <tr>
                             <td>1</td>
                             <td>Ali</td>
-                            <!-- Wrap the icon in an anchor tag with the desired href -->
+                 
                             <td><a href="manageUserProfile.jsp"><i class="bi bi-check-circle validation-icon"></i></a></td>
                         </tr>
                     </table>
                 </form>
+                </div>
             </div>
+            
         </div>
     </div>
 </body>
