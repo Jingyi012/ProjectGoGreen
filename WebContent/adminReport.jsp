@@ -21,7 +21,7 @@
 	<div class="pageContent">
 			<div class="pageNav">
 					Home > 
-					<a href="userDashboard.jsp">Dashboard</a>
+					<a href="adminReport.jsp">Report</a>
 				</div>
 			
 				 <div class="tabs">

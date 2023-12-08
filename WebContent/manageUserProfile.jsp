@@ -7,8 +7,6 @@
     <title>GoGreen</title>
     
     
-    						<%--  Since admin cannot edit the information, --%>
-    						<%--  maybe just display a table showing users' information? --%>
     							
     <style>
         body {

@@ -100,6 +100,7 @@
 			<a href="adminDashboard.jsp" class="navItem"><i class="bi bi-speedometer2"></i> Dashboard</a>
 			<a href="manageUser.jsp" class="navItem"><i class="bi bi-people-fill"></i> Manage User</a>
 			<a href="adminReport.jsp" class="navItem"><i class="bi bi-clipboard2-data"></i> Report</a> 
+			<a href="validateBill.jsp" class="navItem"><i class="bi bi-ui-checks"></i> Validate Bill</a>
 			
 		<% } else { %>
 			<a href="profile2.jsp" class="navItem"><i class="bi bi-person-circle"></i> Profile</a>
