@@ -5,11 +5,16 @@
     <meta charset="ISO-8859-1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <title>GoGreen</title>
+    
+    
+    						<%--  Since admin cannot edit the information, --%>
+    						<%--  maybe just display a table showing users' information? --%>
+    							
     <style>
         body {
-            font-size: 16px;
-            margin: 0;
-            padding: 0;
+            font-size: 16px;               
+            margin: 0;                     
+            padding: 0;                    
         }
 
         #head 

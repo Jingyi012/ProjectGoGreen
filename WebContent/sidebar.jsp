@@ -102,7 +102,7 @@
 			<a href="adminReport.jsp" class="navItem"><i class="bi bi-clipboard2-data"></i> Report</a> 
 			
 		<% } else { %>
-			<a href="profile.jsp" class="navItem"><i class="bi bi-person-circle"></i> Profile</a>
+			<a href="profile2.jsp" class="navItem"><i class="bi bi-person-circle"></i> Profile</a>
 			<a href="userDashboard.jsp" class="navItem"><i class="bi bi-speedometer2"></i> Dashboard</a>
 			<a href="bills.jsp" class="navItem"><i class="bi bi-receipt"></i> Bills</a>
 			<a href="certificate.jsp" class="navItem"><i class="bi bi-award"></i> Certificate</a>
