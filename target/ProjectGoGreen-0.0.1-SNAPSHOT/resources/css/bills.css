@@ -1,0 +1,66 @@
+@charset "ISO-8859-1";
+.pageContent{
+    padding: 30px 60px;
+}
+
+.billChoice{
+    display: flex;
+    width: 90%;
+    justify-content:space-around;
+    flex-wrap: wrap;
+    margin: 80px auto;
+}
+
+.billChoiceItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 200px;
+    height: 280px;
+    border-radius: 10px;
+    justify-content: space-evenly;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    text-decoration: none;
+    color: black;
+}
+
+.billChoiceItem i{
+    font-size: 60px;
+}
+.billChoiceItem h2{
+    font-size: 28px;
+}
+
+.water{
+    background-color: rgb(217, 241, 255, 1);
+}
+
+.electric{
+    background-color: rgb(255, 242, 217);
+}
+
+.recycle{
+    background-color: rgb(217, 255, 223);
+}
+.water i{
+    color: #85b6ff;
+}
+.electric i{
+    color: #ffd233;
+}
+.recycle i{
+    color: #4ecb71;
+}
+
+.water:hover{
+    background-color: rgb(203, 229, 244);
+}
+
+.electric:hover{
+    background-color: rgb(239, 226, 199);
+}
+
+.recycle:hover{
+    background-color: rgb(196, 241, 203);
+}

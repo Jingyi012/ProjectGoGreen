@@ -1,0 +1,12 @@
+com\controller\RegistrationController.class
+com\controller\LoginController.class
+com\controller\UserController.class
+com\model\User.class
+com\controller\DashboardController.class
+com\controller\LogoutController.class
+com\controller\ElectricBillValidateController.class
+com\controller\CertificateController.class
+com\controller\AdminReportController.class
+com\controller\ElectricBillController.class
+com\controller\ProfileController.class
+com\controller\ProfileServlet.class

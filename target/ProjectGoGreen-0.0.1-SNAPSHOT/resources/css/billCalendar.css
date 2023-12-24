@@ -1,0 +1,60 @@
+@charset "ISO-8859-1";
+
+.pageContent{
+	padding: 30px 60px;
+}
+.pageTitle{
+	text-decoration: underline; 
+	margin: 20px 0 0 0px; 
+	font-size: 30px;
+}
+.calendarYear{
+	text-align: center;
+	margin: 10px 0 20px 0;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+#yearSelect{
+	font-size: 20px;
+}
+.calendar{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	column-gap: 35px;
+	row-gap: 25px;
+	width: 100%;
+	max-width: 900px;
+	margin: auto;
+}
+
+.month{
+	height: 180px;
+	min-width: 130px;
+	width: auto;
+	background-color: rgb(233, 233, 233);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.monthName{
+	padding: 12px 0;
+   	background-color: rgb(213, 213, 213);
+	width: 100%;
+	text-align: center;
+}
+
+.monthFunc{
+	padding: 10px;
+	margin: 40px 0;
+}
+
+.uploadBtn{
+	text-decoration: none;
+	padding: 15px;
+	background-color: #f2bc85;
+	color: black;
+	border-radius: 15px;
+}

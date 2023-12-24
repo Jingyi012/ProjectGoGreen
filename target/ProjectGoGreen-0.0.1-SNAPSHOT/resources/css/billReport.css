@@ -1,0 +1,51 @@
+@charset "ISO-8859-1";
+
+.pageContent{
+	padding: 30px 60px;
+}
+.pageTitle{
+	text-decoration: underline; 
+	margin: 20px 0 0 0px; 
+	font-size: 30px;
+}
+
+.reportContainer{
+	display: flex;
+    align-items: center;
+    padding-top: 55px;
+    width: 800px;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.reportTable{
+	border: 1px solid;
+	border-radius: 10px;
+	padding: 5px;
+	text-align: left;
+	width: 100%;
+	margin-bottom: 25px;
+}
+
+.reportTable td, .reportTable th{
+	padding: 20px 20px 20px 30px;
+}
+
+.reportTable td{
+	width: 100%;
+}
+
+.downloadButton{
+	text-decoration: none;
+	padding: 15px;
+	background-color: #f2bc85;
+	color: white;
+	border-radius: 15px;
+	border: none;
+	cursor: pointer;
+}
+
+.downloadButton:hover{
+	border: black solid 0.5px;
+}
+  
