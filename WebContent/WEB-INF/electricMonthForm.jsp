@@ -25,14 +25,14 @@
                 <div class="pageNav">
 					Home > 
 					<a href="${pageContext.request.contextPath}/bills">Bills</a> >
-					<a href="${pageContext.request.contextPath}/electricBill">Electric Bills</a> >
-                    ${month}
+					<a href="${pageContext.request.contextPath}/bills/electricBill">Electric Bills</a> >
+                    ${month} ${year}
 				</div>
 				<h2 class="pageTitle">Electric Bills</h2>
 				
 			  
 				<div class="formContainer">
-					<form action="${pageContext.request.contextPath}/electricMonthReport/${year}/${month}" method="post">
+					<form action="${pageContext.request.contextPath}/bills/electricMonthReport/${year}/${month}" method="post">
 						<div class="billForm electric">
 							<label for="eBill">Insert Electric Consumption:</label>
 							<input type="text" id="eBill" name="eBill" placeholder="123kWh">

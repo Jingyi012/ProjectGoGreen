@@ -16,7 +16,7 @@
 				<%
 					if(i+1 < currentMonth || selectedYear < currentYear){
 				%>
-					<a class="uploadBtn" href="electricBill/<%=selectedYear%>/<%=monthArray[i]%>">Upload Bill</a>
+					<a class="uploadBtn" href="${pageContext.request.contextPath}/bills/electricBill/<%=selectedYear%>/<%=monthArray[i]%>">Upload Bill</a>
 				<%   
 					}
 				%>

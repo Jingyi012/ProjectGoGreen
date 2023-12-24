@@ -24,8 +24,8 @@
         	<div class="pageNav">
 					Home > 
 					<a href="${pageContext.request.contextPath}/bills">Bills</a> >
-					<a href="${pageContext.request.contextPath}/electricBill">Electric Bills</a> >
-                    ${month}
+					<a href="${pageContext.request.contextPath}/bills/electricBill">Electric Bills</a> >
+                    ${month} ${year}
 				</div>
 				<h2 class="pageTitle">Electric Bills</h2>
 				

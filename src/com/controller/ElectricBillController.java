@@ -12,8 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
+@RequestMapping("/bills")
 public class ElectricBillController {
-	@RequestMapping("/bills")
+	@RequestMapping("")
 	public ModelAndView billSelectionPage() {
 		ModelAndView model=new ModelAndView("bills");
 		return model;
