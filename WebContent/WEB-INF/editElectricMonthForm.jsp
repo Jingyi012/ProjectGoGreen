@@ -28,14 +28,14 @@
 					<a href="${pageContext.request.contextPath}/bills/electricBill">Electric Bills</a> >
                     ${month} ${year}
 				</div>
-				<h2 class="pageTitle">Electric Bills</h2>
+				<h2 class="pageTitle">Edit Electric Bills</h2>
 				
 			  
 				<div class="formContainer">
-					<form action="${pageContext.request.contextPath}/bills/electricMonthForm/submit" method="post" enctype="multipart/form-data">
+					<form action="${pageContext.request.contextPath}/bills/editElectricMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm electric">
 							<label for="eBill">Insert Electric Consumption:</label>
-							<input type="text" id="eBill" name="eBill" placeholder="123kWh">
+							<input type="text" id="eBill" name="eBill" placeholder="123kWh" value="${electricbill.electric_consumption}">
 						</div>
 						
 						<div class="billFile electric">
