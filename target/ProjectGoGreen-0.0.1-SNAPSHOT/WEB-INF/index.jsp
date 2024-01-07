@@ -22,7 +22,7 @@
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
-	background-image: url("images/landingpagee.png");
+	background-image: url("${pageContext.request.contextPath}/resources/images/landingpagee.png");
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-size: cover;

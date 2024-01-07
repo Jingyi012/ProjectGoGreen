@@ -19,7 +19,7 @@
 				<div class="pageNav">
 					Home > 
 					<a href="${pageContext.request.contextPath}/validateBill">Validate Bill</a> >
-					<a href="">Validate Electric Bill</a> >
+					<a href="">Validate Electric Bill</a>
 				</div>
 
 	        	<h2 style="text-decoration: underline; margin: 20px 0 0 0; font-size: 30px;" >Validate Electric Bill</h2>

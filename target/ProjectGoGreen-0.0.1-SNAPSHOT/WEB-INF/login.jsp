@@ -195,7 +195,7 @@
     <header>
   
         <div id="image1">
-            <img src="images/mbip.png" alt="" style="max-width: 100%; height: auto;">
+            <img src="${pageContext.request.contextPath}/resources/images/mbip.png" alt="" style="max-width: 100%; height: auto;">
             <h1>Iskandar</h1> 
             <h1>Puteri</h1>
         </div>
@@ -206,7 +206,7 @@
     </header>
     <div id="content">
     <div id="image2">
-        <img src="images/iskandar_logo.png" alt="" style="max-width: 100%; height: auto;">
+        <img src="${pageContext.request.contextPath}/resources/images/iskandar_logo.png" alt="" style="max-width: 100%; height: auto;">
     </div>
     <div id="line">
         <a href="#">LOG IN</a>
