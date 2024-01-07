@@ -28,10 +28,12 @@ public class LoginController {
 		
 		if(nric.equals("1111") && password.equals("1111")) {
 			session.setAttribute("userRole", "admin");
+			session.setAttribute("user_id", 1);
 			//model = new ModelAndView("adminDashboard");
 			return "redirect:/adminDashboard";
 		} else {
 			session.setAttribute("userRole", "user");
+			session.setAttribute("user_id", 1);
 			//model = new ModelAndView("userDashboard");
 			return "redirect:/userDashboard";
 		}

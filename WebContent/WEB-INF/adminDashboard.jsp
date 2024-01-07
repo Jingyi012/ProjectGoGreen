@@ -132,6 +132,7 @@
         	</div>
         </div>
     </div>
+
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
 	  google.charts.load('current', {'packages':['corechart']});
@@ -178,13 +179,6 @@
 		  	for(int i=0; i<areaDetails.length; i++){ %>
 		  		areaData.push(["<%= areaDetails[i] %>", <%= fourDigitNumbers[i] %>, ""]);
 		  	<% } %>
-	      /* var dataAreaCarbon = google.visualization.arrayToDataTable([
-	        ["Area", "Carbon Footprint", { role: "style" } ],
-	        ["Copper", 8.94, ""],
-	        ["Silver", 10.49, "silver"],
-	        ["Gold", 19.30, "gold"],
-	        ["Platinum", 21.45, "color: #e5e4e2"]
-	      ]); */
 	      
 	      var dataAreaCarbon = google.visualization.arrayToDataTable(areaData);
 	      var view = new google.visualization.DataView(dataAreaCarbon);
@@ -205,5 +199,6 @@
 	  }
 
 	</script>
+	
 </body>
 </html>
