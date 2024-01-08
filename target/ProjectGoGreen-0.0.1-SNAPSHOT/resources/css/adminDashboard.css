@@ -20,15 +20,20 @@
 
 .red{
     background-color: rgb(252, 171, 171);
+    border: 2px solid #ca4141;
 }
 .green{
     background-color: rgb(127, 255, 174);
+    border: 2px solid #41d241;
 }
 .yellow{
     background-color: rgb(255, 253, 190);
+    border: 2px solid #cad74e;
+}
 }
 .blue{
     background-color: rgb(162, 255, 255);
+    border: 2px solid #46a5cf;
 }
 
 .itemblock span{

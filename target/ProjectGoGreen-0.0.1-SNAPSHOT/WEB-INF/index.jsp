@@ -22,7 +22,7 @@
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
-	background-image: url("images/landingpagee.png");
+	background-image: url("${pageContext.request.contextPath}/resources/images/landingpagee.png");
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -112,8 +112,8 @@ color:#FFFFDD;
 
 		<nav>
 			<ul>
-				<li><a href="#">Log In</a></li>
-				<li><a href="#">Sign Up</a></li>
+				<li><a href="login">Log In</a></li>
+				<li><a href="register">Sign Up</a></li>
 
 			</ul>
 		</nav>

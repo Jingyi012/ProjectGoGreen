@@ -23,15 +23,15 @@
 
 	        	<h2 style="text-decoration: underline; margin: 20px 0 0 0; font-size: 30px;" >Bills</h2>
 	        	<div class="billChoice">
-	        		<a href="${pageContext.request.contextPath}/waterBill" class="billChoiceItem water">
+	        		<a href="${pageContext.request.contextPath}/bills/waterBill" class="billChoiceItem water">
 	        			<i class="bi bi-droplet"></i>
 	        			<h2>Water Bill</h2>
 	        		</a>
-	        		<a href="${pageContext.request.contextPath}/electricBill" class="billChoiceItem electric">
+	        		<a href="${pageContext.request.contextPath}/bills/electricBill" class="billChoiceItem electric">
 	        			<i class="bi bi-lightning-charge"></i>
 	        			<h2>Electric Bill</h2>
 	        		</a>
-	        		<a href="${pageContext.request.contextPath}/recycleBill" class="billChoiceItem recycle">
+	        		<a href="${pageContext.request.contextPath}/bills/recycleBill" class="billChoiceItem recycle">
 	        			<i class="bi bi-recycle"></i>
 	        			<h2>Recycle Bill</h2>
 	        		</a>

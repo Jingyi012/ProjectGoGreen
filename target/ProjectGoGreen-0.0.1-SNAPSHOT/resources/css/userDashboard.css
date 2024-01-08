@@ -28,11 +28,25 @@
 	border-radius: 8px;
 	background-color: white;
 	display: flex;
-	font-size: 25px;
+	flex-direction: column;
 	align-items: center;
 	padding: 5px 20px;
 	justify-content: space-between;
 }
+
+.consumption{
+	font-size: 25px;
+	text-align: right;
+	width: 100%;
+}
+
+.detailItemBlock p{
+	font-size: 16px;
+	width: 100%;
+	text-align: left;
+	margin: 5px 0 0 0;
+}
+
 .water i{
 	color: #85b6ff;
 }
@@ -52,10 +66,11 @@
 }
 
 .mapping{
-	width: 45%;
+	max-width: 45%;
 	height: auto;
 	background-color: lightgray;
 	margin-right: 20px;
+	width: fit-content;
 }
 .areaCarbonTable h3{
 	text-align: center;

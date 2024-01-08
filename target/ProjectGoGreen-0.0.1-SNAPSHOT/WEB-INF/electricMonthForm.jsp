@@ -18,26 +18,21 @@
         <div class="sideBarContainer">
             <jsp:include page="sidebar.jsp" />
         </div>
-        
-        <% 
-	        String month = request.getParameter("month"); 
-	        session.setAttribute("month", month);
-        %>
 	    
         <div class="pageWrapper">
         	<jsp:include page="headerBar.jsp" />
         	<div class="pageContent">
                 <div class="pageNav">
 					Home > 
-					<a href="bills.jsp">Bills</a> >
-					<a href="electricBill.jsp">Electric Bills</a> >
-                    <%= month %>
+					<a href="${pageContext.request.contextPath}/bills">Bills</a> >
+					<a href="${pageContext.request.contextPath}/bills/electricBill">Electric Bills</a> >
+                    ${month} ${year}
 				</div>
 				<h2 class="pageTitle">Electric Bills</h2>
 				
 			  
 				<div class="formContainer">
-					<form action="./electricMonthReport.jsp?month=<%= month %>">
+					<form action="${pageContext.request.contextPath}/bills/electricMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm electric">
 							<label for="eBill">Insert Electric Consumption:</label>
 							<input type="text" id="eBill" name="eBill" placeholder="123kWh">
@@ -51,6 +46,8 @@
 						
 						<div class="submitButton">
 						<input type="submit" value="Submit" id="btn">
+						<input type="hidden" name="year" value="${year}" />
+						<input type="hidden" name="month" value="${month}" />
 						</div>
 					</form>
 				</div>

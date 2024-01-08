@@ -104,9 +104,9 @@
             <div class="pageContent">
 	            <div class="pageNav">
 						Home > 
-						<a href="profile2.jsp">Profile</a>
+						<a href="${pageContext.request.contextPath}/profile">Profile</a>
 						>
-						<a href="editProfile2.jsp">Edit Profile</a>
+						<a href="${pageContext.request.contextPath}/editProfile">Edit Profile</a>
 				</div>
 				<div class="title">Profile Information</div>
 				

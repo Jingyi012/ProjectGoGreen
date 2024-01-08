@@ -25,21 +25,24 @@
 				</div>
         		<h2 class="pageTitle">Electric Bills</h2>
         		<div id="calendarYear" class="calendarYear" >
-        			<i class="bi bi-caret-left-fill"></i>
+        			<i class="bi bi-caret-left-fill" class="carousel-control-prev" type="button" data-bs-target="#calendarContainer" data-bs-slide="prev"></i>
         			<select id="yearSelect">
         				<option>2021</option>
         				<option>2022</option>
         				<option selected>2023</option>
         			</select>
         			<i class="bi bi-caret-right-fill"></i>
+        			<!-- <i class="bi bi-caret-right-fill" class="carousel-control-next" type="button" data-bs-target="#calendarContainer" data-bs-slide="next"></i> -->
         		</div>
+
         		<div class="calendar" id="calendar">
-        			
+        		
         		</div>
+        		
         	</div>
         </div>
+ 
         <script>
-        	
 
 			$(document).ready(function(){
 				updateCalendar(2023);
@@ -52,35 +55,43 @@
     			$('.bi-caret-right-fill').click(incrementSelect);
 
 				function updateCalendar(year){
-					$.ajax({
+				$.ajax({
 						type: 'GET',
 						url: 'updateElectricCalendar', 
 						data: { year: year },
 						success: function(response) {
 							
 							$('#calendar').html(response);
+							$('#calendar').hide().fadeIn(1000);
 						},
 						error: function(error) {
 							console.error('Error updating included page:', error);
 						}
 					});
 				}
-
+			
 				function incrementSelect() {
 					var select = $('#yearSelect');
-					select.prop('selectedIndex', Math.min(select[0].options.length - 1, select.prop('selectedIndex') + 1));
-					updateCalendar(select.val());
+					var newIndex = Math.min(select[0].options.length - 1, select.prop('selectedIndex') + 1);
+					if (newIndex !== select.prop('selectedIndex')) {
+						select.prop('selectedIndex', newIndex);
+						updateCalendar(select.val());
+					}
 				}
 
 				function decrementSelect() {
 					var select = $('#yearSelect');
-					select.prop('selectedIndex', Math.max(0, select.prop('selectedIndex') - 1));
-					updateCalendar(select.val());
+					var newIndex = Math.max(0, select.prop('selectedIndex') - 1);
+					if (newIndex !== select.prop('selectedIndex')) {
+						select.prop('selectedIndex', newIndex);
+						updateCalendar(select.val());
+					}
 				}
+			    
 			})
 
-        </script>
-    </div>
+        </script> 
 
+    </div>
 </body>
 </html>

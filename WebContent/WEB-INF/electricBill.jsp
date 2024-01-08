@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +40,23 @@
         		
         		</div>
         		
+        		<c:if test="${not empty successMessage}">
+			        <%-- <div class="alert alert-success" role="alert">
+			            <strong>${successMessage}</strong>
+			        </div> --%>
+			        <div class='statusMessageBox'>
+                            <div class='toast-content'>
+                            <i class='bi bi-check2 toast-icon greenColor'></i>
+                            <div class='message'>
+                                <span class='message-text text-1'>Success</span>
+                                <span class='message-text text-2'>${successMessage}</span>
+                            </div>
+                            </div>
+                            <i class='bi bi-x toast-close'></i>
+                            <div class='progressbar active greenColor'></div>
+                    </div>
+
+			    </c:if>
         	</div>
         </div>
  
@@ -91,6 +109,37 @@
 			})
 
         </script> 
+        <script>
+	        document.addEventListener('DOMContentLoaded', function() {
+	            var statusMessageBox = document.querySelector('.statusMessageBox');
+	            if (statusMessageBox) {
+	                setTimeout(function() {
+	                    statusMessageBox.classList.add("slideOut");
+	                }, 3000);
+	
+	                var progressbar = document.querySelector('.statusMessageBox .progressbar.active');
+	                if (progressbar) {
+	                    setTimeout(function() {
+	                        progressbar.classList.remove("active");
+	                        statusMessageBox.remove();
+	                    }, 3500);
+	                }
+	
+	                var toastCloseButtons = document.querySelectorAll('.statusMessageBox .toast-close');
+	                toastCloseButtons.forEach(function(button) {
+	                    button.addEventListener("click", function() {
+	                        statusMessageBox.classList.add("slideOut");
+	
+	                        setTimeout(function() {
+	                            progressbar.classList.remove("active");
+	                            statusMessageBox.remove();
+	                        }, 300);
+	                    });
+	                });
+	            }
+	        });
+
+	    </script>
 
     </div>
 </body>

@@ -63,14 +63,18 @@
 	padding: 20px;
 	margin-top: 20px;
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .mapping{
-	max-width: 45%;
+	flex: 1;
 	height: auto;
 	background-color: lightgray;
 	margin-right: 20px;
 	width: fit-content;
+}
+.areaCarbonTable{
+	flex: 1.5;
 }
 .areaCarbonTable h3{
 	text-align: center;

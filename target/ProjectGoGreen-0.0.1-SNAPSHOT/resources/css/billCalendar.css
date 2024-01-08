@@ -44,11 +44,30 @@
    	background-color: rgb(213, 213, 213);
 	width: 100%;
 	text-align: center;
+	height: 10%;
+}
+
+.monthName.green{
+	background-color: rgb(161 227 150);
+}
+.monthName.red{
+	ackground-color: rgb(242 161 161);
 }
 
 .monthFunc{
-	padding: 10px;
-	margin: 40px 0;
+	height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.monthFunc.green{
+	background-color: #e0f9d3;
+}
+.monthFunc.red{
+	background-color: #ffdbdb;
 }
 
 .uploadBtn{

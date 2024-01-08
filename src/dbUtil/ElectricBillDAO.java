@@ -28,8 +28,8 @@ public class ElectricBillDAO {
 	}
 	
 	public int add(ElectricBill bill) {
-		String sql = "insert into `electricbill`(id, electric_consumption, electricBill_proof, year, month, user_id, status) values (?,?,?,?,?,?)";
-		Object args[] = {bill.getElectric_consumption(), bill.getElectricBill_proof(), bill.getYear(), bill.getMonth(), bill.getUser_id(), bill.getStatus()};
+		String sql = "insert into `electricbill`(electric_consumption, electricBill_proof, year, month, carbon_footprint, user_id, status) values (?,?,?,?,?,?,?)";
+		Object args[] = {bill.getElectric_consumption(), bill.getElectricBill_proof(), bill.getYear(), bill.getMonth(), bill.getCarbon_footprint(), bill.getUser_id(), bill.getStatus()};
 		int rowAffected = jdbct.update(sql,args);
 		return rowAffected;
 	}
@@ -49,8 +49,8 @@ public class ElectricBillDAO {
 	}
 	
 	public int updateElectricBill(ElectricBill bill) {
-		String sql ="update electricbill set electric_consumption=?, electricBill_proof=?, carbon_footprint=?, status=?";
-		Object args[] = {bill.getElectric_consumption(), bill.getElectricBill_proof(), bill.getCarbon_footprint(), bill.getStatus()};
+		String sql ="update electricbill set electric_consumption=?, electricBill_proof=?, carbon_footprint=?, status=? where user_id=? and month=? and year=?";
+		Object args[] = {bill.getElectric_consumption(), bill.getElectricBill_proof(), bill.getCarbon_footprint(), bill.getStatus(), bill.getUser_id(), bill.getMonth(), bill.getYear()};
 		int rowAffect = jdbct.update(sql, args);
 		return rowAffect;
 	}
