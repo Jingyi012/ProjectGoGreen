@@ -32,7 +32,7 @@
 				
 			  
 				<div class="formContainer">
-					<form action="${pageContext.request.contextPath}/bills/electricMonthReport/${year}/${month}" method="post">
+					<form action="${pageContext.request.contextPath}/bills/electricMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm electric">
 							<label for="eBill">Insert Electric Consumption:</label>
 							<input type="text" id="eBill" name="eBill" placeholder="123kWh">
@@ -46,6 +46,8 @@
 						
 						<div class="submitButton">
 						<input type="submit" value="Submit" id="btn">
+						<input type="hidden" name="year" value="${year}" />
+						<input type="hidden" name="month" value="${month}" />
 						</div>
 					</form>
 				</div>
