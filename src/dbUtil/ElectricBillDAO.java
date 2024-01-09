@@ -34,10 +34,9 @@ public class ElectricBillDAO {
 		return rowAffected;
 	}
 	
-	public ElectricBill getElectricData(ElectricBill bill) {
-		String sql = "select * from electricbill where user_id=? and month=? and year=? and status=?";
-		Object args[] = {bill.getUser_id(), bill.getMonth(), bill.getYear(), bill.getStatus()};
-		ElectricBill ebill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), args);
+	public ElectricBill getElectricDataById(int eid) {
+		String sql = "select * from electricbill where eid=?";
+		ElectricBill ebill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), eid);
 		return ebill;
 	}
 	
