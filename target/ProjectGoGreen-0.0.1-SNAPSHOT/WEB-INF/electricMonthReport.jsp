@@ -38,24 +38,24 @@
 							<td id="address">12 Jalan Indah 14/5, Bukit Indah, Iskandar Puteri, Johor</td>
 						</tr>
 						<tr>
-							<th>Date:</th>
-							<td id="date">12.6.2023 - 12.7.2023</td>
+							<th>Name:</th>
+							<td id="name">user name</td>
+						</tr>
+						<tr>
+							<th>Month:</th>
+							<td id="date">${month}</td>
+						</tr>
+						<tr>
+							<th>Year:</th>
+							<td id="year">${year}</td>
 						</tr>
 						<tr>
 							<th>Electric Consumption(kWh):</th>
-							<td id="electricConsumption">186</td>
-						</tr>
-						<tr>
-							<th>Factor Prorate(Day):</th>
-							<td id="electricProrate">1.000000</td>
-						</tr>
-						<tr>
-							<th>Current Charge(RM):</th>
-							<td id=electricCharge>13.60</td>
+							<td id="electricConsumption">${electricBill.electric_consumption}</td>
 						</tr>
 						<tr>
 							<th>Carbon Footprint(kWhCO2):</th>
-							<td id=CarbonFootprint>108.624</td>
+							<td id=CarbonFootprint>${electricBill.carbon_footprint}</td>
 						</tr>
 					</table>
 					
