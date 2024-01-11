@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -41,10 +42,25 @@ public class ElectricBillDAO {
 	}
 	
 	public ElectricBill getElectricDataByMonthYear(int userId, int month, int year) {
-		String sql = "select * from electricbill where user_id=? and month=? and year=?";
-		Object args[] = {userId, month, year};
-		ElectricBill ebill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), args);
-		return ebill;
+		try {
+			String sql = "select * from electricbill where user_id=? and month=? and year=?";
+			Object args[] = {userId, month, year};
+			ElectricBill ebill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), args);
+			return ebill;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public ElectricBill getApprovedElectricDataByMonthYear(int userId, int month, int year) {
+		try {
+			String sql = "select * from electricbill where user_id=? and month=? and year=? and status='approve'";
+			Object args[] = {userId, month, year};
+			ElectricBill ebill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), args);
+			return ebill;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
 	public int updateElectricBill(ElectricBill bill) {

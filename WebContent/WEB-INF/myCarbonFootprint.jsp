@@ -15,7 +15,7 @@
 	<div class="detailItemBlock">
 		<p>Electric Consumption</p>
 		<span class="consumption electric"> <i
-			class="bi bi-lightning-charge"></i> <span> 208 kWh</span>
+			class="bi bi-lightning-charge"></i> <span> ${electric_consumption} kWh</span>
 		</span>
 	</div>
 	<div class="detailItemBlock recycle">
@@ -28,7 +28,7 @@
 		<p>Carbon Footprint</p>
 		<span class="consumption"> <img
 			src="${pageContext.request.contextPath}/resources/images/carbonFootprint.png"
-			alt="carbonFootprint.png" width="30px" /> <span>120 kgCO<sub>2</sub></span>
+			alt="carbonFootprint.png" width="30px" /> <span>${carbon_footprint} kgCO<sub>2</sub></span>
 		</span>
 	</div>
 </body>

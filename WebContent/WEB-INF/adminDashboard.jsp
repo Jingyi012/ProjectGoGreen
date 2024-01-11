@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,19 +25,19 @@
         		<div class="wholeCarbonFootprintDetails">
         			<div class="itemblock red">
                         <span>High Carbon Emission Area</span>
-                        <p>Gelang Patah</p>
+                        <p>${highestArea.name}</p>
                     </div>
                     <div class="itemblock green">
                         <span>Low Carbon Emission Area</span>
-                        <p>Kangkar Pulai</p>
+                        <p>${lowestArea.name}</p>
                     </div>
                     <div class="itemblock blue">
                         <span>Total Participant</span>
-                        <p>10094</p>
+                        <p>${totalParticipant}</p>
                     </div>
                     <div class="itemblock yellow">
                         <span>Total Carbon Emission</span>
-                        <p>10094kgCO<sub>2</sub></p>
+                        <p>${totalCF} kgCO<sub>2</sub></p>
                     </div>
         		</div>
 
@@ -58,7 +59,7 @@
 									<th>Total Carbon Footprint (kgCO<sub>2</sub>)</th>
 								</tr>
 								
-								<% 
+								<%-- <% 
 								String[] areaDetails = {
 										"Pulai Indah",
 							            "Kangkar Pulai",
@@ -94,7 +95,18 @@
 									<td>1245</td>
 									<td>3341</td>
 								</tr>
-								<% } %>
+								<% } %> --%>
+								
+								<c:forEach var="areaCarbonList" items="${areaCarbonList}">
+								<tr>
+									<td><c:out value="${areaCarbonList.area}"/></td>
+									<td><c:out value="${areaCarbonList.water_consumption}"/></td>
+									<td><c:out value="${areaCarbonList.electric_consumption}"/></td>
+									<td><c:out value="${areaCarbonList.recycle_weight}"/></td>
+									<td><c:out value="${areaCarbonList.num_participant}"/></td>
+									<td><c:out value="${areaCarbonList.sum_cf}"/></td>
+								</tr>
+								</c:forEach>
 							</table>
 						</div>
 					</div>
@@ -174,11 +186,9 @@
 	  function drawChart2() {
 
 		  var areaData = [["Area", "Carbon Footprint", { role: "style" } ]];
-		  
-		  <% int[] fourDigitNumbers = {1234, 9678, 4321, 5876, 2468, 1357, 8765, 3456, 7890, 2109, 6543, 8901, 4325, 6789, 1098, 5432, 8761, 2345, 8907, 4567, 5432, 9876, 2109, 8765};
-		  	for(int i=0; i<areaDetails.length; i++){ %>
-		  		areaData.push(["<%= areaDetails[i] %>", <%= fourDigitNumbers[i] %>, ""]);
-		  	<% } %>
+		  <c:forEach var="areaCarbon" items="${areaCarbonList}">
+	        areaData.push(["${areaCarbon.area}", ${areaCarbon.sum_cf}, ""]);
+	      </c:forEach>
 	      
 	      var dataAreaCarbon = google.visualization.arrayToDataTable(areaData);
 	      var view = new google.visualization.DataView(dataAreaCarbon);
@@ -190,12 +200,19 @@
 	                       2]);
 
 	      var options = {
-	        title: "Carbon Footprint at Each Area",
+	        title: "Carbon Footprint at Each Area 2023",
 	        titleTextStyle: {
 	            fontSize: 18
 	          },
 	        bar: {groupWidth: "50%"},
 	        legend: { position: "none" },
+	        hAxis: {
+	            title: "Carbon Footprint",
+	            minValue: 0,
+	        },
+	        vAxis: {
+	            title: "Area",     
+	        }
 	      };
 	      var chart = new google.visualization.BarChart(document.getElementById("barChart"));
 	      chart.draw(view, options);
