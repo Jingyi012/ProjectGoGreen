@@ -22,58 +22,29 @@
 				</div>
         		<div class="myCarbonFootprint">
         			<h2 style="margin: 0 0 20px 0">My Carbon Footprint</h2>
-        			<div class="monthSelect">
+        			<div class="monthYearSelect">
         				<i class="bi bi-calendar"></i>
-        				<select>
+        				<select id="monthSelect">
         				<% 
         				String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}; 
             			for(int i=0; i<12; i++){ %>
-        					<option><%= monthArray[i] %></option>
+        					<option value="<%= i+1 %>"><%= monthArray[i] %></option>
         				<% } %>
         				</select>
-        				<select>
+        				<select id="yearSelect">
         					<option>2021</option>
         					<option>2022</option>
         					<option selected>2023</option>
         				</select>
         			</div>
         			<div class="carbonFootprintDetails">
-        				<div class="detailItemBlock">
-        					<p>Water Consumption</p>
-        					<span class="consumption water">
-								<i class="bi bi-droplet"></i>
-								<span> 208 L</span>
-							</span>
-        				</div>
-        				<div class="detailItemBlock">
-        					<p>Electric Consumption</p>
-        					<span class="consumption electric">
-								<i class="bi bi-lightning-charge"></i>
-								<span> 208 kWh</span>
-							</span>
-        				</div>
-        				<div class="detailItemBlock recycle">
-        					<p>Recycle Weight</p>
-        					<span class="consumption recycle">
-								<i class="bi bi-recycle"></i>
-								<span> 208 kg</span>
-							</span>
-        				</div>
-        				<div class="detailItemBlock carbonFootprint">
-        					<p>Carbon Footprint</p>
-        					<span class="consumption">
-								<img src="${pageContext.request.contextPath}/resources/images/carbonFootprint.png" alt="carbonFootprint.png" width="30px" />
-								<span>120 kgCO<sub>2</sub></span>
-							</span>
-        				</div>
+        				
         			</div>
         		</div>
 
 				<div class="areaCarbonFootprint">
 					<div class="mapping" id="barChart">
-						<!-- <iframe style="width: 100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.3816941312375!2d103.65650037803128!3d1.5376092944462916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da733232b8cc9d%3A0xe7509f37fa103de9!2sDATARAN%20MBIP!5e0!3m2!1szh-CN!2smy!4v1701625536222!5m2!1szh-CN!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
- -->
- 
+
 					</div>
 					<div class="areaCarbonTable">
 						<h3>Total Carbon Footprint of Each Area 2023</h3>
@@ -172,6 +143,40 @@
 	      var chart = new google.visualization.BarChart(document.getElementById("barChart"));
 	      chart.draw(view, options);
 	  }
+    </script>
+    <script>
+		$document.ready(function(){
+			
+			var currentDate = new Date();
+			document.getElementById('monthSelect').value = currentDate.getMonth() + 1; 
+		    document.getElementById('yearSelect').value = currentDate.getFullYear();
+					
+			updateMyCarbonFootprint(currentDate.getMonth() + 1, currentDate.getFullYear());
+
+			$('#yearSelect').change(function() {
+				updateCalendar($(this).val());
+			});
+			$('#monthSelect').change(function() {
+				updateCalendar($(this).val());
+			});
+
+			function updateMyCarbonFootprint(month, year){
+				$.ajax({
+					url: 'updateMyCarbonFootprint',
+		            type: 'post',
+		            dataType: 'json',
+		            success: function(data){
+		            	$('#carbonFootprintDetails').html(response);
+						$('#carbonFootprintDetails').hide().fadeIn(1000);
+			        },
+			        error: function(error) {
+						console.error('Error updating included page:', error);
+					}
+	
+				})
+			}
+		})
+
     </script>
 </body>
 </html>

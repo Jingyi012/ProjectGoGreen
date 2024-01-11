@@ -1,7 +1,9 @@
 C:\Users\darre\git\ProjectGoGreen\src\com\controller\ElectricBillController.java
 C:\Users\darre\git\ProjectGoGreen\src\com\controller\UserController.java
 C:\Users\darre\git\ProjectGoGreen\src\com\model\ElectricBill.java
+C:\Users\darre\git\ProjectGoGreen\src\com\model\ElectricUserJoin.java
 C:\Users\darre\git\ProjectGoGreen\src\com\model\User.java
+C:\Users\darre\git\ProjectGoGreen\src\dbUtil\ElectricUserJoinDTO.java
 C:\Users\darre\git\ProjectGoGreen\src\dbUtil\ElectricBillDAO.java
 C:\Users\darre\git\ProjectGoGreen\src\com\controller\ProfileServlet.java
 C:\Users\darre\git\ProjectGoGreen\src\com\controller\DashboardController.java
