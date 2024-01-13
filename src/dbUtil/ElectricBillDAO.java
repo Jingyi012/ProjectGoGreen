@@ -77,4 +77,9 @@ public class ElectricBillDAO {
 		return eList;
 	}
 	
+	public List<ElectricBill> getPendingElectricData(){
+		String sql = "select * from electricbill where status='pending'";
+		List<ElectricBill> ebill = jdbct.query(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class));
+		return ebill;
+	}
 }

@@ -25,11 +25,11 @@
         		<div class="wholeCarbonFootprintDetails">
         			<div class="itemblock red">
                         <span>High Carbon Emission Area</span>
-                        <p>${highestArea.name}</p>
+                        <p>${highestArea.area}</p>
                     </div>
                     <div class="itemblock green">
                         <span>Low Carbon Emission Area</span>
-                        <p>${lowestArea.name}</p>
+                        <p>${lowestArea.area}</p>
                     </div>
                     <div class="itemblock blue">
                         <span>Total Participant</span>
@@ -154,10 +154,14 @@
 		    
 		    var monthData = [];
 		    var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-		    var data = [1232, 1233, 4632, 1023, 3321, 5773, 2132, 3452, 3500, 4000, 3200, 3300];
-		    for (var i = 0; i < data.length; i++) {
-		        monthData.push([month[i], data[i]]);
+
+		    for (var i = 0; i < month.length; i++) {
+		        monthData.push([month[i], 0]);
 		    }
+
+		    <c:forEach var="monthlyCF" items="${monthlyCarbonFootprint}">
+		    	monthData[${monthlyCF.month - 1}][1] = ${monthlyCF.month_totalCF};
+		    </c:forEach>
 
 		    var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Month');

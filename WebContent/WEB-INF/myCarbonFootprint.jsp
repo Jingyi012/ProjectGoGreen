@@ -9,7 +9,7 @@
 	<div class="detailItemBlock">
 		<p>Water Consumption</p>
 		<span class="consumption water"> <i class="bi bi-droplet"></i>
-			<span> 208 L</span>
+			<span> ${water_consumption} L</span>
 		</span>
 	</div>
 	<div class="detailItemBlock">

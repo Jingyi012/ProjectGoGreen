@@ -13,6 +13,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.model.AreaCarbon;
 import com.model.ElectricUserJoin;
+import com.model.MonthlyCarbonFootprint;
 
 public class AreaCarbonDTO {
 JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
@@ -133,18 +134,20 @@ JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	    }
 	}
 	
-	public int getTotalCF() {
+	public double getTotalCF() {
 		try {
-	        String sql = "SELECT COALESCE(SUM(COALESCE(CASE WHEN e.status = 'approve' THEN e.carbon_footprint ELSE 0 END, 0) + " +
-	                     "COALESCE(CASE WHEN w.status = 'approve' THEN w.carbon_footprint ELSE 0 END, 0) + " +
-	                     "COALESCE(CASE WHEN r.status = 'approve' THEN r.carbon_footprint ELSE 0 END, 0)), 0) AS sum_cf " +
-	                     "FROM electricBill e " +
-	                     "LEFT JOIN waterBill w ON e.user_id = w.user_id " +
-	                     "LEFT JOIN recycleBill r ON e.user_id = r.user_id";
+			String sql = "SELECT ROUND(COALESCE(COALESCE(SUM(electric_footprint), 0) + COALESCE(SUM(water_footprint), 0) + COALESCE(SUM(recycle_footprint), 0), 0), 2) AS sum_cf " + 
+		             "FROM (" + 
+		             "    SELECT user_id, year, month, carbon_footprint AS electric_footprint, NULL AS water_footprint, NULL AS recycle_footprint FROM ElectricBill WHERE status = 'approve' " + 
+		             "    UNION ALL " + 
+		             "    SELECT user_id, year, month, NULL AS electric_footprint, carbon_footprint AS water_footprint, NULL AS recycle_footprint FROM WaterBill WHERE status = 'approve' " + 
+		             "    UNION ALL " + 
+		             "    SELECT user_id, year, month, NULL AS electric_footprint, NULL AS water_footprint, carbon_footprint AS recycle_footprint FROM RecycleBill WHERE status = 'approve' " + 
+		             ") AS combined_data ";
 	        SqlRowSet rowSet = jdbct.queryForRowSet(sql);
 
 	        if (rowSet.next()) {
-	            return rowSet.getInt("sum_cf");
+	            return rowSet.getDouble("sum_cf");
 	        } else {
 	            return 0;
 	        }
@@ -157,7 +160,7 @@ JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	public int getTotalParticipant() {
 		try {
 	        String sql = "SELECT COUNT(DISTINCT user_id) AS total_participant " +
-	        		"FROM ( SELECT user_id FROM electricBill WHERE status = 'approve' " +
+	        				"FROM ( SELECT user_id FROM electricBill WHERE status = 'approve' " +
 	        			    "UNION " +
 	        			    "SELECT user_id FROM waterBill WHERE status = 'approve' " +
 	        			    "UNION " +
@@ -173,6 +176,29 @@ JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return 0;
+	    }
+	}
+	
+	public List<MonthlyCarbonFootprint> getMonthlyTotalCFByYear(int year) {
+		try {
+			String sql = "SELECT month, COALESCE(COALESCE(SUM(electric_footprint), 0) + COALESCE(SUM(water_footprint), 0) + COALESCE(SUM(recycle_footprint), 0), 0) AS month_totalCF " + 
+		             "FROM (" + 
+		             "    SELECT user_id, year, month, carbon_footprint AS electric_footprint, NULL AS water_footprint, NULL AS recycle_footprint FROM ElectricBill WHERE status = 'approve' " + 
+		             "    UNION ALL " + 
+		             "    SELECT user_id, year, month, NULL AS electric_footprint, carbon_footprint AS water_footprint, NULL AS recycle_footprint FROM WaterBill WHERE status = 'approve' " + 
+		             "    UNION ALL " + 
+		             "    SELECT user_id, year, month, NULL AS electric_footprint, NULL AS water_footprint, carbon_footprint AS recycle_footprint FROM RecycleBill WHERE status = 'approve' " + 
+		             ") AS combined_data " + 
+		             "WHERE year = " + year +
+		             " GROUP BY month " + 
+		             "ORDER BY month"; 
+			
+			List<MonthlyCarbonFootprint> mcf = jdbct.query(sql, new BeanPropertyRowMapper<MonthlyCarbonFootprint>(MonthlyCarbonFootprint.class));
+			return mcf;
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return Collections.emptyList();
 	    }
 	}
 }

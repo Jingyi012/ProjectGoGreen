@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.ElectricBill;
+import com.model.MonthlyCarbonFootprint;
 import com.model.AreaCarbon;
 
 import dbUtil.AreaCarbonDTO;
@@ -33,16 +34,21 @@ public class DashboardController {
 		ModelAndView model = new ModelAndView("adminDashboard");
 		AreaCarbonDTO acdto = new AreaCarbonDTO();
 		List<AreaCarbon> areaCarbonList = acdto.getAreaCarbonData();
+		
 		AreaCarbon highestArea = acdto.getHighestLowestCFArea("DESC");
 		AreaCarbon lowestArea = acdto.getHighestLowestCFArea("ASC");
-		int totalCF = acdto.getTotalCF();
+		
+		double totalCF = acdto.getTotalCF();
 		int totalParticipant = acdto.getTotalParticipant();
+		List<MonthlyCarbonFootprint> mcf = acdto.getMonthlyTotalCFByYear(2023);
 		
 		model.addObject("areaCarbonList", areaCarbonList);
 		model.addObject("highestArea", highestArea);
 		model.addObject("lowestArea", lowestArea);
 		model.addObject("totalCF", totalCF);
 		model.addObject("totalParticipant", totalParticipant);
+		model.addObject("monthlyCarbonFootprint", mcf);
+		
 		return model;
 	}
 	

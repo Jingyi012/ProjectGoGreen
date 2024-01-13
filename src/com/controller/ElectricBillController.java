@@ -146,7 +146,6 @@ public class ElectricBillController {
 	
 			int row = ebilldao.updateElectricBill(bill);
 			redirectAttributes.addFlashAttribute("successMessage", "Electric bill updated successfully.");
-			//return "redirect:/bills/electricMonthReport/" + year + "/" + month;
 			return "redirect:/bills/electricBill";
 			
 		} catch (Exception e) {
