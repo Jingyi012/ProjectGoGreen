@@ -1,9 +1,11 @@
 package dbUtil;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -70,11 +72,18 @@ public class ElectricBillDAO {
 		return rowAffect;
 	}
 	
-	public List<ElectricBill> getUserMonthBillByYear(int year, int uid){
-		String sql = "select * from electricbill where year=? and user_id=? order by month";
-		Object args[] = {year, uid};
-		List<ElectricBill> eList = jdbct.query(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), args);
-		return eList;
+	public List<ElectricBill> getUserMonthBillByYear(int year, int uid) {
+	    String sql = "SELECT * FROM electricbill WHERE year=? AND user_id=? ORDER BY month";
+	    Object args[] = {year, uid};
+
+	    try {
+	        List<ElectricBill> eList = jdbct.query(sql, new BeanPropertyRowMapper<>(ElectricBill.class), args);
+	        return eList;
+	    } catch (DataAccessException e) {
+	        System.out.println("Error accessing the database: " + e.getMessage());
+	        e.printStackTrace(); 
+	        return null; 
+	    }
 	}
 	
 	public List<ElectricBill> getPendingElectricData(){
