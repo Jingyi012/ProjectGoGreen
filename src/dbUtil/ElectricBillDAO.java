@@ -1,9 +1,12 @@
 package dbUtil;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -41,10 +44,25 @@ public class ElectricBillDAO {
 	}
 	
 	public ElectricBill getElectricDataByMonthYear(int userId, int month, int year) {
-		String sql = "select * from electricbill where user_id=? and month=? and year=?";
-		Object args[] = {userId, month, year};
-		ElectricBill ebill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), args);
-		return ebill;
+		try {
+			String sql = "select * from electricbill where user_id=? and month=? and year=?";
+			Object args[] = {userId, month, year};
+			ElectricBill ebill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), args);
+			return ebill;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public ElectricBill getApprovedElectricDataByMonthYear(int userId, int month, int year) {
+		try {
+			String sql = "select * from electricbill where user_id=? and month=? and year=? and status='approve'";
+			Object args[] = {userId, month, year};
+			ElectricBill ebill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), args);
+			return ebill;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
 	public int updateElectricBill(ElectricBill bill) {
@@ -54,11 +72,23 @@ public class ElectricBillDAO {
 		return rowAffect;
 	}
 	
-	public List<ElectricBill> getUserMonthBillByYear(int year, int uid){
-		String sql = "select * from electricbill where year=? and user_id=? order by month";
-		Object args[] = {year, uid};
-		List<ElectricBill> eList = jdbct.query(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), args);
-		return eList;
+	public List<ElectricBill> getUserMonthBillByYear(int year, int uid) {
+	    String sql = "SELECT * FROM electricbill WHERE year=? AND user_id=? ORDER BY month";
+	    Object args[] = {year, uid};
+
+	    try {
+	        List<ElectricBill> eList = jdbct.query(sql, new BeanPropertyRowMapper<>(ElectricBill.class), args);
+	        return eList;
+	    } catch (DataAccessException e) {
+	        System.out.println("Error accessing the database: " + e.getMessage());
+	        e.printStackTrace(); 
+	        return null; 
+	    }
 	}
 	
+	public List<ElectricBill> getPendingElectricData(){
+		String sql = "select * from electricbill where status='pending'";
+		List<ElectricBill> ebill = jdbct.query(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class));
+		return ebill;
+	}
 }

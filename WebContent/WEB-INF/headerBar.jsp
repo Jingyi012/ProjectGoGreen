@@ -8,6 +8,7 @@
 	<style>
 		body{
 			margin: 0;
+			font-family: auto;
 		}
 		.headerContainer{
 			width: 100%;
