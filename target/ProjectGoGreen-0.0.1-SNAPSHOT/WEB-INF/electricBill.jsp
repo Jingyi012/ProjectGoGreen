@@ -80,7 +80,7 @@
 						success: function(response) {
 							
 							$('#calendar').html(response);
-							$('#calendar').hide().fadeIn(1000);
+							$('#calendar').hide().fadeIn(500);
 						},
 						error: function(error) {
 							console.error('Error updating included page:', error);
