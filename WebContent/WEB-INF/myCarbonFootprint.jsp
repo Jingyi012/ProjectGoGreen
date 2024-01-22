@@ -28,7 +28,7 @@
 		<p>Carbon Footprint</p>
 		<span class="consumption"> <img
 			src="${pageContext.request.contextPath}/resources/images/carbonFootprint.png"
-			alt="carbonFootprint.png" width="30px" /> <span>${carbon_footprint} kgCO<sub>2</sub></span>
+			alt="carbonFootprint.png" width="25px" /> <span>${carbon_footprint} kgCO<sub>2</sub></span>
 		</span>
 	</div>
 </body>

@@ -57,6 +57,7 @@
 	justify-content: space-around;
 	gap: 40px;
 	margin-top: 20px;
+	flex-wrap: wrap;
 }
 
 .graph1Container{
@@ -68,6 +69,7 @@
 	flex-direction: column;
 	text-align: center;
 	align-items: center;
+	min-width: fit-content;
 }
 #graph1{
 	text-align: center;
