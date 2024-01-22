@@ -110,23 +110,23 @@
 					<a href="${pageContext.request.contextPath}/profile">Profile</a>
 				</div>
 				
-                <form>
+                <div>
                  
                     <div id="content">
                     <h2>Profile Information</h2>
-             
+           <form id="login-form" method="post" action="<%= request.getContextPath() %>/editProfile" enctype="multipart/form-data">
                     <div id="form">
                           <div class="form-row">
         <div class="form-group">
             <label for="firstName">First Name:</label>
             <br>
-             <p id="word">Ali</p>
+             <p id="word">${user.firstName}</p>
         </div>
 
         <div class="form-group">
             <label for="lastName">Last Name:</label>
             <br>
-             <p id="word">Zhen</p>
+             <p id="word"> ${user.lastName}</p>
         </div>
     </div>
     
@@ -135,13 +135,13 @@
                         <div class="form-group">
                             <label for="phoneNo">Phone Number:</label>
                             <br>
-                            <p id="word">01112028239</p>
+                            <p id="word">${user.phoneNo}</p>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <br>
-                             <p id="word">abc123@gmail.com</p>
+                             <p id="word">${user.email}</p>
                         </div>
                         </div>
                         
@@ -149,7 +149,7 @@
                         <div class="form-group">
                             <label for="category">Category:</label>
                             <br>
-                             <p id="word">Housing(High Rise)</p>
+                             <p id="word">${user.category}</p>
 
                         </div>
 
@@ -164,7 +164,7 @@
                         <div class="form-group">
                             <label for="Address">Address:</label>
                             <br>
-                             <p id="word">lorong 4d,No.12 Taman buaya</p>
+                             <p id="word">${user.address}</p>
                         </div>
 
                         <div class="form-group">
@@ -193,12 +193,13 @@
                          </br>
                          </br>
                      
-                            <button type="button" id="edit-button" onclick="redirectToOtherPage()">Edit</button>
+                            <button type="button" id="edit-button">Edit</button>
                          
                     </div>
+                 </form>
                  </div>
         
-                </form>
+                </div>
            
 
             </div>
@@ -206,10 +207,7 @@
           </div>
           
          <script>
-        function redirectToOtherPage() {
-         
-            window.location.href = 'editProfile.jsp'; 
-        }
+       
     </script>
     
 </body>

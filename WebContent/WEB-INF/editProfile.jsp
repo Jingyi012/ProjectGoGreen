@@ -63,7 +63,7 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            margin-left: 490px;
+            margin-left: 450px;
             font-size: 18px;
           
         }
@@ -114,24 +114,28 @@
 					>
 					<a href="editProfile.jsp">Edit Profile</a>
 				</div>
-				
-                <form>
+
+   
                  
                     <div id="content">
                     <h2>Profile Information</h2>
              
                     <div id="form">
+                   <form id="login-form" method="post" action="<%= request.getContextPath() %>/updateProfile" enctype="multipart/form-data">
                           <div class="form-row">
         <div class="form-group">
+        
             <label for="firstName">First Name:</label>
             <br>
-             <p id="word">Ali</p>
+               <br>
+         <input type="text" id="word" name="firstName" value="${user.firstName}" />
         </div>
 
         <div class="form-group">
             <label for="lastName">Last Name:</label>
             <br>
-             <p id="word">Zhen</p>
+               <br>
+            <input type="text" id="word" name="lastName" value="${user.lastName}" />
         </div>
     </div>
     
@@ -140,13 +144,15 @@
                         <div class="form-group">
                             <label for="phoneNo">Phone Number:</label>
                             <br>
-                            <p id="word">01112028239</p>
+                            <br>
+                            <input type="text" id="word" name="phoneNo" value="${user.phoneNo}" />
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <br>
-                             <p id="word">abc123@gmail.com</p>
+                               <br>
+                           <input type="text" id="word" name="email" value="${user.email}" />
                         </div>
                         </div>
                         
@@ -154,14 +160,21 @@
                         <div class="form-group">
                             <label for="category">Category:</label>
                             <br>
-                             <p id="word">Housing(High Rise)</p>
+                              <br>
+                            <select id="category" name="category" onchange="${user.category}" required style="width: 420px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f0f0f0;">
+                                <option value="Housing(High Rise)">Housing(High Rise)</option>
+                                <option value="Housing(Landed)">Housing(Landed)</option>
+                                <option value="Institution">Institution</option>
+                            </select>
+                            
 
                         </div>
 
                         <div class="form-group">
                             <label for="Number of People Living In The House">Number of People Living In The House:</label>
                             <br>
-                           <p id="word">2</p>
+                            <br>
+                            <input type="text" id="word" name="people" value="${user.people}" />
                         </div>
                        </div>
                          
@@ -169,13 +182,14 @@
                         <div class="form-group">
                             <label for="Address">Address:</label>
                             <br>
-                             <p id="word">lorong 4d,No.12 Taman buaya</p>
+                            <br>
+                              <input type="text" id="word" name="address" value="${user.address}" />
                         </div>
 
                         <div class="form-group">
                             <label for="fileUpload">Proof of residency:</label>
                             <br>
-                            <p id="word1">Proof.pdf</p>
+                              <a href="data:application/pdf;base64,${user.file}" target="_blank">View PDF</a>
                         </div>
                        </div>
                        
@@ -183,36 +197,59 @@
                         <div class="form-group">
                             <label for="Area">Area:</label>
                             <br>
-                              <p id="word">Pulai</p>
+                            <br>
+                             <select id="area" name="area" onchange="${user.area}" required style="width: 420px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f0f0f0;">
+                               <option value="Pulai Indah">Pulai Indah</option>
+                                <option value="Kangkar Pulai">Kangkar Pulai</option>
+                                <option value="Pulai Utama">Pulai Utama</option>
+                                <option value="Sri Pulai">Sri Pulai</option>
+                                <option value="Taman Universiti">Taman Universiti</option>
+                                <option value="Mutiara Rini">Mutiara Rini</option>
+                                <option value="Lima Kedai">Lima Kedai</option>
+                                <option value="Nusa Bayu">Nusa Bayu</option>
+                                <option value="Gelang Patah">Gelang Patah</option>
+                                <option value="Leisure Farm">Leisure Farm</option>
+                                <option value="Tanjung Kupang">Tanjung Kupang</option>
+                                <option value="Medini Iskandar">Medini Iskandar</option>
+                                <option value="Kota Iskandar">Kota Iskandar</option>
+                                <option value="Bukit Horizon">Bukit Horizon</option>
+                                <option value="Impian Emas">Impian Emas</option>
+                                <option value="Sri Skudai">Sri Skudai</option>
+                                <option value="Skudai">Skudai</option>
+                                <option value="Skudai Baru">Skudai Baru</option>
+                                <option value="Selesa Jaya">Selesa Jaya</option>
+                                <option value="Tun Aminah">Tun Aminah</option>
+                                <option value="Nusa Bestari">Nusa Bestari</option>
+                                <option value="Bukit Indah">Bukit Indah</option>
+                                <option value="Sutera Utama">Sutera Utama</option>
+                                <option value="Perling">Perling</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <label for="fileUpload1">Identification Card:</label>
                             <br>
-                            <p id="word1">Ic.pdf</p>
+                             <a href="data:application/pdf;base64,${user.ic_card}" target="_blank">View PDF</a>
                         </div>
                     </div>
                          </br>
                          </br>
                          </br>
                      
-                            <button type="button" id="edit-button" onclick="redirectToOtherPage()">Submit</button>
-                         
+                            <input type="submit" id="edit-button" value="Update Profile">
+                </form>
                     </div>
                  </div>
         
-                </form>
+                </div>
            
 
             </div>
            </div>
-          </div>
+
           
          <script>
-        function redirectToOtherPage() {
-         
-            window.location.href = 'profile.jsp'; 
-        }
+      
     </script>
     
 </body>

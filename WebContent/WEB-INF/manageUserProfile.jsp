@@ -143,13 +143,13 @@
         <div class="form-group">
             <label for="firstName">First Name:</label>
             <br>
-            <p id="word">Ali</p>
+            <p id="word">${user.firstName}</p>
         </div>
 
         <div class="form-group">
             <label for="lastName">Last Name:</label>
             <br>
-             <p id="word">Zhen</p>
+             <p id="word">${user.lastName}</p>
         </div>
     </div>
     
@@ -158,13 +158,13 @@
                         <div class="form-group">
                             <label for="phoneNo">Phone Number:</label>
                             <br>
-                             <p id="word">01112028239</p>
+                             <p id="word">${user.phoneNo}</p>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <br>
-                              <p id="word">abc123@gmail.com</p>
+                              <p id="word">${user.email}</p>
                         </div>
                         </div>
                         
@@ -172,14 +172,14 @@
                         <div class="form-group">
                             <label for="category">Category:</label>
                             <br>
-                              <p id="word">Housing(High Rise)</p>
+                              <p id="word">${user.category}</p>
 
                         </div>
 
                         <div class="form-group">
                             <label for="Number of People Living In The House">Number of People Living In The House:</label>
                             <br>
-                             <p id="word">3</p>
+                             <p id="word">${user.people}</p>
                         </div>
                        </div>
                          
@@ -187,7 +187,7 @@
                         <div class="form-group">
                             <label for="Address">Address:</label>
                             <br>
-                             <p id="word">lorong 4d,No.12 Taman buaya</p>
+                             <p id="word">${user.address}</p>
                         </div>
 
                         <div class="form-group">
@@ -201,7 +201,7 @@
                         <div class="form-group">
                             <label for="Area">Area:</label>
                             <br>
-                               <p id="word">Pulai</p>
+                               <p id="word">${user.area}</p>
                         </div>
 
                         <div class="form-group">
@@ -229,19 +229,19 @@
            </div>
           </div>
            <script>
-        function approve() {
-     
-        	 window.alert('This participant is approved');
+           function approve() 
+           {
+        	    window.alert('This participant is approved successfully');
+        	    
+        	    window.location.assign("${pageContext.request.contextPath}/Approve?userId=${user.id}");
+
         }
 
         function reject() {
-            var reason = prompt('Please provide a reason for rejection:');
+        	window.alert('This participant is rejected successfully');
             
-            if (reason !== null && reason.trim() !== '') {
-                alert('This participant is rejected. Reason: ' + reason);
-            } else {
-                alert('Rejection canceled or reason not provided.');
-            }
+           
+            window.location.assign("${pageContext.request.contextPath}/Reject?userId=${user.id}");
         }
 
     </script>
