@@ -45,7 +45,8 @@
     font-size: 25px;
     margin: 15px auto;
     font-weight: 700;
-    width: fit-content;
+    width: 100%;
+    text-align: right;
 }
 
 .moreDetails{

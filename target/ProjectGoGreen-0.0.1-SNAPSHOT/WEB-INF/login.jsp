@@ -210,7 +210,7 @@
     </div>
     <div id="line">
         <a href="#">LOG IN</a>
-      <form id="login-form" method="post" action="${pageContext.request.contextPath}/login/submit">
+      <form id="login-form" method="post" action="<%= request.getContextPath() %>/login/submit" enctype="multipart/form-data">
    
    <div id="field">
             <div id="field1">
@@ -236,7 +236,7 @@
   </form>
     <div id="bottom">
     <p>No account yet?</p>
-    <a href="<%= request.getContextPath() %>/register.jsp" class="signup-link">SIGN UP HERE</a>
+    <a href="<%= request.getContextPath() %>/register" class="signup-link">SIGN UP HERE</a>
     </div>
    </div>
   </div>

@@ -1,9 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="com.model.User" %>
+<%
+    User user = (User) request.getAttribute("user");
+    if (user != null) {
+        String status = user.getStatus();
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="ISO-8859-1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-r6NfM2SVaPaaFssdfMzgt/HC6OeAXz5DQJ3c3zU++RLAnJ2HYl6W/J1I5F6syGff" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-iKp5Q/jNWF6DWf/hqx65ep8LwYiJ/WtD6er5cjfKKGJaw1CFsfD5xZlvaNLQ2Rq" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>GoGreen</title>
     <style>
         body {
@@ -61,7 +71,7 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            margin-left: 490px;
+            margin-left: 470px;
             font-size: 18px;
           
         }
@@ -104,29 +114,36 @@
 
         <div class="pageWrapper">
             <jsp:include page="headerBar.jsp" />
+         
             <div class="pageContent">
              <div class="pageNav">
 					Home > 
-					<a href="${pageContext.request.contextPath}/profile">Profile</a>
+					<a href="profile">Profile</a>
+					
+					
 				</div>
-				
-                <form>
+
+   
                  
-                    <div id="content">
-                    <h2>Profile Information</h2>
-             
+                    <div id="content"  id="content" size="A4">
+                    <h2 id="dTitle" >Profile Information</h2>
+                       <p>Status = ${user.status}</p>
                     <div id="form">
+                   <form id="login-form" method="post" action="<%= request.getContextPath() %>/editProfile" enctype="multipart/form-data">
                           <div class="form-row">
         <div class="form-group">
+        
             <label for="firstName">First Name:</label>
             <br>
-             <p id="word">Ali</p>
+  
+        <p id="word">${user.firstName}</p>
         </div>
 
         <div class="form-group">
             <label for="lastName">Last Name:</label>
             <br>
-             <p id="word">Zhen</p>
+             
+            <p id="word">${user.lastName}</p>
         </div>
     </div>
     
@@ -135,13 +152,14 @@
                         <div class="form-group">
                             <label for="phoneNo">Phone Number:</label>
                             <br>
-                            <p id="word">01112028239</p>
+                            <p id="word">${user.phoneNo}</p>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <br>
-                             <p id="word">abc123@gmail.com</p>
+                              
+                          <p id="word">${user.email}</p>
                         </div>
                         </div>
                         
@@ -149,14 +167,15 @@
                         <div class="form-group">
                             <label for="category">Category:</label>
                             <br>
-                             <p id="word">Housing(High Rise)</p>
+                           
+                              <p id="word">${user.category}</p>
 
                         </div>
 
                         <div class="form-group">
                             <label for="Number of People Living In The House">Number of People Living In The House:</label>
                             <br>
-                           <p id="word">2</p>
+                          <p id="word">${user.people}</p>
                         </div>
                        </div>
                          
@@ -164,14 +183,14 @@
                         <div class="form-group">
                             <label for="Address">Address:</label>
                             <br>
-                             <p id="word">lorong 4d,No.12 Taman buaya</p>
+                             <p id="word">${user.address}</p>
                         </div>
 
                         <div class="form-group">
-                            <label for="fileUpload">Proof of residency:</label>
+                            <label for="Address">Proof of residency:</label>
                             <br>
-                             <p id="word1">Proof.pdf</p>
-  
+                            <a href="data:application/pdf;base64,${user.file}" target="_blank">View PDF</a>
+
                         </div>
                        </div>
                        
@@ -179,38 +198,41 @@
                         <div class="form-group">
                             <label for="Area">Area:</label>
                             <br>
-                              <p id="word">Pulai</p>
+                              <p id="word">${user.area}</p>
                         </div>
 
                         <div class="form-group">
                             <label for="fileUpload1">Identification Card:</label>
                             <br>
-                            <p id="word1">Ic.pdf</p>
-                            
+                            <a href="data:application/pdf;base64,${user.ic_card}" target="_blank">View PDF</a>
                         </div>
                     </div>
                          </br>
                          </br>
                          </br>
                      
-                            <button type="button" id="edit-button" onclick="redirectToOtherPage()">Edit</button>
-                         
+       <%
+    String status = user.getStatus(); 
+    if ("pending".equals(status)) {
+%>
+    <input type="submit" id="edit-button" value="Edit">
+<%
+    }
+%>
+
+
+
+                </form>
                     </div>
                  </div>
         
-                </form>
+                </div>
            
 
             </div>
            </div>
-          </div>
+
           
-         <script>
-        function redirectToOtherPage() {
-         
-            window.location.href = 'editProfile.jsp'; 
-        }
-    </script>
     
 </body>
 </html>

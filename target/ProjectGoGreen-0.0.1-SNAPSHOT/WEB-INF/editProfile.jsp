@@ -114,24 +114,26 @@
 					>
 					<a href="editProfile.jsp">Edit Profile</a>
 				</div>
-				
-                <form>
+
+   
                  
                     <div id="content">
                     <h2>Profile Information</h2>
              
                     <div id="form">
+                   <form id="login-form" method="post" action="<%= request.getContextPath() %>/updateProfile" enctype="multipart/form-data">
                           <div class="form-row">
         <div class="form-group">
+        
             <label for="firstName">First Name:</label>
             <br>
-             <p id="word">Ali</p>
+         <input type="text" id="firstName" name="firstName" value="${user.firstName}" />
         </div>
 
         <div class="form-group">
             <label for="lastName">Last Name:</label>
             <br>
-             <p id="word">Zhen</p>
+            <input type="text" id="lastName" name="lastName" value="${user.lastName}" />
         </div>
     </div>
     
@@ -146,7 +148,7 @@
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <br>
-                             <p id="word">abc123@gmail.com</p>
+                           <input type="text" id="email" name="email" value="${user.email}" />
                         </div>
                         </div>
                         
@@ -196,23 +198,20 @@
                          </br>
                          </br>
                      
-                            <button type="button" id="edit-button" onclick="redirectToOtherPage()">Submit</button>
-                         
+                            <input type="submit" value="Update Profile" />
+                </form>
                     </div>
                  </div>
         
-                </form>
+                </div>
            
 
             </div>
            </div>
-          </div>
+
           
          <script>
-        function redirectToOtherPage() {
-         
-            window.location.href = 'profile.jsp'; 
-        }
+      
     </script>
     
 </body>
