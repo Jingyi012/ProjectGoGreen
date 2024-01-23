@@ -120,7 +120,7 @@
     margin-top:10px;
     background-color: #FFC684;
     color: #FFFFFF;
-    margin-left:370px;
+    margin-left:30px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -194,23 +194,23 @@
 <body>
     <header>
         <div id="image1">
-            <img src="images/mbip.png" alt="" style="max-width: 100%; height: auto;">
+            <img src="${pageContext.request.contextPath}/resources/images/mbip.png" alt="" style="max-width: 100%; height: auto;">
             <h1>Iskandar</h1> 
             <h1>Puteri</h1>
         </div>
         <div id="button-container">
-            <a href="<%= request.getContextPath() %>/login.jsp" id="login">Login</a>
-            <a href="<%= request.getContextPath() %>/register.jsp" id="signup">Sign Up</a>
+            <a href="<%= request.getContextPath() %>/login" id="login">Login</a>
+            <a href="<%= request.getContextPath() %>/register" id="signup">Sign Up</a>
         </div>
     </header>
     <div id="content">
     <div id="image2">
         <img src="images/iskandar_logo.png" alt="" style="max-width: 100%; height: auto;">
     </div>
+    <form id="login-form" method="post" action="<%= request.getContextPath() %>/resetPassword/submit" enctype="multipart/form-data">
     <div id="line">
         <a href="#">Reset Password</a>
-        <form id="login-form">
-   
+        <br>
    <div id="field">
             <div id="field1">
         <label for="nric">NRIC:</label>
@@ -228,11 +228,12 @@
                 <label for="password">Confirm New Password:</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password">
             </div>
-        </form>
+      
         
     </div>
   
     <button type="submit" id="login-button">Reset</button>
+     </form>
      </div>
      <footer>
       

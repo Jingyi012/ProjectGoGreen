@@ -18,4 +18,5 @@ com\controller\ElectricBillValidateController.class
 com\controller\CertificateController.class
 com\controller\AdminReportController.class
 com\model\AreaCarbon.class
+dbUtil\UserDao.class
 com\controller\ProfileController.class

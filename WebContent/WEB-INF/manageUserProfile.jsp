@@ -1,250 +1,212 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <title>GoGreen</title>
-    
-    
-    							
-    <style>
-        body {
-            font-size: 16px;               
-            margin: 0;                     
-            padding: 0;                    
-        }
-
-        #head 
-        {
-            margin-left: 30px;
-        }
-
-     
-
-        .form-group label {
-         
-            font-size: 18px;
-        }
-
-     
-        
-    #content 
-    {
-            margin-top: 30px;
-            margin-right: auto;
-            
-        }
-        
-        #edit-button 
-        {
-            background-color: #FFC684;
-            color: #FFFFFF;
-            padding: 14px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-left: 490px;
-            font-size: 18px;
-        }
-
-         h2 {
-            margin-top: 20px;
-            font-size: 29px;
-        }}
-        
-#form {
-    display: flex;
-    flex-direction:row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.form-row 
-{
-    display: flex;
-    width: 100%;
-    margin-bottom: 2px;
-    gap: 200px; 
-    height: 80px; 
-}
-
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<title>GoGreen</title>
+<style>
 .pageContent{
-        padding: 30px 60px;
-    }
-    
-    
-        #approve-button {
-            background-color: #4CAF50;
-            color: #FFFFFF;
-            margin-left: 50px;
-        }
+	padding: 30px 60px;
+}
+.pageTitle {
+	text-decoration: underline;
+    margin: 20px 0;
+    font-size: 30px;
+    font-weight: bold;
+}
 
-        #reject-button {
-            background-color: #FFC684;
-            color: #FFFFFF;
-            margin-left: 20px;
-        }
-        
-         #button
-        {
-          display:flex;
-          margin-left:400px;
-        }
-        
-        #word
-        {
-            margin-bottom: -30px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width:400px;
-            background-color: #f0f0f0; 
-        }
-        
-           #word1{
-            margin-bottom: 14px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width:400px;
-            color:blue;
-            background-color: #f0f0f0; 
-            text-decoration:underline;
-        }
+.form{
+	display: flex;
+	flex-direction: column;
+	
+}
+.form-row{
+	display: flex;
+	justify-content: space-between;
+	gap: 50px;
+}
+
+.form-group{
+	flex: 1;
+}
+
+.word{
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #f0f0f0;
+}
+label{
+	margin-bottom: 5px;
+}
 
 
-    </style>
+</style>
 </head>
 <body>
-    <div class="pageContainer">
-        <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
-        </div>
+	<div class="pageContainer">
+		<div class="sideBarContainer">
+			<jsp:include page="sidebar.jsp" />
+		</div>
 
-        <div class="pageWrapper">
-            <jsp:include page="headerBar.jsp" />
-            <div class="pageContent">
-             <div class="pageNav">
-					Home > 
-					<a href="${pageContext.request.contextPath}/manageUser">Manage User</a>
+		<div class="pageWrapper">
+			<jsp:include page="headerBar.jsp" />
+			<div class="pageContent">
+				<div class="pageNav">
+					Home > <a href="${pageContext.request.contextPath}/manageUser">Manage
+						User</a>
 				</div>
-				
-                <form action="ProfileServlet" method="post" enctype="multipart/form-data">
-                 
-                    <div id="content">
-                    <h2>User Information</h2>
-             
-                    <div id="form">
-                          <div class="form-row">
-        <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <br>
-            <p id="word">Ali</p>
-        </div>
 
-        <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <br>
-             <p id="word">Zhen</p>
-        </div>
-    </div>
-    
-                       <div class="form-row">
+				<form action="ProfileServlet" method="post"
+					enctype="multipart/form-data">
 
-                        <div class="form-group">
-                            <label for="phoneNo">Phone Number:</label>
-                            <br>
-                             <p id="word">01112028239</p>
-                        </div>
+					<div class="content">
+						<h2 class="pageTitle">User Information</h2>
 
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <br>
-                              <p id="word">abc123@gmail.com</p>
-                        </div>
-                        </div>
-                        
-                        <div class="form-row">
-                        <div class="form-group">
-                            <label for="category">Category:</label>
-                            <br>
-                              <p id="word">Housing(High Rise)</p>
+						<div class="form">
+							<div class="form-row">
+								<div class="form-group">
+									<label for="firstName">First Name:</label> <br>
+									<p class="word">${user.firstName}</p>
+								</div>
 
-                        </div>
+								<div class="form-group">
+									<label for="lastName">Last Name:</label> <br>
+									<p class="word">${user.lastName}</p>
+								</div>
+							</div>
 
-                        <div class="form-group">
-                            <label for="Number of People Living In The House">Number of People Living In The House:</label>
-                            <br>
-                             <p id="word">3</p>
-                        </div>
-                       </div>
-                         
-                       <div class="form-row">
-                        <div class="form-group">
-                            <label for="Address">Address:</label>
-                            <br>
-                             <p id="word">lorong 4d,No.12 Taman buaya</p>
-                        </div>
+							<div class="form-row">
 
-                        <div class="form-group">
-                            <label for="fileUpload">Proof of residency:</label>
-                            <br>
-                             <p id="word1">Proof.pdf</p>
-                        </div>
-                       </div>
-                       
-                      <div class="form-row">
-                        <div class="form-group">
-                            <label for="Area">Area:</label>
-                            <br>
-                               <p id="word">Pulai</p>
-                        </div>
+								<div class="form-group">
+									<label for="phoneNo">Phone Number:</label> <br>
+									<p class="word">${user.phoneNo}</p>
+								</div>
 
-                        <div class="form-group">
-                            <label for="fileUpload1">Identification Card:</label>
-                            <br>
-                            <p id="word1">Ic.pdf</p>
-                        </div>
-                    </div>
-                         </br>
-                         </br>
-                         </br>
-                     
-                         <div id="button">
-                     <button type="button" id="approve-button" onclick="approve()">Approve</button>
-                     <button type="button" id="reject-button" onclick="reject()">Reject</button>
-                    </div>
-                         
-                    </div>
-                 </div>
-        
-                </form>
-           
+								<div class="form-group">
+									<label for="email">Email:</label> <br>
+									<p class="word">${user.email}</p>
+								</div>
+							</div>
 
-            </div>
-           </div>
-          </div>
-           <script>
-        function approve() {
-     
-        	 window.alert('This participant is approved');
-        }
+							<div class="form-row">
+								<div class="form-group">
+									<label for="category">Category:</label> <br>
+									<p class="word">${user.category}</p>
 
-        function reject() {
-            var reason = prompt('Please provide a reason for rejection:');
-            
-            if (reason !== null && reason.trim() !== '') {
-                alert('This participant is rejected. Reason: ' + reason);
-            } else {
-                alert('Rejection canceled or reason not provided.');
-            }
-        }
+								</div>
 
-    </script>
-    
+								<div class="form-group">
+									<label for="Number of People Living In The House">Number
+										of People Living In The House:</label> <br>
+									<p class="word">${user.people}</p>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group">
+									<label for="Address">Address:</label> <br>
+									<p class="word">${user.address}</p>
+								</div>
+
+								<div class="form-group">
+									<label for="fileUpload">Proof of residency:</label> <br>
+									<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#residencyModal${user.id}">
+									  View Residency
+									</button>
+									<div class="modal fade" id="residencyModal${user.id}" tabindex="-1" aria-labelledby="#residencyModalLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h1 class="modal-title fs-5" id="residencyModalLabel">View Residency</h1>
+									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									      </div>
+									      <div class="modal-body" style="text-align: center;">
+									      <!-- display image -->
+									      
+									      	<img class="residencyImg" width="400px" src="data:image/*;base64,${Base64.getEncoder().encodeToString(user.file)}" alt="Image" />			      	
+									      
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group">
+									<label for="Area">Area:</label> <br>
+									<p class="word">${user.area}</p>
+								</div>
+
+								<div class="form-group">
+									<label for="fileUpload1">Identification Card:</label> <br>
+									<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#icModal${user.id}">
+									  View IC
+									</button>
+									<div class="modal fade" id="icModal${user.id}" tabindex="-1" aria-labelledby="#icModalLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h1 class="modal-title fs-5" id="icModalLabel">View IC</h1>
+									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									      </div>
+									      <div class="modal-body" style="text-align: center;">
+									      <!-- display image -->
+									      
+									      	<img class="icCardImg" width="400px" src="data:image/*;base64,${Base64.getEncoder().encodeToString(user.ic_card)}" alt="Image" />			      	
+									      
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+								</div>
+							</div>
+
+							<div class="button mt-3 text-center">
+								<button type="button" class="btn btn-outline-success me-4" id="approve-button" onclick="approve()">Approve</button>
+								<button type="button" class="btn btn-outline-danger" class="btn" id="reject-button" onclick="reject()">Reject</button>
+							</div>
+
+						</div>
+					</div>
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+	<script>
+		function approve() {
+			window.alert('This participant is approved successfully');
+
+			window.location
+					.assign("${pageContext.request.contextPath}/Approve?userId=${user.id}");
+
+		}
+
+		function reject() {
+			window.alert('This participant is rejected successfully');
+
+			window.location
+					.assign("${pageContext.request.contextPath}/Reject?userId=${user.id}");
+		}
+	</script>
+
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
 </html>

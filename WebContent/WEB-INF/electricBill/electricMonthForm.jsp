@@ -16,11 +16,11 @@
 <body>
 	<div class="pageContainer">
         <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="../sidebar.jsp" />
         </div>
 	    
         <div class="pageWrapper">
-        	<jsp:include page="headerBar.jsp" />
+        	<jsp:include page="../headerBar.jsp" />
         	<div class="pageContent">
                 <div class="pageNav">
 					Home > 
@@ -35,13 +35,13 @@
 					<form action="${pageContext.request.contextPath}/bills/electricMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm electric">
 							<label for="eBill">Insert Electric Consumption:</label>
-							<input type="text" id="eBill" name="eBill" placeholder="123kWh">
+							<input type="text" id="eBill" name="eBill" placeholder="123kWh" required>
 						</div>
 						
 						<div class="billFile electric">
 							<span>Upload Electric Bill as proof:</span>
 							<label for="eFile" class="fileBox"><br>Choose File &nbsp<i class="fa fa-upload"></i></label>
-							<input type="file" id="eFile" name="eFile" placeholder="Choose file">
+							<input type="file" id="eFile" name="eFile" accept="image/*" placeholder="Choose file" required>
 						</div>
 						
 						<div class="submitButton">

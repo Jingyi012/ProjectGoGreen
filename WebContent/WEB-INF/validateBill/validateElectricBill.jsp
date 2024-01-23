@@ -13,11 +13,11 @@
 <body>
 	<div class="pageContainer">
         <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="../sidebar.jsp" />
         </div>
 	    
         <div class="pageWrapper">
-        	<jsp:include page="headerBar.jsp" />
+        	<jsp:include page="../headerBar.jsp" />
         	<div class="pageContent">
 				<div class="pageNav">
 					Home > 
@@ -43,9 +43,9 @@
 	        			<c:forEach var="euList" items="${pendingValidateEList}" varStatus="loop">
 	        			<tr>
 	        				<td><c:out value="${loop.index + 1}" /></td>
-	        				<td><%-- <c:out value="${euList.name}" /> --%></td>
-	        				<td><%-- <c:out value="${euList.address}" /> --%></td>
-	        				<td><%-- <c:out value="${euList.category}" /> --%></td>
+	        				<td><c:out value="${euList.getName()}" /> </td>
+	        				<td><c:out value="${euList.address}" /> </td>
+	        				<td><c:out value="${euList.category}" /> </td>
 	        				<td><c:out value="${euList.year}" /></td>
 	        				<td><c:out value="${euList.month}" /></td>
 	        				<td><c:out value="${euList.electric_consumption}" /></td>
@@ -61,9 +61,10 @@
 							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							      </div>
 							      <div class="modal-body" style="text-align: center;">
+							      <!-- display image -->
 							      	<img class="billImg" width="400px" src="data:image/*;base64,${Base64.getEncoder().encodeToString(euList.electricBill_proof)}" alt="Image" />
 							      	
-							      	 <iframe class="billpdf" src="data:application/pdf;base64,${Base64.getEncoder().encodeToString(euList.electricBill_proof)}" width="100%" height="600"></iframe>
+							      	 <%-- <iframe class="billpdf" src="data:application/pdf;base64,${Base64.getEncoder().encodeToString(euList.electricBill_proof)}" width="100%" height="600"></iframe> --%>
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

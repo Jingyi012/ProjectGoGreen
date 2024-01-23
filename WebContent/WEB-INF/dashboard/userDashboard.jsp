@@ -12,11 +12,11 @@
 <body>
 	<div class="pageContainer">
         <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="../sidebar.jsp" />
         </div>
         
         <div class="pageWrapper">
-        	<jsp:include page="headerBar.jsp" />
+        	<jsp:include page="../headerBar.jsp" />
         	<div class="pageContent">
 				<div class="pageNav">
 					Home > 
@@ -29,9 +29,11 @@
         				<select id="monthSelect">
         				<% 
         				String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}; 
-            			for(int i=0; i<12; i++){ %>
-        					<option value="<%= i+1 %>"><%= monthArray[i] %></option>
-        				<% } %>
+            			request.setAttribute("monthArray", monthArray);
+            			%>
+        				<c:forEach var="month" items="${monthArray}" varStatus="loop">
+        					<option value="${loop.index + 1}">${month}</option>
+        				</c:forEach>
         				</select>
         				<select id="yearSelect">
         					<option>2021</option>
@@ -117,60 +119,85 @@
         	</div>
         </div>
     </div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
-    	google.charts.load('current', {'packages':['corechart']});
-    	google.charts.setOnLoadCallback(drawChart2);
-
-	  function drawChart2() {
-
-		  var areaData = [["Area", "Carbon Footprint", { role: "style" } ]];
-		  
-		  <%-- <% int[] fourDigitNumbers = {1234, 9678, 4321, 5876, 2468, 1357, 8765, 3456, 7890, 2109, 6543, 8901, 4325, 6789, 1098, 5432, 8761, 2345, 8907, 4567, 5432, 9876, 2109, 8765};
-		  	for(int i=0; i<areaDetails.length; i++){ %>
-		  		areaData.push(["<%= areaDetails[i] %>", <%= fourDigitNumbers[i] %>, ""]);
-		  	<% } %> --%>
-	      /* var dataAreaCarbon = google.visualization.arrayToDataTable([
-	        ["Area", "Carbon Footprint", { role: "style" } ],
-	        ["Copper", 8.94, ""],
-	        ["Silver", 10.49, "silver"],
-	        ["Gold", 19.30, "gold"],
-	        ["Platinum", 21.45, "color: #e5e4e2"]
-	      ]); */
-
-	      <c:forEach var="areaCarbon" items="${areaCarbonList}">
-	        areaData.push(["${areaCarbon.area}", ${areaCarbon.sum_cf}, ""]);
-	    </c:forEach>
-	      
-	      var dataAreaCarbon = google.visualization.arrayToDataTable(areaData);
-	      var view = new google.visualization.DataView(dataAreaCarbon);
-	      view.setColumns([0, 1,
-	                       { calc: "stringify",
-	                         sourceColumn: 1,
-	                         type: "string",
-	                         role: "annotation" },
-	                       2]);
-
-	      var options = {
-	        title: "Carbon Footprint at Each Area 2023",
-	        titleTextStyle: {
-	            fontSize: 18
-	          },
-	        bar: {groupWidth: "50%"},
-	        legend: { position: "none" },
-	        hAxis: {
-	            title: "Carbon Footprint",
-	            minValue: 0,
-	        },
-	        vAxis: {
-	            title: "Area",     
-	        }
+	    var category = [];
+	    var areaData = [];
+	    
+	    <c:forEach var="areaCarbon" items="${areaCarbonList}">
+			category.push("${areaCarbon.area}");
+	    	areaData.push(${areaCarbon.sum_cf});
 	        
-	      };
-	      var chart = new google.visualization.BarChart(document.getElementById("barChart"));
-	      chart.draw(view, options);
-	  }
-    </script>
+	    </c:forEach>
+	
+	    var options = {
+	        series: [{
+	            data: areaData,
+	        }],
+	        chart: {
+	            type: 'bar',
+	            height: 385,
+	            title: 'Carbon Footprint at Each Area 2023',
+	        },
+	        title: {
+				text: "Carbon Footprint at Each Area 2023",
+				align: 'center',
+				style: {
+		            fontSize: '18px',
+		            fontFamily: 'times'
+		        }
+	        },
+	        plotOptions: {
+	            bar: {
+	                horizontal: true,
+	                borderRadius: 4,
+	            }
+	        },
+	        dataLabels: {
+	            enabled: false,
+	        },
+	        xaxis: {
+	            title: {
+	                text: 'Carbon Footprint',
+	                style: {
+	    	            fontFamily: 'times'
+	    	        }
+	            },
+	            categories: category,
+	            labels: {
+	            	style: {
+	    	            fontFamily: 'times'
+	    	        }
+	            }
+	        },
+	        yaxis: {
+	            title: {
+	                text: 'Area',
+	                style: {
+	    	            fontFamily: 'times'
+	    	        }
+	            },
+	            labels: {
+	            	style: {
+	    	            fontFamily: 'times'
+	    	        }
+	            }
+	        },
+	        tooltip: {
+	            y: {
+	                title: {
+	                    formatter: function () {
+	                        return 'Carbon Footprint: ';
+	                    }
+	                }
+	            }
+	        },
+	    };
+	
+	    var chart = new ApexCharts(document.querySelector("#barChart"), options);
+	    chart.render();
+	
+	</script>
     <script>
     	$(document).ready(function(){
 			

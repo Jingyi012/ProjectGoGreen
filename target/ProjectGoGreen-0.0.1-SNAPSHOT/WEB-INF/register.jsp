@@ -250,8 +250,8 @@
             <h1>Puteri</h1>
         </div>
         <div id="button-container">
-            <a href="<%= request.getContextPath() %>/login.jsp" id="login">Login</a>
-            <a href="<%= request.getContextPath() %>/register.jsp" id="signup">Sign Up</a>
+            <a href="<%= request.getContextPath() %>/login" id="login">Login</a>
+            <a href="<%= request.getContextPath() %>/register" id="signup">Sign Up</a>
         </div>
     </header>
     <div id="content">
@@ -260,21 +260,22 @@
   
         <div id="form1">
             <h1>Sign up</h1>
-            <form id="field1">
+    <form id="registrationForm" method="post" action="<%= request.getContextPath() %>/register/submit" enctype="multipart/form-data">
+   <div id="field1">
     <div class="form-group">
         <label for="firstName">First Name:</label>
         </br>
         <input type="text" id="firstName" name="firstName" required>
     </div>
-
+  
     <div class="form-group">
         <label for="lastName">Last Name:</label>
         </br>
         <input type="text" id="lastName" name="lastName" required>
     </div>
-</form>  
+</div>  
     </br>
-    <form id="field2">
+    <div id="field2">
     <div class="form-group">
         <label for="NRIC">NRIC:</label>
         </br>
@@ -284,11 +285,11 @@
     <div class="form-group">
         <label for="Identification Card">Identification Card:</label>
         </br>
-        <input type="text" id="Identification Card" name=Identification Card" required>
+        <input type="text" id="Identification Card" name="Identification_Card" required>
     </div>
-</form>
+</div>
       </br>
-    <form id="field3">
+    <div id="field3">
        <div class="form-group">
                             <label for="email">Email:</label>
                             <br>
@@ -301,9 +302,9 @@
                             <input type="tel" id="phoneNo" name="phoneNo" pattern="[0-9]{11}" required>
                         </div>
 
-</form>
-      </br>
-    <form id="field4">
+</div>
+      <br>
+    <div id="field4">
     <div class="form-group">
                             <label for="category">Category:</label>
                             <br>
@@ -344,10 +345,10 @@
                                 <option value="Perling">Perling</option>
                             </select>
     </div>
-</form>
+</div>
 
-    </br>
-    <form id="field5">
+    <br>
+    <div id="field5">
   <div class="form-group">
                             <label for="Address">Address:</label>
                             <br>
@@ -359,10 +360,10 @@
                             <br>
                             <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .doc, .docx" required>
                         </div>
-</form>
+</div>
 
-      </br>
-      <form id="field6">
+      <br>
+      <div id="field6">
   <div class="form-group">
                              <label for="password">PASSWORD:</label>
                              <br>
@@ -374,22 +375,22 @@
                              <br>
                 <input type="password" id="Cpassword" name="Cpassword" placeholder="Confirm your password">
                         </div>
-</form>
-     </br>
-     </br>
+</div>
+     <br>
+     <br>
      <div id="termsForm">
-            <form>
+            <div>
                 <label>
                     <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
                     I agree to all the statements in Terms of Service
                 </label>
-            </form>
+            </div>
  
         </div>
        
-         </br>
+         <br>
       <button type="submit" id="login-button">Sign Up</button>
-      
+     </form>
         </div>
     </div>
 
