@@ -34,33 +34,25 @@ public class LoginController {
 	        @RequestParam("NRIC") String nric,
 	        @RequestParam("password") String password,
 	        HttpSession session, Model model) {
+	    
+	    User user = userDao.getUserByIcAndPassword(nric, password);
 
-	    if (userDao.isAdminCredentialsValid(nric, password)) {
+	    if(user != null) {
+	    	String role = user.getRole();
 
-	    	session.setAttribute("userRole", "admin");
-			session.setAttribute("user_id", 1);
-		
-			return "redirect:/adminDashboard";
-	    }
-
-	 
-	    if (userDao.isUserCredentialsValid(nric, password)) {
-	       
-	        User user = userDao.getUserDataByIc(nric);
-
-	        if (user != null) {
-	         
-	            session.setAttribute("userRole", "user");
-	            session.setAttribute("user_id", user.getId());
-	            model.addAttribute("user", user);
-	            return "redirect:/userDashboard";
-	        } else {
-	        
-	            return "redirect:/login";
-	        }
+	    	session.setAttribute("userRole", role);
+	    	session.setAttribute("user_id", user.getId());
+            session.setAttribute("username", user.getFirstName() + " " + user.getLastName());
+            
+            if(role.equals("user")) {
+            	return "redirect:/userDashboard";
+            } else if(role.equals("admin")) {
+            	return "redirect:/adminDashboard";
+            } else {
+            	return "redirect:/login";
+            }
 	    } else {
-	   
-	        return "redirect:/login";
+	    	return "redirect:/login";
 	    }
 	}
 

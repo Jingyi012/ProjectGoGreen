@@ -27,14 +27,14 @@ public class ElectricBillValidateController {
 
     @RequestMapping("validateElectricBill")
     public String getElectricBillValidatePage(Model model) {
-		/*
-		 * ElectricUserJoinDTO eu = new ElectricUserJoinDTO(); List<ElectricUserJoin>
-		 * euList = eu.getAllPendingBill(); model.addAttribute("pendingValidateEList",
-		 * euList);
-		 */
-    	ElectricBillDAO ebilldao = new ElectricBillDAO();
-    	List<ElectricBill> eList = ebilldao.getPendingElectricData();
-    	model.addAttribute("pendingValidateEList", eList);
+		
+		ElectricUserJoinDTO eu = new ElectricUserJoinDTO(); 
+		List<ElectricUserJoin> euList = eu.getAllPendingBill(); 
+		model.addAttribute("pendingValidateEList", euList);
+		
+//    	ElectricBillDAO ebilldao = new ElectricBillDAO();
+//    	List<ElectricBill> eList = ebilldao.getPendingElectricData();
+//    	model.addAttribute("pendingValidateEList", eList);
     	
         return "validateElectricBill";
     }
