@@ -28,15 +28,15 @@
 					<a href="${pageContext.request.contextPath}/bills/recycleBill">Recycle Bills</a> >
                     ${month} ${year}
 				</div>
-				<h2 class="pageTitle">Recycle Bills</h2>
+				<h2 class="pageTitle">Edit Recycle Bills</h2>
 				
 			  
 				
 				<div class="formContainer">
-					<form action="${pageContext.request.contextPath}/bills/recycleMonthForm/submit" method="post" enctype="multipart/form-data">
+					<form action="${pageContext.request.contextPath}/bills/editRecycleMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm recycle">
 							<label for="recycle_weight">Insert Recycling Consumption:</label>
-							<input type="text" id="recycle_weight" name="recycle_weight" placeholder="123Kg">
+							<input type="text" id="recycle_weight" name="recycle_weight" placeholder="123Kg" value="${recycleBill.recycle_weight}">
 						</div>
 						
 						<div class="billFile recycle">
