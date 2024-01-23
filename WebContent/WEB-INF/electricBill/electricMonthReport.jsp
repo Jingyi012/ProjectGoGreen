@@ -16,11 +16,11 @@
 <body>
 	<div class="pageContainer">
         <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="../sidebar.jsp" />
         </div>
 
         <div class="pageWrapper">
-        	<jsp:include page="headerBar.jsp" />
+        	<jsp:include page="../headerBar.jsp" />
         	<div class="pageContent">
         		<div class="pageNav">
 					Home > 
@@ -35,11 +35,11 @@
 					<table class="reportTable">
 						<tr>
 							<th>Address:</th>
-							<td id="address">12 Jalan Indah 14/5, Bukit Indah, Iskandar Puteri, Johor</td>
+							<td id="address">${user.address}</td>
 						</tr>
 						<tr>
 							<th>Name:</th>
-							<td id="name">user name</td>
+							<td id="name">${user.firstName} ${user.lastName}</td>
 						</tr>
 						<tr>
 							<th>Month:</th>

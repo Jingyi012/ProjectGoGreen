@@ -10,13 +10,21 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adminDashboard.css" />
 </head>
 <body>
+	<%
+		String[] areaName = {"Bukit Horizon", "Bukit Indah", "Gelang Patah", "Impian Emas", "Kangkar Pulai",
+	            "Kota Iskandar", "Leisure Farm", "Lima Kedai", "Medini Iskandar", "Mutiara Rini",
+	            "Nusa Bayu", "Nusa Bestari", "Perling", "Pulai Indah", "Pulai Utama",
+	            "Selesa Jaya", "Sri Pulai", "Sri Skudai", "Skudai", "Skudai Baru",
+	            "Sutera Utama", "Taman Universiti", "Tanjung Kupang", "Tun Aminah"};
+		request.setAttribute("areaNames", areaName);
+	%>
 	<div class="pageContainer">
         <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="../sidebar.jsp" />
         </div>
         
         <div class="pageWrapper">
-        	<jsp:include page="headerBar.jsp" />
+        	<jsp:include page="../headerBar.jsp" />
         	<div class="pageContent">
 				<div class="pageNav">
 					Home > 
@@ -59,7 +67,7 @@
 									<th>Total Carbon Footprint (kgCO<sub>2</sub>)</th>
 								</tr>
 								
-								<c:forEach var="areaCarbonList" items="${areaCarbonList}">
+								<%-- <c:forEach var="areaCarbonList" items="${areaCarbonList}">
 								<tr>
 									<td><c:out value="${areaCarbonList.area}"/></td>
 									<td><c:out value="${areaCarbonList.water_consumption}"/></td>
@@ -68,6 +76,35 @@
 									<td><c:out value="${areaCarbonList.num_participant}"/></td>
 									<td><c:out value="${areaCarbonList.sum_cf}"/></td>
 								</tr>
+								</c:forEach> --%>
+								<c:forEach var="areaName" items="${areaNames}">
+								
+								    <c:set var="found" value="false" />
+								    <c:forEach var="areaCarbonList" items="${areaCarbonList}">
+								        <c:if test="${areaName eq areaCarbonList.area and not found}">
+								            <tr>
+								                <td><c:out value="${areaCarbonList.area}" /></td>
+								                <td><c:out value="${areaCarbonList.water_consumption}" /></td>
+								                <td><c:out value="${areaCarbonList.electric_consumption}" /></td>
+								                <td><c:out value="${areaCarbonList.recycle_weight}" /></td>
+								                <td><c:out value="${areaCarbonList.num_participant}" /></td>
+								                <td><c:out value="${areaCarbonList.sum_cf}" /></td>
+								            </tr>
+								            <c:set var="found" value="true" />
+								        </c:if>
+								    </c:forEach>
+								
+								    <!-- If no match was found, display a row with zeros -->
+								    <c:if test="${not found}">
+								        <tr>
+								            <td><c:out value="${areaName}" /></td>
+								            <td>0</td>
+								            <td>0</td>
+								            <td>0</td>
+								            <td>0</td>
+								            <td>0</td>
+								        </tr>
+								    </c:if>
 								</c:forEach>
 							</table>
 						</div>
@@ -164,15 +201,30 @@
             chart.render();
 
 	</script>
+	
 	<script>
 	    var category = [];
 	    var areaData = [];
+
+	    <c:forEach var="areaName" items="${areaNames}">
+		    category.push("${areaName}");
+		    <c:set var="areaHaveData" value="false" />
+		    <c:forEach var="areaCarbon" items="${areaCarbonList}">
+		        <c:if test="${areaName eq areaCarbon.area and not areaHaveData}">
+		            areaData.push(${areaCarbon.sum_cf});
+		            <c:set var="areaHaveData" value="true" />
+		        </c:if>
+		    </c:forEach>
+		    <c:if test="${not areaHaveData}">
+		        areaData.push(0);
+		    </c:if>
+		</c:forEach>
 	    
-	    <c:forEach var="areaCarbon" items="${areaCarbonList}">
+	    /* <c:forEach var="areaCarbon" items="${areaCarbonList}">
 			category.push("${areaCarbon.area}");
 	    	areaData.push(${areaCarbon.sum_cf});
 	        
-	    </c:forEach>
+	    </c:forEach> */
 	
 	    var options = {
 	        series: [{

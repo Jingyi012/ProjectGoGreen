@@ -21,7 +21,7 @@ import dbUtil.ElectricUserJoinDTO;
 public class ElectricBillValidateController {
     @RequestMapping("validateBill")
     public ModelAndView getBillValidatePage() {
-        ModelAndView model = new ModelAndView("validateBill");
+        ModelAndView model = new ModelAndView("validateBill/validateBill");
         return model;
     }
 
@@ -36,7 +36,7 @@ public class ElectricBillValidateController {
 //    	List<ElectricBill> eList = ebilldao.getPendingElectricData();
 //    	model.addAttribute("pendingValidateEList", eList);
     	
-        return "validateElectricBill";
+        return "validateBill/validateElectricBill";
     }
     
     @RequestMapping("validateElectricAction")

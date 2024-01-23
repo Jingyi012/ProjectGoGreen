@@ -22,7 +22,7 @@ import dbUtil.ElectricBillDAO;
 public class DashboardController {
 	@RequestMapping("/userDashboard")
 	protected ModelAndView userDashboard(){
-		ModelAndView model = new ModelAndView("userDashboard");
+		ModelAndView model = new ModelAndView("dashboard/userDashboard");
 		AreaCarbonDTO acdto = new AreaCarbonDTO();
 		List<AreaCarbon> areaCarbonList = acdto.getAreaCarbonData(2023);
 		
@@ -31,7 +31,7 @@ public class DashboardController {
 	}
 	@RequestMapping("/adminDashboard")
 	protected ModelAndView adminDashboard(){
-		ModelAndView model = new ModelAndView("adminDashboard");
+		ModelAndView model = new ModelAndView("dashboard/adminDashboard");
 		AreaCarbonDTO acdto = new AreaCarbonDTO();
 		List<AreaCarbon> areaCarbonList = acdto.getAreaCarbonData(2023);
 		
@@ -77,9 +77,12 @@ public class DashboardController {
 	        model.addAttribute("carbon_footprint", totalCF);
 	    } else {
 	        // Handle the case when ebill is not found (empty)
-	        model.addAttribute("electric_consumption", 0); // or any default value
-	        model.addAttribute("carbon_footprint", 0); // or any default value
+	        model.addAttribute("electric_consumption", 0);
+	        model.addAttribute("water_consumption", 0);
+	        model.addAttribute("recycle_weight", 0);
+	        model.addAttribute("carbon_footprint", 0);
+	        
 	    }
-		return "myCarbonFootprint";
+		return "dashboard/myCarbonFootprint";
 	}
 }

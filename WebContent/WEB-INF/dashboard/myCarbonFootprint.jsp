@@ -21,7 +21,7 @@
 	<div class="detailItemBlock recycle">
 		<p>Recycle Weight</p>
 		<span class="consumption recycle"> <i class="bi bi-recycle"></i>
-			<span> 208 kg</span>
+			<span> ${recycle_weight} kg</span>
 		</span>
 	</div>
 	<div class="detailItemBlock carbonFootprint">
