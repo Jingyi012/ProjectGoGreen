@@ -3,12 +3,19 @@ package com.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.model.User;
+
+import dbUtil.UserDao;
+
 @Controller
 public class LoginController {
+	private UserDao userDao=new UserDao();
 	
 	@RequestMapping("/")
 	protected ModelAndView landingPage(){
@@ -23,22 +30,38 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/login/submit")
-    protected String submitLoginForm(@RequestParam ("NRIC") String nric, @RequestParam ("password") String password, HttpSession session) {
-		//ModelAndView model;
-		
-		if(nric.equals("1111") && password.equals("1111")) {
-			session.setAttribute("userRole", "admin");
-			session.setAttribute("user_id", 1);
-			//model = new ModelAndView("adminDashboard");
-			return "redirect:/adminDashboard";
-		} else {
-			session.setAttribute("userRole", "user");
-			session.setAttribute("user_id", 1);
-			//model = new ModelAndView("userDashboard");
-			return "redirect:/userDashboard";
-		}
-		
-		//return model;
+	protected String submitLoginForm(
+	        @RequestParam("NRIC") String nric,
+	        @RequestParam("password") String password,
+	        HttpSession session, Model model) {
+	    
+	    User user = userDao.getUserByIcAndPassword(nric, password);
+
+	    if(user != null) {
+	    	String role = user.getRole();
+
+	    	session.setAttribute("userRole", role);
+	    	session.setAttribute("user_id", user.getId());
+            session.setAttribute("username", user.getFirstName() + " " + user.getLastName());
+            
+            if(role.equals("user")) {
+            	return "redirect:/userDashboard";
+            } else if(role.equals("admin")) {
+            	return "redirect:/adminDashboard";
+            } else {
+            	return "redirect:/login";
+            }
+	    } else {
+	    	return "redirect:/login";
+	    }
 	}
-	
+
+	 
+
 }
+		
+		
+
+	
+
+

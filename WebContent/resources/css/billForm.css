@@ -34,7 +34,7 @@ input[type="file"]{
 	opacity: 0;
 }
 
-.fileBox{
+/* .fileBox{
 	width: 403.99px;
 	height: 55.99px;
 	margin-top: 10px;
@@ -44,7 +44,7 @@ input[type="file"]{
     text-align: center;
     position: relative;
             overflow: hidden;
-}
+} */
 
 
 #btn{

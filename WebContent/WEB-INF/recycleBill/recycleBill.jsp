@@ -12,19 +12,20 @@
 <body>
 	<div class="pageContainer">
         <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="../sidebar.jsp" />
         </div>
 	    
+	     
         <div class="pageWrapper">
-        	<jsp:include page="headerBar.jsp" />
+        	<jsp:include page="../headerBar.jsp" />
         	<div class="pageContent">
-
-				<div class="pageNav">
+        	
+        	<div class="pageNav">
 					Home > 
 					<a href="${pageContext.request.contextPath}/bills">Bills</a> >
-					<a href="">Electric Bills</a>
+					<a href="">Recycle Bills</a>
 				</div>
-        		<h2 class="pageTitle">Electric Bills</h2>
+        		<h2 class="pageTitle">Recycle Bills</h2>
         		<div id="calendarYear" class="calendarYear" >
         			<i class="bi bi-caret-left-fill" class="carousel-control-prev" type="button" data-bs-target="#calendarContainer" data-bs-slide="prev"></i>
         			<select id="yearSelect">
@@ -35,15 +36,12 @@
         			<i class="bi bi-caret-right-fill"></i>
         			<!-- <i class="bi bi-caret-right-fill" class="carousel-control-next" type="button" data-bs-target="#calendarContainer" data-bs-slide="next"></i> -->
         		</div>
-
-        		<div class="calendar" id="calendar">
+        		<div id="calendar" class="calendar">
         		
         		</div>
         		
         		<c:if test="${not empty successMessage}">
-			        <%-- <div class="alert alert-success" role="alert">
-			            <strong>${successMessage}</strong>
-			        </div> --%>
+			 
 			        <div class='statusMessageBox'>
                             <div class='toast-content'>
                             <i class='bi bi-check2 toast-icon greenColor'></i>
@@ -57,9 +55,9 @@
                     </div>
 
 			    </c:if>
-        	</div>
+			 </div>
         </div>
- 
+        			
         <script>
 
 			$(document).ready(function(){
@@ -75,7 +73,7 @@
 				function updateCalendar(year){
 				$.ajax({
 						type: 'GET',
-						url: 'updateElectricCalendar', 
+						url: 'updateRecycleCalendar', 
 						data: { year: year },
 						success: function(response) {
 							

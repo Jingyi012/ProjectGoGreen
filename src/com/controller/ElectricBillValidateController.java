@@ -21,22 +21,22 @@ import dbUtil.ElectricUserJoinDTO;
 public class ElectricBillValidateController {
     @RequestMapping("validateBill")
     public ModelAndView getBillValidatePage() {
-        ModelAndView model = new ModelAndView("validateBill");
+        ModelAndView model = new ModelAndView("validateBill/validateBill");
         return model;
     }
 
     @RequestMapping("validateElectricBill")
     public String getElectricBillValidatePage(Model model) {
-		/*
-		 * ElectricUserJoinDTO eu = new ElectricUserJoinDTO(); List<ElectricUserJoin>
-		 * euList = eu.getAllPendingBill(); model.addAttribute("pendingValidateEList",
-		 * euList);
-		 */
-    	ElectricBillDAO ebilldao = new ElectricBillDAO();
-    	List<ElectricBill> eList = ebilldao.getPendingElectricData();
-    	model.addAttribute("pendingValidateEList", eList);
+		
+		ElectricUserJoinDTO eu = new ElectricUserJoinDTO(); 
+		List<ElectricUserJoin> euList = eu.getAllPendingBill(); 
+		model.addAttribute("pendingValidateEList", euList);
+		
+//    	ElectricBillDAO ebilldao = new ElectricBillDAO();
+//    	List<ElectricBill> eList = ebilldao.getPendingElectricData();
+//    	model.addAttribute("pendingValidateEList", eList);
     	
-        return "validateElectricBill";
+        return "validateBill/validateElectricBill";
     }
     
     @RequestMapping("validateElectricAction")

@@ -16,38 +16,39 @@
 <body>
 	<div class="pageContainer">
         <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="../sidebar.jsp" />
         </div>
 	    
         <div class="pageWrapper">
-        	<jsp:include page="headerBar.jsp" />
+        	<jsp:include page="../headerBar.jsp" />
         	<div class="pageContent">
                 <div class="pageNav">
 					Home > 
 					<a href="${pageContext.request.contextPath}/bills">Bills</a> >
-					<a href="${pageContext.request.contextPath}/bills/electricBill">Electric Bills</a> >
+					<a href="${pageContext.request.contextPath}/bills/recycleBill">Recycle Bills</a> >
                     ${month} ${year}
 				</div>
-				<h2 class="pageTitle">Electric Bills</h2>
+				<h2 class="pageTitle">Edit Recycle Bills</h2>
 				
 			  
+				
 				<div class="formContainer">
-					<form action="${pageContext.request.contextPath}/bills/electricMonthForm/submit" method="post" enctype="multipart/form-data">
-						<div class="billForm electric">
-							<label for="eBill">Insert Electric Consumption:</label>
-							<input type="text" id="eBill" name="eBill" placeholder="123kWh">
+					<form action="${pageContext.request.contextPath}/bills/editRecycleMonthForm/submit" method="post" enctype="multipart/form-data">
+						<div class="billForm recycle">
+							<label for="recycle_weight">Insert Recycling Consumption:</label>
+							<input type="text" id="recycle_weight" name="recycle_weight" placeholder="123Kg" value="${recycleBill.recycle_weight}">
 						</div>
 						
-						<div class="billFile electric">
-							<span>Upload Electric Bill as proof:</span>
-							<label for="eFile" class="fileBox"><br>Choose File &nbsp<i class="fa fa-upload"></i></label>
-							<input type="file" id="eFile" name="eFile" placeholder="Choose file">
+						<div class="billFile recycle">
+							<span>Upload Recycling Bill as proof:</span>
+							<label for="rFile" class="fileBox"><br>Choose File &nbsp<i class="fa fa-upload"></i></label>
+							<input type="file" id="rFile" name="rFile" accept="image/*" placeholder="Choose file">
 						</div>
 						
 						<div class="submitButton">
 						<input type="submit" value="Submit" id="btn">
 						<input type="hidden" name="year" value="${year}" />
-						<input type="hidden" name="month" value="${month}" />
+						<input type="hidden" name="smonth" value="${month}" />
 						</div>
 					</form>
 				</div>

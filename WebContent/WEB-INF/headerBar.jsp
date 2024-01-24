@@ -95,7 +95,7 @@
             <div class="account" >
             	<div class="userAcc" onClick="toggle()">
             		<i class="bi bi-person-circle"></i>
-                	<span>User Name</span>
+                	<span>${username}</span>
 					<i class="bi bi-caret-down-fill"></i>
             	</div>
                 <a class="logout" href="${pageContext.request.contextPath}/logout">

@@ -116,7 +116,7 @@
 				<form action="#" method="post">
 					<div class="left">
 					    <label for="input1">First Name:</label><br>
-					    <input type="text" id="input1" name="input1" placeholder="Ali" disabled><br>
+					    <input type="text" id="input1" name="input1" placeholder="Abu" disabled><br>
 					
 					    <label for="input2">Phone Number:</label><br>
 					    <input type="text" id="input2" name="input2" placeholder="01112028239" disabled><br>

@@ -29,12 +29,13 @@
                     <button class="tablinks" onclick="openTab(event, 'Yearly')">Yearly</button>
                 </div>
 				
-				<div>
-				<h2>2023 Monthly Report</h2>
-				</div>
+				
 				
 
 				<div id="Monthly" class="table-content">
+				<div>
+				<h2>2023 Monthly Report</h2>
+				</div>
 					<table>
 						<tr>
 							<th class="date-col"  colspan="2">Date</th>
@@ -72,6 +73,9 @@
 				</div>
 				
 				<div id="Yearly" class="table-content">
+				<div>
+				<h2>2023 Yearly Report</h2>
+				</div>
                     <table>
                         <tr>
                             <th class="date-col">Date</th>

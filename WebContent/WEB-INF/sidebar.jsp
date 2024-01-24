@@ -10,6 +10,10 @@
 <style>
 	body{
 		margin: 0;
+		line-height: normal;
+	}
+	*{
+		box-sizing: inherit;
 	}
 	.hideSideBar{
 		width: 0 !important;
@@ -33,6 +37,7 @@
 		display: flex;
 		flex-direction: row;
 		width: 190px;
+		line-height: normal;
 	}
 	
 	.logo{
@@ -60,6 +65,16 @@
 	hr{
 		width: 190px;
 		margin-top: 15px;
+		display: block;
+		unicode-bidi: isolate;
+		margin-block-start: 0.5em;
+		margin-block-end: 0.5em;
+		margin-inline-start: auto;
+		margin-inline-end: auto;
+		overflow: hidden;
+		border-style: inset;
+		border-width: 1px;
+		opacity: 1;
 	}
 
 	.navItems{

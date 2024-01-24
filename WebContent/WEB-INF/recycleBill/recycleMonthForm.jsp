@@ -16,42 +16,39 @@
 <body>
 	<div class="pageContainer">
         <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="../sidebar.jsp" />
         </div>
-        
-        <% 
-	        String month = request.getParameter("month"); 
-	        session.setAttribute("month", month);
-        %>
 	    
         <div class="pageWrapper">
-        	<jsp:include page="headerBar.jsp" />
+        	<jsp:include page="../headerBar.jsp" />
         	<div class="pageContent">
                 <div class="pageNav">
 					Home > 
-					<a href="bills.jsp">Bills</a> >
-					<a href="recycleBill.jsp">Recycle Bills</a> >
-                    <%= month %>
+					<a href="${pageContext.request.contextPath}/bills">Bills</a> >
+					<a href="${pageContext.request.contextPath}/bills/recycleBill">Recycle Bills</a> >
+                    ${month} ${year}
 				</div>
 				<h2 class="pageTitle">Recycle Bills</h2>
 				
 			  
 				
 				<div class="formContainer">
-					<form action="./recycleMonthReport.jsp?month=<%= month %>">
+					<form action="${pageContext.request.contextPath}/bills/recycleMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm recycle">
-							<label for="eBill">Insert Recycling Consumption:</label>
-							<input type="text" id="eBill" name="eBill" placeholder="123Kg">
+							<label for="recycle_weight">Insert Recycling Consumption:</label>
+							<input type="text" id="recycle_weight" name="recycle_weight" placeholder="123Kg" required>
 						</div>
 						
 						<div class="billFile recycle">
 							<span>Upload Recycling Bill as proof:</span>
-							<label for="eFile" class="fileBox"><br>Choose File &nbsp<i class="fa fa-upload"></i></label>
-							<input type="file" id="eFile" name="eFile" placeholder="Choose file">
+							<label for="rFile" class="fileBox"><br>Choose File &nbsp<i class="fa fa-upload"></i></label>
+							<input type="file" id="rFile" name="rFile" accept="image/*" placeholder="Choose file" required>
 						</div>
 						
 						<div class="submitButton">
 						<input type="submit" value="Submit" id="btn">
+						<input type="hidden" name="year" value="${year}" />
+						<input type="hidden" name="smonth" value="${month}" />
 						</div>
 					</form>
 				</div>

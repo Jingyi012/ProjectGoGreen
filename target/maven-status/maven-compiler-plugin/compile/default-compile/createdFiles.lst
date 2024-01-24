@@ -1,11 +1,14 @@
 com\controller\RegistrationController.class
+com\model\RecycleBill.class
 dbUtil\CreateTable.class
+dbUtil\AreaCarbonDTO.class
 com\controller\DashboardController.class
 com\controller\LogoutController.class
 dbUtil\ElectricBillDAO.class
 com\model\ElectricBill.class
 com\model\ElectricUserJoin.class
 com\controller\ElectricBillController.class
+com\model\MonthlyCarbonFootprint.class
 com\controller\ProfileServlet.class
 com\controller\LoginController.class
 dbUtil\ElectricUserJoinDTO.class
@@ -14,4 +17,6 @@ com\model\User.class
 com\controller\ElectricBillValidateController.class
 com\controller\CertificateController.class
 com\controller\AdminReportController.class
+com\model\AreaCarbon.class
+dbUtil\UserDao.class
 com\controller\ProfileController.class

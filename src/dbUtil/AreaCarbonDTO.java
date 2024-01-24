@@ -32,30 +32,58 @@ JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 		return ds;
 	}
 	
-	public List<AreaCarbon> getAreaCarbonData() {
+	public List<AreaCarbon> getAreaCarbonData(int year) {
 		try {
-	        String sql = "SELECT areas.area," +
-	                "COUNT(u.id) AS num_participant, " +
-	                "COALESCE(SUM(CASE WHEN e.status = 'approve' THEN e.electric_consumption ELSE 0 END), 0) AS electric_consumption, " +
-	                "COALESCE(SUM(CASE WHEN w.status = 'approve' THEN w.water_consumption ELSE 0 END), 0) AS water_consumption, " +
-	                "COALESCE(SUM(CASE WHEN r.status = 'approve' THEN r.recycle_weight ELSE 0 END), 0) AS recycle_weight, " +
-	                "COALESCE(SUM(CASE WHEN e.status = 'approve' THEN e.carbon_footprint ELSE 0 END), 0) AS electric_carbon_sum, " +
-	                "COALESCE(SUM(CASE WHEN w.status = 'approve' THEN w.carbon_footprint ELSE 0 END), 0) AS water_carbon_sum, " +
-	                "COALESCE(SUM(CASE WHEN r.status = 'approve' THEN r.carbon_footprint ELSE 0 END), 0) AS recycle_carbon_sum, " +
-	                "COALESCE(SUM(electric_carbon_sum + water_carbon_sum + recycle_carbon_sum, 0) AS sum_cf " +
-	                "FROM (SELECT UNNEST(ARRAY[" +
-	                "'Pulai Indah', 'Kangkar Pulai', 'Pulai Utama', 'Sri Pulai', 'Taman Universiti'," +
-	                "'Mutiara Rini', 'Lima Kedai', 'Nusa Bayu', 'Gelang Patah', 'Leisure Farm'," +
-	                "'Tanjung Kupang', 'Medini Iskandar', 'Kota Iskandar', 'Bukit Horizon', 'Impian Emas'," +
-	                "'Sri Skudai', 'Skudai', 'Skudai Baru', 'Selesa Jaya', 'Tun Aminah', 'Nusa Bestari'," +
-	                "'Bukit Indah', 'Sutera Utama', 'Perling'" +
-	                "]) AS area) areas " +
-	                "LEFT JOIN user u ON areas.area = u.area " +
-	                "LEFT JOIN electricBill e ON u.user_id = e.user_id " +
-	                "LEFT JOIN waterBill w ON u.user_id = w.user_id " +
-	                "LEFT JOIN recycleBill r ON u.user_id = r.user_id " +
-	                "WHERE e.status = 'approve' OR w.status = 'approve' OR r.status = 'approve'" + 
-	                "GROUP BY areas.area";
+	        String sql = "SELECT\r\n" + 
+	        		"    u.area,\r\n" + 
+	        		"    COUNT(DISTINCT u.id) AS num_participant,\r\n" + 
+	        		"    COALESCE(SUM(electric_consumption), 0) AS electric_consumption,\r\n" + 
+	        		"    COALESCE(SUM(water_consumption), 0) AS water_consumption,\r\n" + 
+	        		"    COALESCE(SUM(recycle_weight), 0) AS recycle_weight,\r\n" + 
+	        		"    COALESCE(COALESCE(SUM(electric_footprint), 0) + COALESCE(SUM(water_footprint), 0) + COALESCE(SUM(recycle_footprint), 0), 0) AS sum_cf\r\n" + 
+	        		"FROM (\r\n" + 
+	        		"    SELECT\r\n" + 
+	        		"        user_id,\r\n" + 
+	        		"        year,\r\n" + 
+	        		"        month,\r\n" + 
+	        		"    	electric_consumption,\r\n" + 
+	        		"    	NULL AS water_consumption,\r\n" + 
+	        		"        NULL AS recycle_weight,\r\n" + 
+	        		"        carbon_footprint AS electric_footprint,\r\n" + 
+	        		"        NULL AS water_footprint,\r\n" + 
+	        		"        NULL AS recycle_footprint\r\n" + 
+	        		"    FROM ElectricBill\r\n" + 
+	        		"    WHERE status = 'approve'\r\n" + 
+	        		"    UNION ALL\r\n" + 
+	        		"    SELECT\r\n" + 
+	        		"        user_id,\r\n" + 
+	        		"        year,\r\n" + 
+	        		"        month,\r\n" + 
+	        		"    	NULL AS electric_consumption,\r\n" + 
+	        		"    	water_consumption,\r\n" + 
+	        		"    	NULL AS recycle_weight,\r\n" + 
+	        		"        NULL AS electric_footprint,\r\n" + 
+	        		"        carbon_footprint AS water_footprint,\r\n" + 
+	        		"        NULL AS recycle_footprint\r\n" + 
+	        		"    FROM WaterBill\r\n" + 
+	        		"    WHERE status = 'approve'\r\n" + 
+	        		"    UNION ALL\r\n" + 
+	        		"    SELECT\r\n" + 
+	        		"        user_id,\r\n" + 
+	        		"        year,\r\n" + 
+	        		"        month,\r\n" + 
+	        		"    	NULL AS electric_consumption,\r\n" + 
+	        		"   		NULL AS water_consumption,\r\n" + 
+	        		"    	recycle_weight,\r\n" + 
+	        		"        NULL AS electric_footprint,\r\n" + 
+	        		"        NULL AS water_footprint,\r\n" + 
+	        		"        carbon_footprint AS recycle_footprint\r\n" + 
+	        		"    FROM RecycleBill\r\n" + 
+	        		"    WHERE status = 'approve'\r\n" + 
+	        		") AS bills \r\n" + 
+	        		"join user u on u.id = user_id\r\n" + 
+	        		"WHERE year = " + year +
+	        		" GROUP BY u.area\r\n";
 
 	        List<AreaCarbon> areaCarbonList = jdbct.query(sql, new BeanPropertyRowMapper<>(AreaCarbon.class));
 	        return areaCarbonList;
@@ -63,64 +91,89 @@ JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	    	
 	        e.printStackTrace();
 
-	        // Return a list of AreaCarbon objects with default values if an exception occurs
-	        List<AreaCarbon> defaultAreaCarbonList = generateDefaultAreaCarbonList();
-	        return defaultAreaCarbonList;
+	        return Collections.emptyList();
 	    }
 	}
+
 	
-	public List<AreaCarbon> generateDefaultAreaCarbonList() {
-	    // Generate a list of AreaCarbon objects with default values (all values set to 0)
-	    List<String> areaNames = Arrays.asList(
-	            "Pulai Indah", "Kangkar Pulai", "Pulai Utama", "Sri Pulai", "Taman Universiti",
-	            "Mutiara Rini", "Lima Kedai", "Nusa Bayu", "Gelang Patah", "Leisure Farm",
-	            "Tanjung Kupang", "Medini Iskandar", "Kota Iskandar", "Bukit Horizon", "Impian Emas",
-	            "Sri Skudai", "Skudai", "Skudai Baru", "Selesa Jaya", "Tun Aminah", "Nusa Bestari",
-	            "Bukit Indah", "Sutera Utama", "Perling"
-	    );
-
-	    List<AreaCarbon> defaultAreaCarbonList = new ArrayList<>();
-	    for (String area : areaNames) {
-	        AreaCarbon defaultAreaCarbon = new AreaCarbon();
-	        defaultAreaCarbon.setArea(area);
-	        defaultAreaCarbon.setNum_participant(0);
-	        defaultAreaCarbon.setElectric_consumption(0.0);
-	        defaultAreaCarbon.setWater_consumption(0.0);
-	        defaultAreaCarbon.setRecycle_weight(0.0);
-	        defaultAreaCarbon.setSum_cf(0.0);
-
-	        defaultAreaCarbonList.add(defaultAreaCarbon);
-	    }
-
-	    return defaultAreaCarbonList;
-	}
-	
-	public AreaCarbon getHighestLowestCFArea(String hl) {
+	public AreaCarbon getHighestLowestCFArea(String hl, int year) {
 		
 		try {
-	        String sql = "SELECT areas.area," +
-	                "COUNT(u.id) AS num_participant, " +
-	                "COALESCE(SUM(CASE WHEN e.status = 'approve' THEN e.electric_consumption ELSE 0 END), 0) AS electric_consumption, " +
-	                "COALESCE(SUM(CASE WHEN w.status = 'approve' THEN w.water_consumption ELSE 0 END), 0) AS water_consumption, " +
-	                "COALESCE(SUM(CASE WHEN r.status = 'approve' THEN r.recycle_weight ELSE 0 END), 0) AS recycle_weight, " +
-	                "COALESCE(SUM(CASE WHEN e.status = 'approve' THEN e.carbon_footprint ELSE 0 END), 0) AS electric_carbon_sum, " +
-	                "COALESCE(SUM(CASE WHEN w.status = 'approve' THEN w.carbon_footprint ELSE 0 END), 0) AS water_carbon_sum, " +
-	                "COALESCE(SUM(CASE WHEN r.status = 'approve' THEN r.carbon_footprint ELSE 0 END), 0) AS recycle_carbon_sum, " +
-	                "COALESCE(SUM(electric_carbon_sum + water_carbon_sum + recycle_carbon_sum, 0) AS sum_cf " +
-	                "FROM (SELECT UNNEST(ARRAY[" +
-	                "'Pulai Indah', 'Kangkar Pulai', 'Pulai Utama', 'Sri Pulai', 'Taman Universiti'," +
-	                "'Mutiara Rini', 'Lima Kedai', 'Nusa Bayu', 'Gelang Patah', 'Leisure Farm'," +
-	                "'Tanjung Kupang', 'Medini Iskandar', 'Kota Iskandar', 'Bukit Horizon', 'Impian Emas'," +
-	                "'Sri Skudai', 'Skudai', 'Skudai Baru', 'Selesa Jaya', 'Tun Aminah', 'Nusa Bestari'," +
-	                "'Bukit Indah', 'Sutera Utama', 'Perling'" +
-	                "]) AS area) areas " +
-	                "LEFT JOIN user u ON areas.area = u.area " +
-	                "LEFT JOIN electricBill e ON u.user_id = e.user_id " +
-	                "LEFT JOIN waterBill w ON u.user_id = w.user_id " +
-	                "LEFT JOIN recycleBill r ON u.user_id = r.user_id " +
-	                "GROUP BY areas.area" + 
-	                "ORDER BY sum_cf" + hl +
-	                "LIMIT 1";
+	        String sql = "SELECT\r\n" + 
+	        		"    u.area,\r\n" + 
+	        		"    COUNT(DISTINCT u.id) AS total_participants,\r\n" + 
+	        		"    COALESCE(SUM(electric_consumption),\r\n" + 
+	        		"    0) AS electric_consumption,\r\n" + 
+	        		"    COALESCE(SUM(water_consumption),\r\n" + 
+	        		"    0) AS water_consumption,\r\n" + 
+	        		"    COALESCE(SUM(recycle_weight),\r\n" + 
+	        		"    0) AS recycle_weight,\r\n" + 
+	        		"    COALESCE(\r\n" + 
+	        		"        COALESCE(SUM(electric_footprint),\r\n" + 
+	        		"        0) + COALESCE(SUM(water_footprint),\r\n" + 
+	        		"        0) + COALESCE(SUM(recycle_footprint),\r\n" + 
+	        		"        0),\r\n" + 
+	        		"        0\r\n" + 
+	        		"    ) AS sum_cf\r\n" + 
+	        		"FROM\r\n" + 
+	        		"    (\r\n" + 
+	        		"    SELECT\r\n" + 
+	        		"        user_id,\r\n" + 
+	        		"        YEAR,\r\n" + 
+	        		"        month,\r\n" + 
+	        		"        electric_consumption,\r\n" + 
+	        		"        NULL AS water_consumption,\r\n" + 
+	        		"        NULL AS recycle_weight,\r\n" + 
+	        		"        carbon_footprint AS electric_footprint,\r\n" + 
+	        		"        NULL AS water_footprint,\r\n" + 
+	        		"        NULL AS recycle_footprint\r\n" + 
+	        		"    FROM\r\n" + 
+	        		"        ElectricBill\r\n" + 
+	        		"    WHERE\r\n" + 
+	        		"STATUS\r\n" + 
+	        		"    = 'approve'\r\n" + 
+	        		"UNION ALL\r\n" + 
+	        		"SELECT\r\n" + 
+	        		"    user_id,\r\n" + 
+	        		"    YEAR,\r\n" + 
+	        		"    month,\r\n" + 
+	        		"    NULL AS electric_consumption,\r\n" + 
+	        		"    water_consumption,\r\n" + 
+	        		"    NULL AS recycle_weight,\r\n" + 
+	        		"    NULL AS electric_footprint,\r\n" + 
+	        		"    carbon_footprint AS water_footprint,\r\n" + 
+	        		"    NULL AS recycle_footprint\r\n" + 
+	        		"FROM\r\n" + 
+	        		"    WaterBill\r\n" + 
+	        		"WHERE\r\n" + 
+	        		"STATUS\r\n" + 
+	        		"    = 'approve'\r\n" + 
+	        		"UNION ALL\r\n" + 
+	        		"SELECT\r\n" + 
+	        		"    user_id,\r\n" + 
+	        		"    YEAR,\r\n" + 
+	        		"    month,\r\n" + 
+	        		"    NULL AS electric_consumption,\r\n" + 
+	        		"    NULL AS water_consumption,\r\n" + 
+	        		"    recycle_weight,\r\n" + 
+	        		"    NULL AS electric_footprint,\r\n" + 
+	        		"    NULL AS water_footprint,\r\n" + 
+	        		"    carbon_footprint AS recycle_footprint\r\n" + 
+	        		"FROM\r\n" + 
+	        		"    RecycleBill\r\n" + 
+	        		"WHERE\r\n" + 
+	        		"STATUS\r\n" + 
+	        		"    = 'approve'\r\n" + 
+	        		") AS bills\r\n" + 
+	        		"JOIN USER u ON\r\n" + 
+	        		"    u.id = user_id\r\n" + 
+	        		"WHERE\r\n" + 
+	        		"    YEAR = " + year +
+	        		" GROUP BY\r\n" + 
+	        		"    u.area\r\n" + 
+	        		"ORDER BY\r\n" + 
+	        		"    sum_cf " +  hl + 
+	        		" LIMIT 1";
 
 	        AreaCarbon areaCarbon = jdbct.queryForObject(sql, new BeanPropertyRowMapper<>(AreaCarbon.class));
 	        return areaCarbon;
@@ -201,4 +254,86 @@ JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	        return Collections.emptyList();
 	    }
 	}
+	
+	public double carbonFootprintByCategory(String category, int year) {
+		try {
+			String sql = "SELECT\r\n" + 
+					"    u.category,\r\n" + 
+					"    COALESCE(\r\n" + 
+					"        COALESCE(SUM(electric_footprint),\r\n" + 
+					"        0) + COALESCE(SUM(water_footprint),\r\n" + 
+					"        0) + COALESCE(SUM(recycle_footprint),\r\n" + 
+					"        0),\r\n" + 
+					"        0\r\n" + 
+					"    ) AS sum_cf\r\n" + 
+					"FROM\r\n" + 
+					"    (\r\n" + 
+					"    SELECT\r\n" + 
+					"        user_id,\r\n" + 
+					"        YEAR,\r\n" + 
+					"        month,\r\n" + 
+					"        electric_consumption,\r\n" + 
+					"        NULL AS water_consumption,\r\n" + 
+					"        NULL AS recycle_weight,\r\n" + 
+					"        carbon_footprint AS electric_footprint,\r\n" + 
+					"        NULL AS water_footprint,\r\n" + 
+					"        NULL AS recycle_footprint\r\n" + 
+					"    FROM\r\n" + 
+					"        ElectricBill\r\n" + 
+					"    WHERE\r\n" + 
+					"STATUS\r\n" + 
+					"    = 'approve'\r\n" + 
+					"UNION ALL\r\n" + 
+					"SELECT\r\n" + 
+					"    user_id,\r\n" + 
+					"    YEAR,\r\n" + 
+					"    month,\r\n" + 
+					"    NULL AS electric_consumption,\r\n" + 
+					"    water_consumption,\r\n" + 
+					"    NULL AS recycle_weight,\r\n" + 
+					"    NULL AS electric_footprint,\r\n" + 
+					"    carbon_footprint AS water_footprint,\r\n" + 
+					"    NULL AS recycle_footprint\r\n" + 
+					"FROM\r\n" + 
+					"    WaterBill\r\n" + 
+					"WHERE\r\n" + 
+					"STATUS\r\n" + 
+					"    = 'approve'\r\n" + 
+					"UNION ALL\r\n" + 
+					"SELECT\r\n" + 
+					"    user_id,\r\n" + 
+					"    YEAR,\r\n" + 
+					"    month,\r\n" + 
+					"    NULL AS electric_consumption,\r\n" + 
+					"    NULL AS water_consumption,\r\n" + 
+					"    recycle_weight,\r\n" + 
+					"    NULL AS electric_footprint,\r\n" + 
+					"    NULL AS water_footprint,\r\n" + 
+					"    carbon_footprint AS recycle_footprint\r\n" + 
+					"FROM\r\n" + 
+					"    RecycleBill\r\n" + 
+					"WHERE\r\n" + 
+					"STATUS\r\n" + 
+					"    = 'approve'\r\n" + 
+					") AS bills\r\n" + 
+					"JOIN USER u ON\r\n" + 
+					"    u.id = user_id\r\n" + 
+					"WHERE\r\n" + 
+					"    YEAR = " + year +
+					" AND u.category = '" + category + "'";
+			
+			SqlRowSet rowSet = jdbct.queryForRowSet(sql);
+
+	        if (rowSet.next()) {
+	            return rowSet.getDouble("sum_cf");
+	        } else {
+	            return 0;
+	        }
+	        
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	    	return 0;
+	    }
+	}
+	
 }
