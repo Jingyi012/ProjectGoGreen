@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.model.ElectricBill;
 import com.model.MonthlyCarbonFootprint;
+import com.model.RecycleBill;
 import com.model.AreaCarbon;
 
 import dbUtil.AreaCarbonDAO;
 import dbUtil.ElectricBillDAO;
+import dbUtil.RecycleBillDAO;
 
 @Controller
 public class DashboardController {
@@ -67,25 +70,36 @@ public class DashboardController {
 	
 	@RequestMapping("/updateMyCarbonFootprint")
 	protected String updateMyCarbonFootprint(@RequestParam("year") int year, @RequestParam("month") int month, HttpServletRequest request, HttpSession session, Model model) {
+		int user_id = (int)session.getAttribute("user_id");
 		double totalCF = 0;
 		ElectricBillDAO ebilldao = new ElectricBillDAO();
-		ElectricBill ebill = ebilldao.getApprovedElectricDataByMonthYear((int)session.getAttribute("user_id"), month, year);
+		ElectricBill ebill = ebilldao.getApprovedElectricDataByMonthYear(user_id, month, year);
+		RecycleBillDAO rbilldao = new RecycleBillDAO();
+		RecycleBill rbill = rbilldao.getApprovedRecycleDataByMonthYear(user_id, month, year);
+				
 		if (ebill != null) {
 	        double eConsump = ebill.getElectric_consumption();
-	        totalCF += eConsump;
-
-	        // Later add water and recycle
-
 	        model.addAttribute("electric_consumption", eConsump);
-	        model.addAttribute("carbon_footprint", totalCF);
-	    } else {
-	        // Handle the case when ebill is not found (empty)
-	        model.addAttribute("electric_consumption", 0);
-	        model.addAttribute("water_consumption", 0);
-	        model.addAttribute("recycle_weight", 0);
-	        model.addAttribute("carbon_footprint", 0);
-	        
-	    }
+	        totalCF += ebill.getCarbon_footprint();
+		}else {
+        	model.addAttribute("electric_consumption", 0);
+        }
+		
+		if (rbill != null) {
+	        double rWeight = rbill.getRecycle_weight();
+	        model.addAttribute("recycle_weight", rWeight);
+	        totalCF += rbill.getCarbon_footprint();
+		}else {
+        	model.addAttribute("recycle_weight", 0);
+        }
+		
+	        // Later add water and recycle
+	    
+	    model.addAttribute("water_consumption", 0);
+	    
+	    DecimalFormat df = new DecimalFormat("0.00");
+	    model.addAttribute("carbon_footprint", df.format(totalCF));
+	    
 		return "dashboard/myCarbonFootprint";
 	}
 }

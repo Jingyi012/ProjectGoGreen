@@ -5,11 +5,14 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.model.ElectricBill;
 import com.model.RecycleBill;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -77,5 +80,32 @@ public class RecycleBillDAO {
 		String sql = "select * from recyclebill where rid=?";
 		RecycleBill rbill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<RecycleBill>(RecycleBill.class), rid);
 		return rbill;
+	}
+	
+	public RecycleBill getApprovedRecycleDataByMonthYear(int userId, int month, int year) {
+		try {
+			String sql = "select * from recycleBill where user_id=? and month=? and year=? and status='approve'";
+			Object args[] = {userId, month, year};
+			RecycleBill rbill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<RecycleBill>(RecycleBill.class), args);
+			return rbill;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public Map<String, Double> getRecycleWeightAndTotalCF(int year, int month) {
+	    String sql = "SELECT ROUND(SUM(carbon_footprint), 2) AS recycle_CF, ROUND(SUM(recycle_weight), 2) AS recycle_weight FROM recycleBill WHERE year = ? AND month = ? AND status = ?";
+	    Object[] args = {year, month, "approve"};
+
+	    SqlRowSet rowSet = jdbct.queryForRowSet(sql, args);
+
+	    Map<String, Double> result = new HashMap<>();
+
+	    if (rowSet.next()) {
+	        result.put("recycle_CF", rowSet.getDouble("recycle_CF"));
+	        result.put("recycle_weight", rowSet.getDouble("recycle_weight"));
+	    }
+
+	    return result;
 	}
 }

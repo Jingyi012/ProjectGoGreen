@@ -97,18 +97,19 @@
 						<div class="dataContainer">
 							<div class="itemGroup">
 								<h4>Water Consumption</h4>
-								<p></p>
+								<p>L</p>
 							</div>
 							<div class="itemGroup">
 								<h4>Electric Consumption</h4>
-								<p>${electric["electric_consump"]}</p>
+								<p>${electric["electric_consump"]} kWh</p>
 							</div>
 							<div class="itemGroup">
 								<h4>Recycle Weight</h4>
+								<p>${recycle["recycle_weight"]} kg</p>
 							</div>
 							<div class="itemGroup">
 								<h4>Total Carbon Footprint</h4>
-								<p>${totalCF}</p>
+								<p>${totalCF} kgCO<sub>2</sub></p>
 							</div>
 						</div>
 						
@@ -128,7 +129,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script>
 		var options = {
-	       series: [44, ${electric["electric_CF"]}, 13],
+	       series: [44, ${electric["electric_CF"]}, ${recycle["recycle_CF"]}],
 	       chart: {
 	       width: 380,
 	       type: 'pie',
