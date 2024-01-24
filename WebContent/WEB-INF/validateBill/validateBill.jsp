@@ -31,7 +31,7 @@
 	        			<i class="bi bi-lightning-charge"></i>
 	        			<h2>Electric Bill</h2>
 	        		</a>
-	        		<a href="${pageContext.request.contextPath}/adminRecycleBill" class="billChoiceItem recycle">
+	        		<a href="${pageContext.request.contextPath}/validateRecycleBill" class="billChoiceItem recycle">
 	        			<i class="bi bi-recycle"></i>
 	        			<h2>Recycle Bill</h2>
 	        		</a>
