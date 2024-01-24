@@ -17,22 +17,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.model.RecycleBill;
+import com.model.User;
 
 import dbUtil.RecycleBillDAO;
+import dbUtil.UserDao;
 
 @Controller
 @RequestMapping("/bills")
 public class RecycleBillController {
-	@RequestMapping("try")
-	public String billSelectionPage(HttpSession session) {
-		
-		System.out.print(session.getAttribute("user_id"));
-		return "bills";
-	}
 	
 	@RequestMapping("/recycleBill")
 	protected ModelAndView recycleBillPage() {
-		ModelAndView model = new ModelAndView("recycleBill");
+		ModelAndView model = new ModelAndView("recycleBill/recycleBill");
 		return model;
 	}
 	
@@ -58,7 +54,7 @@ public class RecycleBillController {
 			dbError=true;
 		}
 		
-		ModelAndView model = new ModelAndView("recycleCalendar");
+		ModelAndView model = new ModelAndView("recycleBill/recycleCalendar");
 		Calendar cal = Calendar.getInstance();
 
 		int currentYear = cal.get(Calendar.YEAR);
@@ -79,12 +75,12 @@ public class RecycleBillController {
 			Model model) {
 		model.addAttribute("year", year);
 		model.addAttribute("month", month);
-		return "recycleMonthForm";
+		return "recycleBill/recycleMonthForm";
 	}
 	
 	@RequestMapping("/recycleMonthForm/submit")
 	protected ModelAndView submitRecycleForm(@RequestParam("rFile") MultipartFile rFile, 
-			@RequestParam("smonth") String smonth, RecycleBill recycleBill, HttpSession session) {
+			@RequestParam("smonth") String smonth, RecycleBill recycleBill, HttpSession session, RedirectAttributes redirectAttributes) {
 		
 		try {
 			if (!rFile.isEmpty()) {
@@ -103,8 +99,9 @@ public class RecycleBillController {
 			RecycleBillDAO recycleBillDAO = new RecycleBillDAO();
 			int rowsAffected = recycleBillDAO.add(recycleBill);
 					
-			ModelAndView modelAndView = new ModelAndView("redirect:/bills/recycleMonthReport/" + year + "/" + smonth);
-			
+			ModelAndView modelAndView = new ModelAndView("redirect:/bills/recycleBill");
+			redirectAttributes.addFlashAttribute("successMessage", "Recycle bill " + smonth + " updated successfully.");
+		
 			return modelAndView;
 			
 		} catch (Exception e) {
@@ -125,16 +122,18 @@ public class RecycleBillController {
 		int imonth = monthStringConvertToInt(month);
 		int iyear = Integer.parseInt(year);
 		
-		
 		RecycleBill recycleBill = recycleBillDAO.getRecycleDataByMonthYear(userId, imonth, iyear);
 		
-		ModelAndView modelAndView = new ModelAndView("recycleMonthReport");
+		UserDao userDAO = new UserDao();
+		User user = userDAO.getUserById(userId);
+		
+		ModelAndView modelAndView = new ModelAndView("recycleBill/recycleMonthReport");
 		modelAndView.addObject("recycleBill", recycleBill);
 		modelAndView.addObject("month", month);
 		modelAndView.addObject("year", year);
+		modelAndView.addObject("user", user);
 		
-		return modelAndView;
-		
+		return modelAndView;		
 	}
 	
 	@RequestMapping("/editRecycleBill/{year}/{month}")
@@ -149,7 +148,7 @@ public class RecycleBillController {
 		RecycleBill recycleBill = recycleBillDAO.getRecycleDataByMonthYear(userId, imonth, iyear);
 		
 		if (recycleBill.getStatus().equals("pending") || recycleBill.getStatus().equals("reject")) {
-			ModelAndView modelAndView = new ModelAndView("editRecycleMonthForm");
+			ModelAndView modelAndView = new ModelAndView("recycleBill/editRecycleMonthForm");
 			modelAndView.addObject("month", smonth);
 			modelAndView.addObject("year", year);
 			modelAndView.addObject("recycleBill", recycleBill);
@@ -186,7 +185,7 @@ public class RecycleBillController {
 			int rowsAffected = recycleBillDAO.editRecycleBill(recycleBill);
 			
 			ModelAndView modelAndView = new ModelAndView("redirect:/bills/recycleBill");
-			redirectAttributes.addFlashAttribute("successMessage", "Recycle bill updated successfully.");
+			redirectAttributes.addFlashAttribute("successMessage", "Recycle bill " + smonth + " updated successfully.");
 			
 			return modelAndView;
 			

@@ -72,4 +72,10 @@ public class RecycleBillDAO {
 		return rowAffect;
 	}
 	
+	public RecycleBill getRecycleDataById(int rid) 
+    {
+		String sql = "select * from recyclebill where rid=?";
+		RecycleBill rbill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<RecycleBill>(RecycleBill.class), rid);
+		return rbill;
+	}
 }
