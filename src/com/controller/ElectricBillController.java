@@ -73,25 +73,31 @@ public class ElectricBillController {
 		} else {
 			selectedYear = 2023;
 		}
-
+		boolean dbError=false;
 		ElectricBillDAO ebilldao = new ElectricBillDAO();
 		List<ElectricBill> eList = ebilldao.getUserMonthBillByYear(selectedYear, (int) session.getAttribute("user_id"));
 		Map<String, String> electricBillMap = new HashMap<>();
-		for (ElectricBill bill : eList) {
-			electricBillMap.put("month-" + bill.getMonth(), bill.getStatus());
+		if(eList!=null) {
+			for (ElectricBill bill : eList) {
+				electricBillMap.put("month-" + bill.getMonth(), bill.getStatus());
+			}
+		}else {
+			dbError=true;
 		}
-
+		
 		ModelAndView model = new ModelAndView("electricCalendar");
 		Calendar cal = Calendar.getInstance();
 
 		int currentYear = cal.get(Calendar.YEAR);
 		int currentMonth = cal.get(Calendar.MONTH) + 1;
-
+		String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		model.addObject("selectedYear", selectedYear);
 		model.addObject("currentYear", currentYear);
 		model.addObject("currentMonth", currentMonth);
 		model.addObject("electricBillList", eList);
 		model.addObject("electricBillStatusMap", electricBillMap);
+		model.addObject("monthArray", monthArray);
+		model.addObject("dbError",dbError);
 		return model;
 	}
 
@@ -146,7 +152,6 @@ public class ElectricBillController {
 	
 			int row = ebilldao.updateElectricBill(bill);
 			redirectAttributes.addFlashAttribute("successMessage", "Electric bill updated successfully.");
-			//return "redirect:/bills/electricMonthReport/" + year + "/" + month;
 			return "redirect:/bills/electricBill";
 			
 		} catch (Exception e) {

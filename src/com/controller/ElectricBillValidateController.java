@@ -32,6 +32,10 @@ public class ElectricBillValidateController {
 		 * euList = eu.getAllPendingBill(); model.addAttribute("pendingValidateEList",
 		 * euList);
 		 */
+    	ElectricBillDAO ebilldao = new ElectricBillDAO();
+    	List<ElectricBill> eList = ebilldao.getPendingElectricData();
+    	model.addAttribute("pendingValidateEList", eList);
+    	
         return "validateElectricBill";
     }
     
@@ -43,7 +47,7 @@ public class ElectricBillValidateController {
     	ebill.setStatus(action);
     	ebilldao.updateElectricBill(ebill);
     	
-    	redirectAttributes.addFlashAttribute("successMessage", "Electric bill id: "+ eid + " " + action + "successfully.");
+    	redirectAttributes.addFlashAttribute("successMessage", "Electric bill id: "+ eid + " " + action + " successfully.");
     	return "redirect:/validateElectricBill";
     }
     

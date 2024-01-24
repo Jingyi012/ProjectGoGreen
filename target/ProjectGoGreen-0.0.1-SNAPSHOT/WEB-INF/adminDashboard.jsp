@@ -160,8 +160,8 @@
 		            title: 'Carbon Footprint (kgCO2)'
 		        },
 		        legend: { position: 'bottom' },
-		        width: 700,
-		        height: 250
+		        width: 730,
+		        height: 300
 		    };
 
 		    var chart = new google.visualization.LineChart(document.getElementById('graph1'));
@@ -169,7 +169,7 @@
 		    chart.draw(data, options);
 		}
 
-	  google.charts.setOnLoadCallback(drawChart2);
+	  google.charts.setOnLoadCallback(drawChart2); 
 
 	  function drawChart2() {
 
@@ -191,14 +191,15 @@
 
 	      var options = {
 	        title: "Carbon Footprint at Each Area",
+	        titleTextStyle: {
+	            fontSize: 18
+	          },
 	        bar: {groupWidth: "50%"},
 	        legend: { position: "none" },
 	      };
 	      var chart = new google.visualization.BarChart(document.getElementById("barChart"));
 	      chart.draw(view, options);
 	  }
-
 	</script>
-	
 </body>
 </html>
