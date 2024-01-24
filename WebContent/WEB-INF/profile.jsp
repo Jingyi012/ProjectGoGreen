@@ -62,7 +62,7 @@ label{
 	border-radius: 10px;
 }
 .edit-btn:hover{
-	background-color:#d1a87d;
+	background-color:#f0ab65;
 }
 </style>
 </head>

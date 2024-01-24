@@ -15,7 +15,7 @@ import com.model.AreaCarbon;
 import com.model.ElectricUserJoin;
 import com.model.MonthlyCarbonFootprint;
 
-public class AreaCarbonDTO {
+public class AreaCarbonDAO {
 JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	
 	public DataSource getDataSource() {
@@ -187,7 +187,7 @@ JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	    }
 	}
 	
-	public double getTotalCF() {
+	public double getTotalCFByYear(int year) {
 		try {
 			String sql = "SELECT ROUND(COALESCE(COALESCE(SUM(electric_footprint), 0) + COALESCE(SUM(water_footprint), 0) + COALESCE(SUM(recycle_footprint), 0), 0), 2) AS sum_cf " + 
 		             "FROM (" + 
@@ -196,7 +196,7 @@ JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 		             "    SELECT user_id, year, month, NULL AS electric_footprint, carbon_footprint AS water_footprint, NULL AS recycle_footprint FROM WaterBill WHERE status = 'approve' " + 
 		             "    UNION ALL " + 
 		             "    SELECT user_id, year, month, NULL AS electric_footprint, NULL AS water_footprint, carbon_footprint AS recycle_footprint FROM RecycleBill WHERE status = 'approve' " + 
-		             ") AS combined_data ";
+		             ") AS combined_data where year = "+ year;
 	        SqlRowSet rowSet = jdbct.queryForRowSet(sql);
 
 	        if (rowSet.next()) {
@@ -210,14 +210,14 @@ JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	    }
 	}
 	
-	public int getTotalParticipant() {
+	public int getTotalParticipant(int year) {
 		try {
 	        String sql = "SELECT COUNT(DISTINCT user_id) AS total_participant " +
-	        				"FROM ( SELECT user_id FROM electricBill WHERE status = 'approve' " +
-	        			    "UNION " +
-	        			    "SELECT user_id FROM waterBill WHERE status = 'approve' " +
-	        			    "UNION " +
-	        			    "SELECT user_id FROM recycleBill WHERE status = 'approve' " +
+	        				"FROM ( SELECT user_id FROM electricBill WHERE status = 'approve' AND year <= " + year +
+	        			    " UNION " +
+	        			    "SELECT user_id FROM waterBill WHERE status = 'approve' AND year <= " + year +
+	        			    " UNION " +
+	        			    "SELECT user_id FROM recycleBill WHERE status = 'approve' AND year <= " + year +
 	        			    ") AS combined_data";
 	        SqlRowSet rowSet = jdbct.queryForRowSet(sql);
 

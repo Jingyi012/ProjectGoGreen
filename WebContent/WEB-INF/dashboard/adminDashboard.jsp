@@ -55,7 +55,7 @@
 
 					</div>
 					<div class="areaCarbonTable">
-						<h3>Total Carbon Footprint of Each Area 2023</h3>
+						<h3>Total Carbon Footprint of Each Area ${year}</h3>
 						<div class="areaCarbonTableDetails">
 							<table>
 								<tr>
@@ -114,7 +114,7 @@
 				
 				<div class="moreDetails">
 					<div class="graph1Container">
-						<h3>Trend of Carbon Footprint 2023</h3>
+						<h3>Trend of Carbon Footprint ${year}</h3>
 						<div id="graph1">
 							
 						
@@ -122,7 +122,7 @@
 					</div>
 					
 					<div class="categoryAvg">
-						<h3>User Average Carbon Footprint 2023 (kgCO<sub>2</sub>)</h3>
+						<h3>User Average Carbon Footprint ${year} (kgCO<sub>2</sub>)</h3>
 						<table>
 							<tr>
 								<td>Housing (High Rise)</td>
@@ -233,10 +233,10 @@
 	        chart: {
 	            type: 'bar',
 	            height: 385,
-	            title: 'Carbon Footprint at Each Area 2023',
+	            title: 'Carbon Footprint at Each Area ${year}',
 	        },
 	        title: {
-				text: "Carbon Footprint at Each Area 2023",
+				text: "Carbon Footprint at Each Area ${year}",
 				align: 'center',
 				style: {
 		            fontSize: '18px',
@@ -254,7 +254,7 @@
 	        },
 	        xaxis: {
 	            title: {
-	                text: 'Carbon Footprint',
+	                text: 'Carbon Footprint (kgCO2)',
 	                style: {
 	    	            fontFamily: 'times'
 	    	        }
