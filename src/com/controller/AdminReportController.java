@@ -11,5 +11,6 @@ public class AdminReportController {
 		ModelAndView model = new ModelAndView("adminReport");
 		return model;
 	}
-	
 }
+
+

@@ -30,11 +30,9 @@
                 </div>
 				
 				
-				
-
 				<div id="Monthly" class="table-content">
 				<div>
-				<h2>2023 Monthly Report</h2>
+				<h2>Monthly Report  2023 </h2>
 				</div>
 					<table>
 						<tr>
@@ -49,32 +47,79 @@
 							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
 						</tr>
 						
-							<tr>
+						<tr>
 							<td class="date-col" colspan="2">FEB</td>
 							<td class="description-col" colspan="4">February Carbon Emission Report</td>
 							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
 						</tr>
 						
-							<tr>
+						<tr>
 							<td class="date-col" colspan="2">MAR</td>
 							<td class="description-col" colspan="4">March Carbon Emission Report</td>
 							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
 						</tr>
 						
-							<tr>
+						<tr>
 							<td class="date-col" colspan="2">APR</td>
-							<td class="description-col" colspan="4">APR Carbon Emission Report</td>
+							<td class="description-col" colspan="4">April Carbon Emission Report</td>
 							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
 						</tr>
 						
-
+						<tr>
+							<td class="date-col" colspan="2">MAY</td>
+							<td class="description-col" colspan="4">May Carbon Emission Report</td>
+							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
+						</tr>
+						
+						<tr>
+							<td class="date-col" colspan="2">JUN</td>
+							<td class="description-col" colspan="4">June Carbon Emission Report</td>
+							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
+						</tr>
+						
+						<tr>
+							<td class="date-col" colspan="2">JUL</td>
+							<td class="description-col" colspan="4">July Carbon Emission Report</td>
+							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
+						</tr>
+						
+						<tr>
+							<td class="date-col" colspan="2">AUG</td>
+							<td class="description-col" colspan="4">August Carbon Emission Report</td>
+							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
+						</tr>
+						
+						<tr>
+							<td class="date-col" colspan="2">SEP</td>
+							<td class="description-col" colspan="4">September Carbon Emission Report</td>
+							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
+						</tr>
+						
+						<tr>
+							<td class="date-col" colspan="2">OCT</td>
+							<td class="description-col" colspan="4">October Carbon Emission Report</td>
+							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
+						</tr>
+						
+						<tr>
+							<td class="date-col" colspan="2">NOV</td>
+							<td class="description-col" colspan="4">November Carbon Emission Report</td>
+							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
+						</tr>
+						
+						<tr>
+							<td class="date-col" colspan="2">DEC</td>
+							<td class="description-col" colspan="4">December Carbon Emission Report</td>
+							<td class="action-col download-icon"><i class="fas fa-download"></i></td>
+						</tr>
+						
 
 					</table>
 				</div>
 				
 				<div id="Yearly" class="table-content">
 				<div>
-				<h2>2023 Yearly Report</h2>
+				<h2>Yearly Report</h2>
 				</div>
                     <table>
                         <tr>
