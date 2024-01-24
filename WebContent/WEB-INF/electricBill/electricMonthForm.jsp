@@ -34,8 +34,8 @@
 				<div class="formContainer">
 					<form action="${pageContext.request.contextPath}/bills/electricMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm electric">
-							<label for="eBill">Insert Electric Consumption:</label>
-							<input type="text" id="eBill" name="eBill" placeholder="123kWh" required>
+							<label for="eBill">Insert Electric Consumption(kWh):</label>
+							<input type="text" id="eBill" name="eBill" placeholder="123" required>
 						</div>
 						
 						<div class="billFile electric">

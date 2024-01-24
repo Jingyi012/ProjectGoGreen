@@ -15,7 +15,7 @@ import com.model.ElectricBill;
 import com.model.MonthlyCarbonFootprint;
 import com.model.AreaCarbon;
 
-import dbUtil.AreaCarbonDTO;
+import dbUtil.AreaCarbonDAO;
 import dbUtil.ElectricBillDAO;
 
 @Controller
@@ -23,31 +23,34 @@ public class DashboardController {
 	@RequestMapping("/userDashboard")
 	protected ModelAndView userDashboard(){
 		ModelAndView model = new ModelAndView("dashboard/userDashboard");
-		AreaCarbonDTO acdto = new AreaCarbonDTO();
-		List<AreaCarbon> areaCarbonList = acdto.getAreaCarbonData(2023);
+		AreaCarbonDAO acdao = new AreaCarbonDAO();
+		int year = 2023;
+		List<AreaCarbon> areaCarbonList = acdao.getAreaCarbonData(year);
 		
+		model.addObject("year", year);
 		model.addObject("areaCarbonList", areaCarbonList);
 		return model;
 	}
 	@RequestMapping("/adminDashboard")
 	protected ModelAndView adminDashboard(){
 		ModelAndView model = new ModelAndView("dashboard/adminDashboard");
-		AreaCarbonDTO acdto = new AreaCarbonDTO();
-		List<AreaCarbon> areaCarbonList = acdto.getAreaCarbonData(2023);
+		int year = 2023;
+		AreaCarbonDAO acdao = new AreaCarbonDAO();
+		List<AreaCarbon> areaCarbonList = acdao.getAreaCarbonData(year);
 		
-		AreaCarbon highestArea = acdto.getHighestLowestCFArea("DESC", 2023);
-		AreaCarbon lowestArea = acdto.getHighestLowestCFArea("ASC", 2023);
+		AreaCarbon highestArea = acdao.getHighestLowestCFArea("DESC", year);
+		AreaCarbon lowestArea = acdao.getHighestLowestCFArea("ASC", year);
 		
-		double totalCF = acdto.getTotalCF();
-		int totalParticipant = acdto.getTotalParticipant();
+		double totalCF = acdao.getTotalCFByYear(year);
+		int totalParticipant = acdao.getTotalParticipant(year);
 		
 		//for graph
-		List<MonthlyCarbonFootprint> mcf = acdto.getMonthlyTotalCFByYear(2023);
+		List<MonthlyCarbonFootprint> mcf = acdao.getMonthlyTotalCFByYear(year);
 		
 		//category
-		double housingHighRiseCF = acdto.carbonFootprintByCategory("Housing (High Rise)", 2023);
-		double housingLandedCF = acdto.carbonFootprintByCategory("Housing (Landed)", 2023);
-		double institutionCF = acdto.carbonFootprintByCategory("Institution", 2023);
+		double housingHighRiseCF = acdao.carbonFootprintByCategory("Housing (High Rise)", year);
+		double housingLandedCF = acdao.carbonFootprintByCategory("Housing (Landed)", year);
+		double institutionCF = acdao.carbonFootprintByCategory("Institution", year);
 		
 		model.addObject("areaCarbonList", areaCarbonList);
 		model.addObject("highestArea", highestArea);
@@ -58,7 +61,7 @@ public class DashboardController {
 		model.addObject("housingHighRiseCF", housingHighRiseCF);
 		model.addObject("housingLandedCF", housingLandedCF);
 		model.addObject("institutionCF", institutionCF);
-		
+		model.addObject("year", year);
 		return model;
 	}
 	

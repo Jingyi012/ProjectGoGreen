@@ -54,15 +54,15 @@
 							<td id="electricConsumption">${electricBill.electric_consumption}</td>
 						</tr>
 						<tr>
-							<th>Carbon Footprint(kWhCO2):</th>
+							<th>Carbon Footprint(kgCO2):</th>
 							<td id=CarbonFootprint>${electricBill.carbon_footprint}</td>
 						</tr>
 					</table>
-					
+				</div>
+				<div style="text-align: center;">
 					<button class="downloadButton" onclick="downloadPdf()" id="downloadButton">Download File</button>
-					
-				</div>  
-
+				</div> 
+				
         	</div>
         </div>
         
@@ -71,22 +71,20 @@
 	<script>
 	    function downloadPdf() {
 	        const element = document.getElementById('reportContainer');
-	        var button = document.getElementById("downloadButton");
-	        button.style.display = "none";
+
 	        var title = document.getElementById('dTitle');
 	        const titleCopy = title.cloneNode(true);
 	        element.insertBefore(titleCopy, element.firstChild);
 	        titleCopy.style.display = ""
 	        const opt = {
-       		margin: 1,
-       		  filename: 'proof.pdf',
-       		  image: { type: 'jpeg', quality: 0.98 },
-       		  jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
+       			margin: 1,
+       			filename: 'proof.pdf',
+       			image: { type: 'jpeg', quality: 0.98 },
+       			jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
        		};
 	
 	        html2pdf().set(opt).from(element).save().then(() => {
                 element.removeChild(titleCopy);
-                button.style.display = "";
             });;
 	    }
 	</script>

@@ -17,7 +17,7 @@ public class CreateTable {
         jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS electricbill (" +
                 "eid INT PRIMARY KEY AUTO_INCREMENT NOT NULL, " +
                 "electric_consumption DOUBLE, " +
-                "electricBill_proof BLOB, " +
+                "electricBill_proof MEDIUM BLOB, " +
                 "year INT, " +
                 "month INT, " +
                 "carbon_footprint DOUBLE, " +

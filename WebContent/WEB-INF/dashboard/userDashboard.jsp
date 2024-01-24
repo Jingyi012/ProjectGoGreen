@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	String[] areaName = {"Bukit Horizon", "Bukit Indah", "Gelang Patah", "Impian Emas", "Kangkar Pulai",
+            "Kota Iskandar", "Leisure Farm", "Lima Kedai", "Medini Iskandar", "Mutiara Rini",
+            "Nusa Bayu", "Nusa Bestari", "Perling", "Pulai Indah", "Pulai Utama",
+            "Selesa Jaya", "Sri Pulai", "Sri Skudai", "Skudai", "Skudai Baru",
+            "Sutera Utama", "Taman Universiti", "Tanjung Kupang", "Tun Aminah"};
+	request.setAttribute("areaNames", areaName);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +59,7 @@
 
 					</div>
 					<div class="areaCarbonTable">
-						<h3>Total Carbon Footprint of Each Area 2023</h3>
+						<h3>Total Carbon Footprint of Each Area ${year}</h3>
 						<div class="areaCarbonTableDetails">
 							<table>
 								<tr>
@@ -62,44 +70,8 @@
 									<th>Total Participant (people)</th>
 									<th>Total Carbon Footprint (kgCO<sub>2</sub>)</th>
 								</tr>
-								<%-- <% 
-								String[] areaDetails = {
-										"Pulai Indah",
-							            "Kangkar Pulai",
-							            "Pulai Utama",
-							            "Sri Pulai",
-							            "Taman Universiti",
-							            "Mutiara Rini",
-							            "Lima Kedai",
-							            "Nusa Bayu",
-							            "Gelang Patah",
-							            "Leisure Farm",
-							            "Tanjung Kupang",
-							            "Medini Iskandar",
-							            "Kota Iskandar",
-							            "Bukit Horizon",
-							            "Impian Emas",
-							            "Sri Skudai",
-							            "Skudai",
-							            "Skudai Baru",
-							            "Selesa Jaya",
-							            "Tun Aminah",
-							            "Nusa Bestari",
-							            "Bukit Indah",
-							            "Sutera Utama",
-							            "Perling"
-							        };
-								for(int i=0; i < areaDetails.length; i++){ %>
-								<tr>
-									<td><%= areaDetails[i] %></td>
-									<td>1133</td>
-									<td>1234</td>
-									<td>334</td>
-									<td>1245</td>
-									<td>3341</td>
-								</tr>
-								<% } %> --%>
-								<c:forEach var="areaCarbonList" items="${areaCarbonList}">
+								
+								<%-- <c:forEach var="areaCarbonList" items="${areaCarbonList}">
 								<tr>
 									<td><c:out value="${areaCarbonList.area}"/></td>
 									<td><c:out value="${areaCarbonList.water_consumption}"/></td>
@@ -108,13 +80,39 @@
 									<td><c:out value="${areaCarbonList.num_participant}"/></td>
 									<td><c:out value="${areaCarbonList.sum_cf}"/></td>
 								</tr>
+								</c:forEach> --%>
+								<c:forEach var="areaName" items="${areaNames}">
+								
+								    <c:set var="found" value="false" />
+								    <c:forEach var="areaCarbonList" items="${areaCarbonList}">
+								        <c:if test="${areaName eq areaCarbonList.area and not found}">
+								            <tr>
+								                <td><c:out value="${areaCarbonList.area}" /></td>
+								                <td><c:out value="${areaCarbonList.water_consumption}" /></td>
+								                <td><c:out value="${areaCarbonList.electric_consumption}" /></td>
+								                <td><c:out value="${areaCarbonList.recycle_weight}" /></td>
+								                <td><c:out value="${areaCarbonList.num_participant}" /></td>
+								                <td><c:out value="${areaCarbonList.sum_cf}" /></td>
+								            </tr>
+								            <c:set var="found" value="true" />
+								        </c:if>
+								    </c:forEach>
+								
+								    <!-- If no match was found, display a row with zeros -->
+								    <c:if test="${not found}">
+								        <tr>
+								            <td><c:out value="${areaName}" /></td>
+								            <td>0</td>
+								            <td>0</td>
+								            <td>0</td>
+								            <td>0</td>
+								            <td>0</td>
+								        </tr>
+								    </c:if>
 								</c:forEach>
 							</table>
 						</div>
-
 					</div>
-
-				</div>
 
         	</div>
         </div>
@@ -123,12 +121,26 @@
     <script>
 	    var category = [];
 	    var areaData = [];
+
+	    <c:forEach var="areaName" items="${areaNames}">
+		    category.push("${areaName}");
+		    <c:set var="areaHaveData" value="false" />
+		    <c:forEach var="areaCarbon" items="${areaCarbonList}">
+		        <c:if test="${areaName eq areaCarbon.area and not areaHaveData}">
+		            areaData.push(${areaCarbon.sum_cf});
+		            <c:set var="areaHaveData" value="true" />
+		        </c:if>
+		    </c:forEach>
+		    <c:if test="${not areaHaveData}">
+		        areaData.push(0);
+		    </c:if>
+		</c:forEach>
 	    
-	    <c:forEach var="areaCarbon" items="${areaCarbonList}">
+	    /* <c:forEach var="areaCarbon" items="${areaCarbonList}">
 			category.push("${areaCarbon.area}");
 	    	areaData.push(${areaCarbon.sum_cf});
 	        
-	    </c:forEach>
+	    </c:forEach> */
 	
 	    var options = {
 	        series: [{
@@ -137,10 +149,10 @@
 	        chart: {
 	            type: 'bar',
 	            height: 385,
-	            title: 'Carbon Footprint at Each Area 2023',
+	            title: 'Carbon Footprint at Each Area ${year}',
 	        },
 	        title: {
-				text: "Carbon Footprint at Each Area 2023",
+				text: "Carbon Footprint at Each Area ${year}",
 				align: 'center',
 				style: {
 		            fontSize: '18px',
@@ -158,7 +170,7 @@
 	        },
 	        xaxis: {
 	            title: {
-	                text: 'Carbon Footprint',
+	                text: 'Carbon Footprint (kgCO2)',
 	                style: {
 	    	            fontFamily: 'times'
 	    	        }
