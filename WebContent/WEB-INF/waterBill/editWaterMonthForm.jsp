@@ -18,8 +18,6 @@
         <div class="sideBarContainer">
             <jsp:include page="../sidebar.jsp" />
         </div>
-        
- 
 	    
         <div class="pageWrapper">
         	<jsp:include page="../headerBar.jsp" />
@@ -30,31 +28,30 @@
 					<a href="${pageContext.request.contextPath}/bills/waterBill">Water Bills</a> >
                     ${month} ${year}
 				</div>
-				<h2 class="pageTitle">Water Bills</h2>
+				<h2 class="pageTitle">Edit Water Bills</h2>
 				
+			  
 				
-				  
 				<div class="formContainer">
-					<form action="${pageContext.request.contextPath}/bills/waterMonthForm/submit" method="post" enctype="multipart/form-data">
+					<form action="${pageContext.request.contextPath}/bills/editWaterMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm water">
-							<label for="wBill">Insert Water Consumption:</label>
-							<input type="text" id="wBill" name="wBill" placeholder="123m&sup3" required>
+							<label for="waterBill">Insert Electric Consumption:</label>
+							<input type="text" id="waterBill" name="wBill" placeholder="123kWh" value="${waterbill.water_consumption}">
 						</div>
 						
 						<div class="billFile water">
 							<span>Upload Water Bill as proof:</span>
 							<label for="wFile" class="fileBox"><br>Choose File &nbsp<i class="fa fa-upload"></i></label>
-							<input type="file" id="wFile" name="wFile" accept="image/*" placeholder="Choose file" required>
+							<input type="file" id="wFile" name="wFile" placeholder="Choose file">
 						</div>
 						
 						<div class="submitButton">
 						<input type="submit" value="Submit" id="btn">
-						<input type="hidden" name="year" value="${year}"/>
-						<input type="hidden" name="month" value="${month}"/>
+						<input type="hidden" name="year" value="${year}" />
+						<input type="hidden" name="month" value="${month}" />
 						</div>
 					</form>
 				</div>
-        	
         	
         	
         	</div>

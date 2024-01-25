@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>GoGreen</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/billReport.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
     .pageContent{
         padding: 30px 60px;
@@ -15,59 +16,81 @@
 <body>
 	<div class="pageContainer">
         <div class="sideBarContainer">
-            <jsp:include page="sidebar.jsp" />
+            <jsp:include page="../sidebar.jsp" />
         </div>
-	    
-	      
-	    <% String month = (String)session.getAttribute("month"); %>
-	    
+	    	    
         <div class="pageWrapper">
-        	<jsp:include page="headerBar.jsp" />
+        	<jsp:include page="../headerBar.jsp" />
         	<div class="pageContent">
         	<div class="pageNav">
 					Home > 
-					<a href="bills.jsp">Bills</a> >
-					<a href="waterBill.jsp">Water Bills</a> >
-                    <%= month %>
+					<a href="${pageContext.request.contextPath}/bills">Bills</a> >
+					<a href="${pageContext.request.contextPath}/bills/waterBill">Water Bills</a> >
+    				${month} ${year}
+                    
 				</div>
 				<h2 class="pageTitle">Water Bills</h2>
 				
-				<div class="reportContainer">
+				<div class="reportContainer" id="reportContainer" size="A4">
+				<h2 class="pageTitle" id="dTitle" style="display: none; margin-bottom:20px;">Water Bill
+				</h2>
 					<table class="reportTable">
 						<tr>
 							<th>Address:</th>
-							<td id="address">12 Jalan Indah 14/5, Bukit Indah, Iskandar Puteri, Johor</td>
+							<td id="address">${user.address}</td>
 						</tr>
 						<tr>
-							<th>Date:</th>
-							<td id="date">12.6.2023 - 12.7.2023</td>
+							<th>Name:</th>
+							<td id="name">${user.firstName} ${user.lastName}</td>
 						</tr>
 						<tr>
-							<th>Water Consumption(m&sup3):</th>
-							<td id="waterConsumption">17.00</td>
+							<th>Month:</th>
+							<td id="date">${month}</td>
 						</tr>
 						<tr>
-							<th>Factor Prorate(Day):</th>
-							<td id="waterProrate">1.03333</td>
+							<th>Year:</th>
+							<td id="year">${year}</td>
 						</tr>
 						<tr>
-							<th>Current Charge(RM):</th>
-							<td id=waterCharge>13.60</td>
+							<th>Water Consumption(kWh):</th>
+							<td id=waterConsumption>${waterBill.electric_consumption}</td>
 						</tr>
 						<tr>
 							<th>Carbon Footprint(m&sup3CO2):</th>
-							<td id=CarbonFootprint>7.123</td>
+							<td id=CarbonFootprint>${water.carbon_footprint}</td>
 						</tr>
 					</table>
 					
-					<button class="downloadButton">Download File</button>
+					<button class="downloadButton" onclick="downloadPdf()" id="downloadButton">Download File</button>
 						
-				</div>      	
+				</div>     
+			</div>
+				 	
         	
         	</div>
         </div>
-        
-    </div>
+        	<script>
+	    function downloadPdf() {
+	        const element = document.getElementById('reportContainer');
+	        var button = document.getElementById("downloadButton");
+	        button.style.display = "none";
+	        var title = document.getElementById('dTitle');
+	        const titleCopy = title.cloneNode(true);
+	        element.insertBefore(titleCopy, element.firstChild);
+	        titleCopy.style.display = ""
+	        const opt = {
+       		margin: 1,
+       		  filename: 'proof.pdf',
+       		  image: { type: 'jpeg', quality: 0.98 },
+       		  jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
+       		};
+	
+	        html2pdf().set(opt).from(element).save().then(() => {
+                element.removeChild(titleCopy);
+                button.style.display = "";
+            });;
+	    }
+	</script>
 
 </body>
 </html>

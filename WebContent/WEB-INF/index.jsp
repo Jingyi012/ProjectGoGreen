@@ -48,12 +48,13 @@ nav ul {
 	padding-top:12px;
 }
 
+
 nav ul li {
-	list-style: none;
-	diplay: inline-block;
-	margin-left: 40px;
-	]
+    list-style: none;
+    display: inline-block;
+    margin-left: 40px;
 }
+
 
 nav ul li a {
 	text-decoration: none;
