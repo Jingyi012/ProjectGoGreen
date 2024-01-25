@@ -67,19 +67,33 @@ color:#FFFFDD;
 }
 
 .content {
-	text-align: left; 
-	z-index: 1;
-	width: 100%;
-	color: white;
-	margin:70px;
-	padding:100px;
+    text-align: left;
+    z-index: 1;
+    width: 100%;
+    margin: 70px;
+    padding: 40px;
+    color: white;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); /* Adjust the alpha values as needed */
 }
 
+
+
 .content h1 {
-	font-size: 48px; 
+	font-size: 42px; 
 	line-height: 1.3;
 	margin-bottom: 20px;
 	text-align: left; 
+		color: white;
+	
+}
+
+.content p{
+	font-size: 20px; 
+	line-height: 1.3;
+	margin-bottom: 20px;
+	text-align: left; 
+		color: white;
+	
 }
 
 .content a {
@@ -96,6 +110,8 @@ color:#FFFFDD;
 	
 	
 }
+
+
 .content a:hover {
     background-color: #FF9B50; 
     color: #FFFFDD 
@@ -118,7 +134,8 @@ color:#FFFFDD;
 			</ul>
 		</nav>
 		<div class="content">
-			<h1>The Way Forward to lead a <br>Sustainable Living from <br>within</h1>
+			<h1>Welcome to the Iskandar Puteri Low Carbon Initiative (IPRK)<br> Portal by Majlis Bandaraya Iskandar Puteri (MBIP).</h1>
+			<p> MBIP's Iskandar Puteri Rendah Karbon (IPRK) initiative collects energy-saving data across various communities <br>which includes schools, residences, institutions, and more. Launched in 2019, it's a significant step towards sustainability. </p>
 			<a href="login">Log In</a>
 		</div>
 	</div>
