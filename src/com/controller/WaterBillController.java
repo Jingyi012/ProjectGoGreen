@@ -29,10 +29,7 @@ import dbUtil.WaterBillDAO;
 
 public class WaterBillController {
 
-	@RequestMapping("bills/water")
-	public String waterBillSession(HttpSession session) {
-		return "bills";
-	}
+	
 
 	@RequestMapping("/waterBill")
 	protected ModelAndView waterBillPage() {
