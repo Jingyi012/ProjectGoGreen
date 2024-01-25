@@ -11,7 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import com.model.ElectricBill;
 import com.model.ElectricUserJoin;
 
-public class ElectricUserJoinDTO {
+public class ElectricUserJoinDAO {
 JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	
 	public DataSource getDataSource() {

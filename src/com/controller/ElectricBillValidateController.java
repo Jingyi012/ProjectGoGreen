@@ -14,7 +14,7 @@ import com.model.ElectricBill;
 import com.model.ElectricUserJoin;
 
 import dbUtil.ElectricBillDAO;
-import dbUtil.ElectricUserJoinDTO;
+import dbUtil.ElectricUserJoinDAO;
 
 
 @Controller
@@ -28,7 +28,7 @@ public class ElectricBillValidateController {
     @RequestMapping("validateElectricBill")
     public String getElectricBillValidatePage(Model model) {
 		
-		ElectricUserJoinDTO eu = new ElectricUserJoinDTO(); 
+		ElectricUserJoinDAO eu = new ElectricUserJoinDAO(); 
 		List<ElectricUserJoin> euList = eu.getAllPendingBill(); 
 		model.addAttribute("pendingValidateEList", euList);
 		
