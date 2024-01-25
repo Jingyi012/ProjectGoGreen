@@ -74,7 +74,8 @@
 			<div class="pageContent">
 				<div class="pageNav">
 					Home > 
-					<a href="${pageContext.request.contextPath}/adminReport">Report</a>	
+					<a href="${pageContext.request.contextPath}/adminReport">Report</a> >
+					<a href="">Carbon Footprint Report ${year}</a>	
 				</div>
 				
 				<div class="reportContent" id="reportContainer">
@@ -108,10 +109,8 @@
 					</div>
 					<div class="moreDetails">
 						<div class="graph1Container">
-							<h3>Trend of Carbon Footprint ${year}</h3>
-							<div id="graph1">
-								
-							
+							<div id="graph1" class="lineChart">
+
 							</div>
 						</div>
 						
@@ -152,15 +151,23 @@
 	    }
 
 	    <c:forEach var="monthlyCF" items="${monthlyCarbonFootprint}" varStatus="loop">
-	    	monthData[${loop.index}] = ${monthlyCF.month_totalCF};
+	    	monthData[${monthlyCF.month-1}] = ${monthlyCF.month_totalCF};
 	    </c:forEach>
 
 	    var options = {
                 chart: {
                     type: 'line',
-                    width: 700,
                     height: 300,
                 },
+                title: {
+    				text: "Trend of Carbon Footprint ${year}",
+    				align: 'center',
+    	            margin: 10,
+    				style: {
+    		            fontSize: '18px',
+    		            fontFamily: 'times'
+    		        }
+    	        },
                 series: [{
                     name: 'Carbon Footprint',
                     data: monthData,

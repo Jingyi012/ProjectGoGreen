@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 	String[] areaName = {"Bukit Horizon", "Bukit Indah", "Gelang Patah", "Impian Emas", "Kangkar Pulai",
             "Kota Iskandar", "Leisure Farm", "Lima Kedai", "Medini Iskandar", "Mutiara Rini",
@@ -92,7 +93,10 @@
 								                <td><c:out value="${areaCarbonList.electric_consumption}" /></td>
 								                <td><c:out value="${areaCarbonList.recycle_weight}" /></td>
 								                <td><c:out value="${areaCarbonList.num_participant}" /></td>
-								                <td><c:out value="${areaCarbonList.sum_cf}" /></td>
+								                <td>
+								                <fmt:formatNumber value="${areaCarbonList.sum_cf}" pattern="#,##0.00" var="formattedNumber" />
+								                <c:out value="${formattedNumber}" />
+								                </td>
 								            </tr>
 								            <c:set var="found" value="true" />
 								        </c:if>
