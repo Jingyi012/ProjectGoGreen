@@ -33,7 +33,6 @@
         				<option selected>2023</option>
         			</select>
         			<i class="bi bi-caret-right-fill"></i>
-        			<!-- <i class="bi bi-caret-right-fill" class="carousel-control-next" type="button" data-bs-target="#calendarContainer" data-bs-slide="next"></i> -->
         		</div>
 
         		<div class="calendar" id="calendar">
