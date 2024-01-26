@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,7 +89,10 @@
 								                <td><c:out value="${areaCarbonList.electric_consumption}" /></td>
 								                <td><c:out value="${areaCarbonList.recycle_weight}" /></td>
 								                <td><c:out value="${areaCarbonList.num_participant}" /></td>
-								                <td><c:out value="${areaCarbonList.sum_cf}" /></td>
+								                <td>
+								                <fmt:formatNumber value="${areaCarbonList.sum_cf}" pattern="#,##0.00" var="formattedNumber" />
+								                <c:out value="${formattedNumber}" />
+								                </td>
 								            </tr>
 								            <c:set var="found" value="true" />
 								        </c:if>
@@ -114,10 +118,8 @@
 				
 				<div class="moreDetails">
 					<div class="graph1Container">
-						<h3>Trend of Carbon Footprint ${year}</h3>
-						<div id="graph1">
-							
-						
+						<div id="graph1" class="lineChart">
+
 						</div>
 					</div>
 					
@@ -154,15 +156,23 @@
 	    }
 
 	    <c:forEach var="monthlyCF" items="${monthlyCarbonFootprint}" varStatus="loop">
-	    	monthData[${loop.index}] = ${monthlyCF.month_totalCF};
+	    	monthData[${monthlyCF.month-1}] = ${monthlyCF.month_totalCF};
 	    </c:forEach>
 
 	    var options = {
                 chart: {
                     type: 'line',
-                    width: 700,
                     height: 300,
                 },
+                title: {
+    				text: "Trend of Carbon Footprint ${year}",
+    				align: 'center',
+    	            margin: 10,
+    				style: {
+    		            fontSize: '18px',
+    		            fontFamily: 'times'
+    		        }
+    	        },
                 series: [{
                     name: 'Carbon Footprint',
                     data: monthData,

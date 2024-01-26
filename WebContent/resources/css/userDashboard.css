@@ -114,3 +114,7 @@
 .areaCarbonTable table tr:last-child td:last-child{
 	border-radius: 0 0 10px 0;
 }
+.areaCarbonTable table th{
+	position: sticky;
+    top: 0;
+}

@@ -88,8 +88,8 @@
 			<div class="pageContent">
 				<div class="pageNav">
 					Home > 
-					<a href="${pageContext.request.contextPath}/adminReport">Report</a>
-					
+					<a href="${pageContext.request.contextPath}/adminReport">Report</a> >
+					<a href="">${month} ${year} Carbon Footprint Report</a>
 				</div>
 				<div class="reportContent" id="reportContainer">
 					<h2 class="pageTitle">${month} ${year} Carbon Footprint Report</h2>

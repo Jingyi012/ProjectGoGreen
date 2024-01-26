@@ -68,4 +68,9 @@ th {
 
 .download-icon {
 	text-align: center;
+	color: blue;
+}
+
+.download-icon:hover {
+	color: darkblue;
 }

@@ -43,14 +43,15 @@ public class WaterBill {
 		return month;
 	}
 
+	
 	public void setWaterConsumption(double water_consumption) {
 	    this.water_consumption = water_consumption;
 	}
 
-	
 	public double getWaterConsumption() {
-		return water_consumption;
+	    return water_consumption;
 	}
+
 	
 	public void setCarbonFootprint(double carbon_footprint) {
 		this.carbon_footprint=carbon_footprint;
