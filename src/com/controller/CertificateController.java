@@ -28,37 +28,30 @@ public class CertificateController {
 		return model;
 	}
 
-    @RequestMapping("/updatecertificate")
-    protected ModelAndView getCertificatePage(HttpServletRequest request, HttpSession session) {
-    	
-    	String year = request.getParameter("year");
-    	
-    	int selectedYear=2023;
-    	if(year!=null) {
-    		selectedYear = Integer.parseInt(year);
-    	}else {
-    		selectedYear = 2023;
-    	}
-    	
-    	boolean databaseError=false;
-        ModelAndView model = new ModelAndView("certificate");
-        CertificateDAO certDAO = new CertificateDAO();
-        List<Certificate> certificateList = certDAO.getUserCertByYear((int) session.getAttribute("user_id"), selectedYear);
-       
-        boolean certificateEligible = checkCertificateEligibility(certificateList);
+	@RequestMapping("/updatecertificate")
+	protected ModelAndView getCertificatePage(HttpServletRequest request, HttpSession session) {
+	    String year = request.getParameter("year");
 
-       
-        
-        
-        model.addObject("certificates", certificateList);
-        model.addObject("certificateEligible", certificateEligible);
-        return "updatecertificate";
+	    int selectedYear = 2023;
+	    if (year != null) {
+	        selectedYear = Integer.parseInt(year);
+	    } else {
+	        selectedYear = 2023;
+	    }
 
-    }
+	    boolean databaseError = false;
+	    ModelAndView model = new ModelAndView("updatecertificate"); // Assuming "updatecertificate" is your JSP file name
+	    CertificateDAO certDAO = new CertificateDAO();
+	    List<Certificate> certificateList = certDAO.getUserCertByYear((int) session.getAttribute("user_id"), selectedYear);
 
+	    boolean certificateEligible = checkCertificateEligibility(certificateList);
 
-    	
-    
+	    model.addObject("certificates", certificateList);
+	    model.addObject("certificateEligible", certificateEligible);
+
+	    return model;
+	}
+
     /*public ModelAndView getCertificatePage(@RequestParam(value = "selectedYear", required = false) Integer selectedYear, HttpSession session) {
         ModelAndView model = new ModelAndView("certificate");
 

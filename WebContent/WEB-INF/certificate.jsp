@@ -144,6 +144,10 @@
 
 	
 				</div>
+					<div class="download">
+							<button type="button" id="btn" onclick="downloadPDF()">Download
+								PDF</button>
+						</div>
 			</div>
 		</div>
 		
@@ -152,6 +156,7 @@
 		<script>
 			function downloadPDF() {
 				var element = document.querySelector('.hero');
+				
 
 				html2pdf(element, {
 					margin : 10,

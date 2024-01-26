@@ -16,10 +16,7 @@
 							</h6>
 						</div>
 
-						<div class="download">
-							<button type="button" id="btn" onclick="downloadPDF()">Download
-								PDF</button>
-						</div>
+					
 					</c:when>
 
 					<c:otherwise>
