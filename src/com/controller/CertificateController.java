@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.model.Certificate;
+import com.model.RecycleBill;
 import com.model.User;
 import dbUtil.CertificateDAO;
 import org.springframework.stereotype.Controller;
@@ -12,15 +13,53 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/certificate")
 @SessionAttributes("user")
 public class CertificateController {
+	
+	
+	@RequestMapping("/certificate")
+	protected ModelAndView certPage() {
+		ModelAndView model = new ModelAndView("certificate");
+		return model;
+	}
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getCertificatePage(@RequestParam(value = "selectedYear", required = false) Integer selectedYear, HttpSession session) {
+    @RequestMapping("/updatecertificate")
+    protected ModelAndView getCertificatePage(HttpServletRequest request, HttpSession session) {
+    	
+    	String year = request.getParameter("year");
+    	
+    	int selectedYear=2023;
+    	if(year!=null) {
+    		selectedYear = Integer.parseInt(year);
+    	}else {
+    		selectedYear = 2023;
+    	}
+    	
+    	boolean databaseError=false;
+        ModelAndView model = new ModelAndView("certificate");
+        CertificateDAO certDAO = new CertificateDAO();
+        List<Certificate> certificateList = certDAO.getUserCertByYear((int) session.getAttribute("user_id"), selectedYear);
+       
+        boolean certificateEligible = checkCertificateEligibility(certificateList);
+
+       
+        
+        
+        model.addObject("certificates", certificateList);
+        model.addObject("certificateEligible", certificateEligible);
+        return "updatecertificate";
+
+    }
+
+
+    	
+    
+    /*public ModelAndView getCertificatePage(@RequestParam(value = "selectedYear", required = false) Integer selectedYear, HttpSession session) {
         ModelAndView model = new ModelAndView("certificate");
 
         // Retrieve user from the session
@@ -35,7 +74,7 @@ public class CertificateController {
             CertificateDAO certDAO = new CertificateDAO();
             List<Certificate> certificateList = certDAO.getUserCertByYear(userId, selectedYear);
             boolean certificateEligible = checkCertificateEligibility(certificateList);
-
+*/
            /* if (selectedYear != null) {
                 certificateList = certDAO.getUserCertByYear(userId, selectedYear);
                 certificateEligible = checkCertificateEligibility(userId, selectedYear);
@@ -44,8 +83,9 @@ public class CertificateController {
                 certificateList = certDAO.getUserCertByYear(userId, null); // Pass null for the year
             }
             */
+    
             
-
+/*
             // Add the certificates and eligibility status to the model
             model.addObject("certificates", certificateList);
             model.addObject("certificateEligible", certificateEligible);
@@ -53,7 +93,7 @@ public class CertificateController {
 
         return model;
     }
-
+*/
     private boolean checkCertificateEligibility(List<Certificate> certificates) {
     	
 //        CertificateDAO certDAO = new CertificateDAO();

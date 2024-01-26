@@ -31,11 +31,8 @@ public class CertificateDAO {
     	        "FROM WaterBill w " +
     	        "JOIN ElectricBill e ON w.user_id = e.user_id AND w.year = e.year AND w.month = e.month " +
     	        "JOIN RecycleBill r ON w.user_id = r.user_id AND w.year = r.year AND w.month = r.month " +
-    	        "WHERE w.user_id = ? AND w.status = 'approved' " +
-    	        "AND (w.year = ? OR ? IS NULL) " + // Check for the selected year if not null
-    	        "GROUP BY w.year, w.month " +
-    	        "HAVING COUNT(DISTINCT w.month) >= 6 AND COUNT(DISTINCT e.month) >= 6 AND COUNT(DISTINCT r.month) >= 6 " +
-    	        "ORDER BY w.year DESC, w.month DESC";
+    	        "WHERE w.user_id = ? AND w.status = 'approve'  AND r.status = 'approve' AND e.status='approve'" +
+    	        "AND w.year = ? ";// Check for the selected year if not null
 
         try {
             List<Certificate> certificateList;

@@ -121,7 +121,7 @@
 			<a href="${pageContext.request.contextPath}/profile" class="navItem"><i class="bi bi-person-circle"></i> Profile</a>
 			<a href="${pageContext.request.contextPath}/userDashboard" class="navItem"><i class="bi bi-speedometer2"></i> Dashboard</a>
 			<a href="${pageContext.request.contextPath}/bills" class="navItem"><i class="bi bi-receipt"></i> Bills</a>
-			<a href="${pageContext.request.contextPath}/certificate" class="navItem"><i class="bi bi-award"></i> Certificate</a>
+			<a href="${pageContext.request.contextPath}/certificate/certificate" class="navItem"><i class="bi bi-award"></i> Certificate</a>
 		
 		<% } %>
 		
