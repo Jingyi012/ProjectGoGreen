@@ -46,12 +46,12 @@ public class CertificateController {
 
 	    boolean certificateEligible = checkCertificateEligibility(certificateList);
 
-	 
-	    // Assuming "u" is your user object retrieved from the session
-	    User u = (User) session.getAttribute("user");
-
-	    // Add the user object to the model
-	    model.addObject("user", u);
+//	 
+//	    // Assuming "u" is your user object retrieved from the session
+//	    User u = (User) session.getAttribute("user");
+//
+//	    // Add the user object to the model
+//	    model.addObject("user", u);
 	    model.addObject("certificates", certificateList);
 	    model.addObject("certificateEligible", certificateEligible);
 

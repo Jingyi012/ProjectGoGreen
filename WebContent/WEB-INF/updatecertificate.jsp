@@ -9,7 +9,7 @@
 								<span class="bold">Certificate of Participation</span>
 							</h2>
 							<p>This Certificate is Awarded to</p>
-							<h1>${user.firstName}${user.lastName}</h1>
+							<h1>${username}</h1>
 							<h6>
 								Has successfully completed the requirement of providing a bill
 								lasting six consecutive months
