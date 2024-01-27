@@ -70,6 +70,14 @@
 	padding-bottom: 30px;
 }
 
+.certificate-text h3 {
+    font-size: 15px;
+    font-weight: normal;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    color: red !important;
+}
+
 #btn {
 	text-decoration: none;
 	padding: 15px;
@@ -144,10 +152,8 @@
 
 	
 				</div>
-					<div class="download">
-							<button type="button" id="btn" onclick="downloadPDF()">Download
-								PDF</button>
-						</div>
+				
+			
 			</div>
 		</div>
 		
