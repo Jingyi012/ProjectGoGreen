@@ -9,7 +9,7 @@
 								<span class="bold">Certificate of Participation</span>
 							</h2>
 							<p>This Certificate is Awarded to</p>
-							<h1>${user.firstName}${user.lastName}</h1>
+							<h1>${username}</h1>
 							<h6>
 								Has successfully completed the requirement of providing a bill
 								lasting six consecutive months
@@ -20,7 +20,16 @@
 					</c:when>
 
 					<c:otherwise>
-						<h6 ><b><br><br>You are not eligible for a certificate. Please fulfill
-								the requirements.</b></h6>
+						<h3><b><br><br>You are not eligible for a certificate. Please fulfill
+								the requirements.</b></h3>
 					</c:otherwise>
+					
 </c:choose>
+
+
+					<c:if test="${certificateEligible}">
+					<div class="download">
+							<button type="button" id="btn" onclick="downloadPDF()">Download
+								PDF</button>
+								</div>
+											</c:if>
