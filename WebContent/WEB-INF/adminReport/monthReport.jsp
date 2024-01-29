@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"
 	import="java.text.SimpleDateFormat, java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +98,7 @@
 						<div class="dataContainer">
 							<div class="itemGroup">
 								<h4>Water Consumption</h4>
-								<p>L</p>
+								<p>${water["water_consump"]} L</p>
 							</div>
 							<div class="itemGroup">
 								<h4>Electric Consumption</h4>
@@ -109,6 +110,7 @@
 							</div>
 							<div class="itemGroup">
 								<h4>Total Carbon Footprint</h4>
+								<fmt:formatNumber value="${totalCF}" pattern="#,##0.00" var="totalCF" />
 								<p>${totalCF} kgCO<sub>2</sub></p>
 							</div>
 						</div>
@@ -129,7 +131,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script>
 		var options = {
-	       series: [44, ${electric["electric_CF"]}, ${recycle["recycle_CF"]}],
+	       series: [${water["water_CF"]}, ${electric["electric_CF"]}, ${recycle["recycle_CF"]}],
 	       chart: {
 	       width: 380,
 	       type: 'pie',

@@ -9,73 +9,54 @@ public class WaterBill {
 	private double carbon_footprint;
 	private String status;
 	private byte[] water_proof;
-
-	
-	public void setWaterId(int waterId) {
-		this.waterId=waterId;
-	}
 	
 	public int getWaterId() {
 		return waterId;
 	}
-	
-	public void setUserId(int user_id) {
-		this.user_id=user_id;
+	public void setWaterId(int waterId) {
+		this.waterId = waterId;
 	}
-	
-	public int getUserId() {
-		return user_id;		
+	public int getUser_id() {
+		return user_id;
 	}
-
-	public void setYear(int year) {
-		this.year=year;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
-	
 	public int getYear() {
 		return year;
 	}
-	
-	public void setMonth(int month) {
-		this.month=month;
+	public void setYear(int year) {
+		this.year = year;
 	}
-	
 	public int getMonth() {
 		return month;
 	}
-
-	
-	public void setWaterConsumption(double water_consumption) {
-	    this.water_consumption = water_consumption;
+	public void setMonth(int month) {
+		this.month = month;
 	}
-
-	public double getWaterConsumption() {
-	    return water_consumption;
+	public double getWater_consumption() {
+		return water_consumption;
 	}
-
-	
-	public void setCarbonFootprint(double carbon_footprint) {
-		this.carbon_footprint=carbon_footprint;
+	public void setWater_consumption(double water_consumption) {
+		this.water_consumption = water_consumption;
 	}
-	
-	public double getCarbonFootprint() {
+	public double getCarbon_footprint() {
 		return carbon_footprint;
 	}
-	
-	public void setStatus(String status) {
-		this.status=status;
+	public void setCarbon_footprint(double carbon_footprint) {
+		this.carbon_footprint = carbon_footprint;
 	}
-	
 	public String getStatus() {
 		return status;
 	}
-	
-	public void setWaterProof(byte[]water_proof) {
-		this.water_proof=water_proof;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	
-	public byte[] getWaterProof() {
+	public byte[] getWater_proof() {
 		return water_proof;
 	}
-	
+	public void setWater_proof(byte[] water_proof) {
+		this.water_proof = water_proof;
+	}
 	
 }

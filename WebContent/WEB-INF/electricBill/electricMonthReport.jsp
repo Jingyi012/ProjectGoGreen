@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,11 +52,13 @@
 						</tr>
 						<tr>
 							<th>Electric Consumption(kWh):</th>
-							<td id="electricConsumption">${electricBill.electric_consumption}</td>
+							<fmt:formatNumber value="${electricBill.electric_consumption}" pattern="#,##0.00" var="electric_consumption" />
+							<td id="electricConsumption">${electric_consumption}</td>
 						</tr>
 						<tr>
 							<th>Carbon Footprint(kgCO2):</th>
-							<td id=CarbonFootprint>${electricBill.carbon_footprint}</td>
+							<fmt:formatNumber value="${electricBill.carbon_footprint}" pattern="#,##0.00" var="carbon_footprint" />
+							<td id=CarbonFootprint>${carbon_footprint}</td>
 						</tr>
 					</table>
 				</div>
