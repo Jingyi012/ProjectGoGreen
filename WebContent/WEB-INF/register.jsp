@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,6 +147,16 @@
         
         }
         
+            #field7
+        {
+            display: flex;
+         width: 100%;
+         height: 80px;
+          margin-left:300px;
+          margin-bottom: -30px;
+        
+        }
+        
         
         .form-group input[type="text"] {
     border: 1px solid #ccc;
@@ -168,6 +178,13 @@
     color: #333;
 }
            .form-group input[type="password"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+     .form-group input[type="number"] {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f0f0f0;
@@ -203,12 +220,14 @@
 #category 
 {
     width: 173px;
-    font-size: 11px; 
+    font-size: 13px; 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f0f0f0;
 }
+
+
 
 .form-group input {
     width: 160px;
@@ -241,6 +260,7 @@
 }
 
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
@@ -250,8 +270,8 @@
             <h1>Puteri</h1>
         </div>
         <div id="button-container">
-            <a href="<%= request.getContextPath() %>/login.jsp" id="login">Login</a>
-            <a href="<%= request.getContextPath() %>/register.jsp" id="signup">Sign Up</a>
+            <a href="<%= request.getContextPath() %>/login" id="login">Login</a>
+            <a href="<%= request.getContextPath() %>/register" id="signup">Sign Up</a>
         </div>
     </header>
     <div id="content">
@@ -260,35 +280,36 @@
   
         <div id="form1">
             <h1>Sign up</h1>
-            <form id="field1">
+    <form id="registrationForm" method="post" action="<%= request.getContextPath() %>/register/submit" enctype="multipart/form-data">
+   <div id="field1">
     <div class="form-group">
         <label for="firstName">First Name:</label>
         </br>
         <input type="text" id="firstName" name="firstName" required>
     </div>
-
+  
     <div class="form-group">
         <label for="lastName">Last Name:</label>
         </br>
         <input type="text" id="lastName" name="lastName" required>
     </div>
-</form>  
+</div>  
     </br>
-    <form id="field2">
+    <div id="field2">
     <div class="form-group">
         <label for="NRIC">NRIC:</label>
         </br>
-        <input type="text" id="firstName" name="firstName" required>
+        <input type="text" id="Identification_Card" name="Identification_Card" required>
     </div>
 
     <div class="form-group">
-        <label for="Identification Card">Identification Card:</label>
-        </br>
-        <input type="text" id="Identification Card" name=Identification Card" required>
+         <label for="Address">Address:</label>
+                            <br>
+                            <input type="text" id="Address" name="Address" required>
     </div>
-</form>
+</div>
       </br>
-    <form id="field3">
+    <div id="field3">
        <div class="form-group">
                             <label for="email">Email:</label>
                             <br>
@@ -301,23 +322,23 @@
                             <input type="tel" id="phoneNo" name="phoneNo" pattern="[0-9]{11}" required>
                         </div>
 
-</form>
-      </br>
-    <form id="field4">
+</div>
+      <br>
+    <div id="field4">
     <div class="form-group">
                             <label for="category">Category:</label>
                             <br>
-                            <select id="category" name="category" >
-                                <option value="option1">Housing(High Rise)</option>
-                                <option value="option2">Housing(Landed)</option>
-                                <option value="option3">Institution</option>
+                            <select id="category" name="category" required style="width: 170px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f0f0f0;">
+                                <option value="Housing(High Rise)">Housing(High Rise)</option>
+                                <option value="Housing(Landed)">Housing(Landed)</option>
+                                <option value="Institution">Institution</option>
                             </select>
                         </div>
 
     <div class="form-group">
-        <label for="Area">Area::</label>
+        <label for="Area">Area:</label>
         </br>
-         <select id="category" name="category" required style="width: 170px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f0f0f0;">
+         <select id="area" name="area" required style="width: 170px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f0f0f0;">
                                 <option value="Pulai Indah">Pulai Indah</option>
                                 <option value="Kangkar Pulai">Kangkar Pulai</option>
                                 <option value="Pulai Utama">Pulai Utama</option>
@@ -344,55 +365,92 @@
                                 <option value="Perling">Perling</option>
                             </select>
     </div>
-</form>
+</div>
 
-    </br>
-    <form id="field5">
+    <br>
+    <div id="field5">
   <div class="form-group">
-                            <label for="Address">Address:</label>
-                            <br>
-                            <input type="text" id="Address" name="Address" required>
-                        </div>
+     <label for="Identification Card">Identification Card:</label>
+        </br>
+         <input type="file" id="ic_card" name="ic_card" accept=".pdf, .doc, .docx, image/*" required>
+    </div>
+                           
+                        
 
    <div class="form-group">
                             <label for="fileUpload">Proof of residency:</label>
                             <br>
-                            <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .doc, .docx" required>
+                           <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .doc, .docx, image/*" required>
                         </div>
-</form>
+</div>
 
-      </br>
-      <form id="field6">
+      <br>
+      <div id="field6">
   <div class="form-group">
                              <label for="password">PASSWORD:</label>
                              <br>
                 <input type="password" id="password" name="password" placeholder="Enter your password">
                         </div>
+                    
 
    <div class="form-group">
                                <label for="Cpassword">CONFRIM PASSWORD:</label>
                              <br>
                 <input type="password" id="Cpassword" name="Cpassword" placeholder="Confirm your password">
                         </div>
-</form>
-     </br>
-     </br>
+      
+</div>
+ <br>
+ <div id="field7">
+  <div class="form-group">
+                               <label for="people">Number Of People Living:</label>
+                             <br>
+                <input type="number"" id="people" name="people" required>
+                        </div>
+                        </div>
+     <br>
+     <br>
      <div id="termsForm">
-            <form>
+            <div>
                 <label>
                     <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
                     I agree to all the statements in Terms of Service
                 </label>
-            </form>
+            </div>
  
         </div>
        
-         </br>
+         <br>
       <button type="submit" id="login-button">Sign Up</button>
-      
+     </form>
         </div>
-    </div>
+        <script>
+   
+    var errorParam = new URLSearchParams(window.location.search).get('error');
 
+  
+    if (errorParam) {
+        alert(errorParam);
+    }
+</script>
+    
+    <script>
+    $(document).ready(function () {
+        $('#registrationForm').submit(function (event) {
+            var password = $('#password').val();
+            var confirmPassword = $('#Cpassword').val();
+
+            if (password !== confirmPassword) {
+                alert('Password and confirm password do not match');
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    });
+</script>
+    
+        
+    </div>
+  
  
     
 </body>

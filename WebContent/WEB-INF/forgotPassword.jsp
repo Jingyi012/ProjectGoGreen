@@ -117,7 +117,7 @@
     margin-top:10px;
     background-color: #FFC684;
     color: #FFFFFF;
-    margin-left:374px;
+    margin-left:60px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -184,41 +184,40 @@
     <script>
     function navigateToReset() {
 
-        window.location.href = 'resetPassword.jsp';
+        window.location.href = 'resetPassword';
     }
 </script>
 </head>
 <body>
     <header>
         <div id="image1">
-            <img src="images/mbip.png" alt="" style="max-width: 100%; height: auto;">
+            <img src="${pageContext.request.contextPath}/resources/images/mbip.png" alt="" style="max-width: 100%; height: auto;">
             <h1>Iskandar</h1> 
             <h1>Puteri</h1>
         </div>
         <div id="button-container">
-             <a href="<%= request.getContextPath() %>/login.jsp" id="login">Login</a>
-            <a href="<%= request.getContextPath() %>/register.jsp" id="signup">Sign Up</a>
+             <a href="<%= request.getContextPath() %>/login" id="login">Login</a>
+            <a href="<%= request.getContextPath() %>/register" id="signup">Sign Up</a>
         </div>
     </header>
     <div id="content">
     <div id="image2">
         <img src="images/iskandar_logo.png" alt="" style="max-width: 100%; height: auto;">
     </div>
+    <form id="login-form" method="post" action="<%= request.getContextPath() %>/resetPassword" enctype="multipart/form-data">
     <div id="line">
         <a href="#">FORGOT PASSWORD</a>
-        <form id="login-form">
-   
-            
+            <br>
             <div>
                  <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
-        </form>
+     
    </div>
-    <button type="submit" id="continue-button" onclick="navigateToReset()">Continue</button>
-    
+    <button type="submit" id="continue-button" >Continue</button>
+    </form>
     <div id="bottom">
     <p id="account">NO ACCOUNT YET?</p>
-    <a href="<%= request.getContextPath() %>/login.jsp" class="login-link">LOGIN HERE</a>
+    <a href="<%= request.getContextPath() %>/login" class="login-link">LOGIN HERE</a>
     </div>
    </div>
      <footer>

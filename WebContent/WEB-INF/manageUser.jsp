@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,34 +68,42 @@
         <div class="pageWrapper">
             <jsp:include page="headerBar.jsp" />
             <div class="pageContent">
-            	<div class="pageNav">
-					Home > 
-					<a href="">Manage User</a>
-				</div>
+                <div class="pageNav">
+                    Home > 
+                    <a href="">Manage User</a>
+                </div>
                 <div id="content">
-                <h2>Manage User</h2>
+                    <h2>Manage User</h2>
 
-                <form id="form-row">
-                    <table>
-                        <tr>
-                            <td>No</td>
-                            <td>Participant</td>
-                            <td>Validate</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Ali</td>
-                 
-                            <td><a href="${pageContext.request.contextPath}/manageUserProfile"><i class="bi bi-check-circle validation-icon"></i></a></td>
-                        </tr>
-                    </table>
-                </form>
+                    <form id="form-row">
+                        <table>
+                            <tr>
+                                <td>No</td>
+                                <td>Participant</td>
+                                <td>Validate</td>
+                            </tr>
+
+                          <c:forEach var="user" items="${users}" varStatus="loop">
+    <tr>
+        <td>${loop.index + 1}</td>
+        <td>${user.firstName} ${user.lastName}</td>
+        <td>
+             <a href="${pageContext.request.contextPath}/manageUserProfile?firstName=${user.firstName}&id=${user.id}">
+                <i class="bi bi-check-circle validation-icon"></i>
+            </a>
+        </td>
+    </tr>
+</c:forEach>
+
+
+                        </table>
+                    </form>
                 </div>
             </div>
-            
         </div>
     </div>
 </body>
+
 </html>
 
 

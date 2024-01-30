@@ -67,34 +67,36 @@
         <div class="pageWrapper">
             <jsp:include page="headerBar.jsp" />
             <div class="pageContent">
-            	<div class="pageNav">
-					Home > 
-					<a href="">Manage User</a>
-				</div>
+                <div class="pageNav">
+                    Home > 
+                    <a href="">Manage User</a>
+                </div>
                 <div id="content">
-                <h2>Manage User</h2>
+                    <h2>Manage User</h2>
 
-                <form id="form-row">
-                    <table>
-                        <tr>
-                            <td>No</td>
-                            <td>Participant</td>
-                            <td>Validate</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Ali</td>
-                 
-                            <td><a href="${pageContext.request.contextPath}/manageUserProfile"><i class="bi bi-check-circle validation-icon"></i></a></td>
-                        </tr>
-                    </table>
-                </form>
+                    <form id="form-row">
+                        <table>
+                            <tr>
+                                <td>No</td>
+                                <td>Participant</td>
+                                <td>Validate</td>
+                            </tr>
+
+                            <c:forEach var="userName" items="${userNames}" varStatus="loop">
+                                <tr>
+                                    <td>${loop.index + 1}</td>
+                                    <td>${userName}</td>
+                                    <td><a href="${pageContext.request.contextPath}/manageUserProfile"><i class="bi bi-check-circle validation-icon"></i></a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </form>
                 </div>
             </div>
-            
         </div>
     </div>
 </body>
+
 </html>
 
 

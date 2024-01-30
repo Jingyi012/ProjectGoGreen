@@ -37,7 +37,8 @@ public class ElectricBillDAO {
 		return rowAffected;
 	}
 	
-	public ElectricBill getElectricDataById(int eid) {
+	public ElectricBill getElectricDataById(int eid) 
+    {
 		String sql = "select * from electricbill where eid=?";
 		ElectricBill ebill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class), eid);
 		return ebill;
@@ -65,7 +66,8 @@ public class ElectricBillDAO {
 		}
 	}
 	
-	public int updateElectricBill(ElectricBill bill) {
+	public int updateElectricBill(ElectricBill bill) 
+	{
 		String sql ="update electricbill set electric_consumption=?, electricBill_proof=?, carbon_footprint=?, status=? where user_id=? and month=? and year=?";
 		Object args[] = {bill.getElectric_consumption(), bill.getElectricBill_proof(), bill.getCarbon_footprint(), bill.getStatus(), bill.getUser_id(), bill.getMonth(), bill.getYear()};
 		int rowAffect = jdbct.update(sql, args);

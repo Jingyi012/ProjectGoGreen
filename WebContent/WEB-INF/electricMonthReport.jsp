@@ -79,7 +79,7 @@
 	        titleCopy.style.display = ""
 	        const opt = {
        		margin: 1,
-       		  filename: 'electricReport_${month}_${year}.pdf',
+       		  filename: 'proof.pdf',
        		  image: { type: 'jpeg', quality: 0.98 },
        		  jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
        		};
