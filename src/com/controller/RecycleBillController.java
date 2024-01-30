@@ -106,7 +106,8 @@ public class RecycleBillController {
 			
 		} catch (Exception e) {
 			System.out.println(e);
-			ModelAndView modelAndView = new ModelAndView("redirect:/errorPage");
+			redirectAttributes.addFlashAttribute("errorMessage", "Recycle bill "+ smonth +" updated failed.");
+			ModelAndView modelAndView = new ModelAndView("redirect:/bills/recycleBill");
 			
 			return modelAndView;
 		}
@@ -191,8 +192,8 @@ public class RecycleBillController {
 			
 		} catch (Exception e) {
 			System.out.println(e);
-			ModelAndView modelAndView = new ModelAndView("redirect:/errorPage");
-			
+			redirectAttributes.addFlashAttribute("errorMessage", "Recycle bill "+ smonth +" updated failed.");
+			ModelAndView modelAndView = new ModelAndView("redirect:/bills/recycleBill");
 			return modelAndView;
 		}
 		

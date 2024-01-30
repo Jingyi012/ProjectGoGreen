@@ -33,7 +33,6 @@
         				<option selected>2023</option>
         			</select>
         			<i class="bi bi-caret-right-fill"></i>
-        			<!-- <i class="bi bi-caret-right-fill" class="carousel-control-next" type="button" data-bs-target="#calendarContainer" data-bs-slide="next"></i> -->
         		</div>
 
         		<div class="calendar" id="calendar">
@@ -41,9 +40,6 @@
         		</div>
         		
         		<c:if test="${not empty successMessage}">
-			        <%-- <div class="alert alert-success" role="alert">
-			            <strong>${successMessage}</strong>
-			        </div> --%>
 			        <div class='statusMessageBox'>
                             <div class='toast-content'>
                             <i class='bi bi-check2 toast-icon greenColor'></i>
@@ -55,7 +51,19 @@
                             <i class='bi bi-x toast-close'></i>
                             <div class='progressbar active greenColor'></div>
                     </div>
-
+			    </c:if>
+			    <c:if test="${not empty errorMessage}">
+			        <div class='statusMessageBox'>
+                            <div class='toast-content'>
+                            <i class='bi bi-check2 toast-icon redColor'></i>
+                            <div class='message'>
+                                <span class='message-text text-1'>Error</span>
+                                <span class='message-text text-2'>${errorMessage}</span>
+                            </div>
+                            </div>
+                            <i class='bi bi-x toast-close'></i>
+                            <div class='progressbar active redColor'></div>
+                    </div>
 			    </c:if>
         	</div>
         </div>

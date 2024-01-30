@@ -55,6 +55,19 @@
                     </div>
 
 			    </c:if>
+			    <c:if test="${not empty errorMessage}">
+			        <div class='statusMessageBox'>
+                            <div class='toast-content'>
+                            <i class='bi bi-check2 toast-icon redColor'></i>
+                            <div class='message'>
+                                <span class='message-text text-1'>Error</span>
+                                <span class='message-text text-2'>${errorMessage}</span>
+                            </div>
+                            </div>
+                            <i class='bi bi-x toast-close'></i>
+                            <div class='progressbar active redColor'></div>
+                    </div>
+			    </c:if>
 			 </div>
         </div>
         			

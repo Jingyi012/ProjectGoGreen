@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.model.ElectricBill;
 import com.model.ElectricUserJoin;
 
 public class ElectricUserJoinDAO {

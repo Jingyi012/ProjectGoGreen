@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -31,11 +30,7 @@ public class ElectricBillValidateController {
 		ElectricUserJoinDAO eu = new ElectricUserJoinDAO(); 
 		List<ElectricUserJoin> euList = eu.getAllPendingBill(); 
 		model.addAttribute("pendingValidateEList", euList);
-		
-//    	ElectricBillDAO ebilldao = new ElectricBillDAO();
-//    	List<ElectricBill> eList = ebilldao.getPendingElectricData();
-//    	model.addAttribute("pendingValidateEList", eList);
-    	
+
         return "validateBill/validateElectricBill";
     }
     

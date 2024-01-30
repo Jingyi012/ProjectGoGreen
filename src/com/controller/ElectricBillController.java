@@ -25,9 +25,9 @@ import dbUtil.UserDao;
 @Controller
 @RequestMapping("/bills")
 public class ElectricBillController {
+	
 	@RequestMapping("")
 	public String billSelectionPage(HttpSession session) {
-
 		return "bills";
 	}
 
@@ -132,7 +132,8 @@ public class ElectricBillController {
 			return "redirect:/bills/electricBill";
 		} catch (Exception e) {
 			System.out.println(e);
-			return "redirect:/errorPage"; // Redirect to an error page or handle it accordingly
+			redirectAttributes.addFlashAttribute("errorMessage", "Electric bill "+ month +" updated failed.");
+			return "redirect:/bills/electricBill";
 		}
 	}
 
@@ -160,7 +161,8 @@ public class ElectricBillController {
 			return "redirect:/bills/electricBill";
 			
 		} catch (Exception e) {
-			return "redirect:/errorPage";
+			redirectAttributes.addFlashAttribute("errorMessage", "Electric bill "+ month +" updated failed.");
+			return "redirect:/bills/electricBill";
 		}
 	}
 
