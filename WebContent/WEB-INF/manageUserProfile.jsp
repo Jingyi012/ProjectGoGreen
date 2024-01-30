@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,16 +189,14 @@ label{
 		</div>
 	</div>
 	<script>
-		function approve() {
-			window.alert('This participant is approved successfully');
-
+		function approve() 
+		{
 			window.location
-					.assign("${pageContext.request.contextPath}/Approve?userId=${user.id}");
+			.assign("${pageContext.request.contextPath}/Approve?userId=${user.id}");
 
 		}
 
 		function reject() {
-			window.alert('This participant is rejected successfully');
 
 			window.location
 					.assign("${pageContext.request.contextPath}/Reject?userId=${user.id}");

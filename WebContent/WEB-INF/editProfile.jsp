@@ -117,7 +117,7 @@ label{
 										<option value="Housing(Landed)">Housing(Landed)</option>
 										<option value="Institution">Institution</option>
 									</select>
-
+                    
 
 								</div>
 
@@ -197,8 +197,14 @@ label{
 
 
 	<script>
-		
-	</script>
+    function updateCategoryLabel() {
+        var categoryDropdown = document.getElementById("category");
+        var selectedCategoryLabel = document.getElementById("selectedCategory");
+        var selectedCategory = categoryDropdown.options[categoryDropdown.selectedIndex].text;
 
+      
+        selectedCategoryLabel.innerText = selectedCategory;
+    }
+</script>
 </body>
 </html>
