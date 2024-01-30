@@ -146,10 +146,12 @@ public class ElectricBillController {
 			ElectricBillDAO ebilldao = new ElectricBillDAO();
 			ElectricBill bill = ebilldao.getElectricDataByMonthYear((int) session.getAttribute("user_id"), imonth, year);
 			bill.setElectric_consumption(eBill);
+			
 			if (!eFile.isEmpty()) {
 				byte[] fileBytes = eFile.getBytes();
 				bill.setElectricBill_proof(fileBytes);
 			}
+			
 			bill.setCarbon_footprint(eBill * 0.584);
 			bill.setStatus("pending");
 	
