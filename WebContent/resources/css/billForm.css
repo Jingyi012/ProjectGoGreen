@@ -10,7 +10,12 @@
 }
 
 .formContainer{
-	margin: 100px;
+	margin: 50px;
+}
+.formContainer form{
+	width: 60%;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .billForm, .billFile, .submitButton{
@@ -19,33 +24,6 @@
      align-items: center;
      margin-bottom: 20px; 
 }
-
-
-input[type="text"]{
-	width: 400px;
-	height: 54px;
-	margin-top: 10px;
-	background-color: #F5F5F5;
-	border: solid #D9D9D9 0.3px;
-	text-align: center;
-}
-
-input[type="file"]{
-	opacity: 0;
-}
-
-.fileBox{
-	width: 403.99px;
-	height: 55.99px;
-	margin-top: 10px;
-    background-color: #F5F5F5;
-    border: solid #D9D9D9 0.3px;
-    cursor: pointer;
-    text-align: center;
-    position: relative;
-            overflow: hidden;
-}
-
 
 #btn{
 	text-decoration: none;
@@ -58,7 +36,7 @@ input[type="file"]{
 }
   
 #btn:hover{
-	border: black solid 0.5px;
+	background-color: #f0ab65;
 }
 
  

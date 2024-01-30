@@ -1,7 +1,8 @@
 package dbUtil;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -10,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.model.ElectricBill;
 
@@ -92,5 +94,21 @@ public class ElectricBillDAO {
 		String sql = "select * from electricbill where status='pending'";
 		List<ElectricBill> ebill = jdbct.query(sql, new BeanPropertyRowMapper<ElectricBill>(ElectricBill.class));
 		return ebill;
+	}
+	
+	public Map<String, Double> getElectricConsumpAndTotalCF(int year, int month) {
+	    String sql = "SELECT ROUND(SUM(carbon_footprint), 2) AS electric_CF, ROUND(SUM(electric_consumption), 2) AS electric_consump FROM electricBill WHERE year = ? AND month = ? AND status = ?";
+	    Object[] args = {year, month, "approve"};
+
+	    SqlRowSet rowSet = jdbct.queryForRowSet(sql, args);
+
+	    Map<String, Double> result = new HashMap<>();
+
+	    if (rowSet.next()) {
+	        result.put("electric_CF", rowSet.getDouble("electric_CF"));
+	        result.put("electric_consump", rowSet.getDouble("electric_consump"));
+	    }
+
+	    return result;
 	}
 }

@@ -17,21 +17,23 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.model.ElectricBill;
+import com.model.User;
+
 import dbUtil.ElectricBillDAO;
+import dbUtil.UserDao;
 
 @Controller
 @RequestMapping("/bills")
 public class ElectricBillController {
+	
 	@RequestMapping("")
 	public String billSelectionPage(HttpSession session) {
-		
-		System.out.print(session.getAttribute("user_id"));
 		return "bills";
 	}
 
 	@RequestMapping("/electricBill")
 	protected ModelAndView electricBillPage() {
-		ModelAndView model = new ModelAndView("electricBill");
+		ModelAndView model = new ModelAndView("electricBill/electricBill");
 		return model;
 	}
 
@@ -40,7 +42,7 @@ public class ElectricBillController {
 			Model model) {
 		model.addAttribute("year", year);
 		model.addAttribute("month", month);
-		return "electricMonthForm";
+		return "electricBill/electricMonthForm";
 	}
 
 	@RequestMapping("/editElectricBill/{year}/{month}")
@@ -56,7 +58,7 @@ public class ElectricBillController {
 			model.addAttribute("year", year);
 			model.addAttribute("electricbill", ebill);
 
-			return "editElectricMonthForm";
+			return "electricBill/editElectricMonthForm";
 		} else {
 			return "redirect:/bills/electricBill";
 		}
@@ -85,7 +87,7 @@ public class ElectricBillController {
 			dbError=true;
 		}
 		
-		ModelAndView model = new ModelAndView("electricCalendar");
+		ModelAndView model = new ModelAndView("electricBill/electricCalendar");
 		Calendar cal = Calendar.getInstance();
 
 		int currentYear = cal.get(Calendar.YEAR);
@@ -104,7 +106,7 @@ public class ElectricBillController {
 	@RequestMapping("/electricMonthForm/submit")
 	protected String electricMonthFormSubmit(@RequestParam(name = "eBill", defaultValue = "0.0") double eBill,
 			@RequestParam("eFile") MultipartFile eFile, @RequestParam("year") int year,
-			@RequestParam("month") String month, HttpSession session) {
+			@RequestParam("month") String month, HttpSession session, RedirectAttributes redirectAttributes) {
 
 		try {
 			int imonth = monthStringConvertToInt(month);
@@ -125,11 +127,13 @@ public class ElectricBillController {
 
 			ElectricBillDAO ebilldao = new ElectricBillDAO();
 			int row = ebilldao.add(bill);
-
-			return "redirect:/bills/electricMonthReport/" + year + "/" + month;
+			
+			redirectAttributes.addFlashAttribute("successMessage", "Electric bill "+ month +" updated successfully.");
+			return "redirect:/bills/electricBill";
 		} catch (Exception e) {
 			System.out.println(e);
-			return "redirect:/errorPage"; // Redirect to an error page or handle it accordingly
+			redirectAttributes.addFlashAttribute("errorMessage", "Electric bill "+ month +" updated failed.");
+			return "redirect:/bills/electricBill";
 		}
 	}
 
@@ -143,33 +147,44 @@ public class ElectricBillController {
 			ElectricBillDAO ebilldao = new ElectricBillDAO();
 			ElectricBill bill = ebilldao.getElectricDataByMonthYear((int) session.getAttribute("user_id"), imonth, year);
 			bill.setElectric_consumption(eBill);
+			
 			if (!eFile.isEmpty()) {
 				byte[] fileBytes = eFile.getBytes();
 				bill.setElectricBill_proof(fileBytes);
 			}
+			
 			bill.setCarbon_footprint(eBill * 0.584);
 			bill.setStatus("pending");
 	
 			int row = ebilldao.updateElectricBill(bill);
-			redirectAttributes.addFlashAttribute("successMessage", "Electric bill updated successfully.");
+			redirectAttributes.addFlashAttribute("successMessage", "Electric bill " + month + " updated successfully.");
 			return "redirect:/bills/electricBill";
 			
 		} catch (Exception e) {
-			return "redirect:/errorPage";
+			redirectAttributes.addFlashAttribute("errorMessage", "Electric bill "+ month +" updated failed.");
+			return "redirect:/bills/electricBill";
 		}
 	}
 
 	@RequestMapping("/electricMonthReport/{year}/{month}")
 	protected String electricMonthReportPage(@PathVariable("year") String year,
 			@PathVariable("month") String month, Model model, HttpSession session) {
-		ElectricBillDAO ebilldao = new ElectricBillDAO();
+		
 		int imonth = monthStringConvertToInt(month);
 		int iyear = Integer.parseInt(year);
-		ElectricBill ebill = ebilldao.getElectricDataByMonthYear((int)session.getAttribute("user_id"), imonth, iyear);
+		int user_id = (int)session.getAttribute("user_id");
+		
+		ElectricBillDAO ebilldao = new ElectricBillDAO();
+		ElectricBill ebill = ebilldao.getElectricDataByMonthYear(user_id, imonth, iyear);
+		
+		UserDao udao = new UserDao();
+		User u = udao.getUserById(user_id);
+		
 		model.addAttribute("year", year);
 		model.addAttribute("month", month);
 		model.addAttribute("electricBill", ebill);
-		return "electricMonthReport";
+		model.addAttribute("user", u);
+		return "electricBill/electricMonthReport";
 	}
 
 	public int monthStringConvertToInt(String smonth) {

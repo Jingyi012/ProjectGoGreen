@@ -35,15 +35,15 @@ public class UserController {
     @RequestMapping("/manageUserProfile")
     public ModelAndView getManageUserProfilePage(HttpServletRequest request) {
         ModelAndView model = new ModelAndView("manageUserProfile");
-        String firstName = request.getParameter("firstName");
-        int id = Integer.parseInt(request.getParameter("id"));
-        List<User> users = userDao.getUsersByIdAndName(id,firstName);
 
-        if (!users.isEmpty()) {
-            User user = users.get(0);
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        User user = userDao.getUserById(id);
+        
+        if (user!=null) {
             model.addObject("user", user);
         } else {
-            model.addObject("errorMessage", "No user found with the name: " + firstName);
+            model.addObject("errorMessage", "No user found with the id: " + id);
         }
 
         return model;
@@ -52,17 +52,13 @@ public class UserController {
     
     @RequestMapping("/Approve")
     public String updateStatus(@RequestParam("userId") int userId, HttpSession session, HttpServletRequest request) {
-        User user = new User();
-        user.setId(userId);
-        userDao.updateStatusToApproved(user);
+        userDao.updateUserStatus(userId, "approved");
         return "redirect:/manageUser";
     }
     
     @RequestMapping("/Reject")
     public String updateStatus1(@RequestParam("userId") int userId, HttpSession session, HttpServletRequest request) {
-        User user = new User();
-        user.setId(userId);
-        userDao.updateStatusToReject(user);
+        userDao.updateUserStatus(userId, "reject");
         return "redirect:/manageUser";
     }
 
