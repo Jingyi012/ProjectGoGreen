@@ -103,7 +103,7 @@ public class ProfileController {
 			
 		} catch (IOException e){
 			e.printStackTrace();
-			return "redirect:/error";
+			return "redirect:/errorPage";
 		}
 
 	}

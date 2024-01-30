@@ -134,7 +134,8 @@ public class WaterBillController {
 			return "redirect:/bills/waterBill";
 		} catch (Exception e) {
 			System.out.println(e);
-			return "redirect:/errorPage";
+			redirectAttributes.addFlashAttribute("errorMessage", "Water bill "+ month +" updated failed.");
+			return "redirect:/bills/waterBill";
 		}
 	}
 
@@ -162,7 +163,8 @@ public class WaterBillController {
 			return "redirect:/bills/waterBill";
 
 		} catch (Exception e) {
-			return "redirect:/errorPage";
+			redirectAttributes.addFlashAttribute("errorMessage", "Water bill "+ month +" updated failed.");
+			return "redirect:/bills/waterBill";
 		}
 	}
 
