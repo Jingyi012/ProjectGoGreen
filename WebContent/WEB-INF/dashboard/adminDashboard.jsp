@@ -128,15 +128,24 @@
 						<table>
 							<tr>
 								<td>Housing (High Rise)</td>
-								<td>${housingHighRiseCF}</td>
+								<td>
+									<fmt:formatNumber value="${housingHighRiseCF}" pattern="#,##0.00" var="housingHighRiseCF" />
+									<c:out value="${housingHighRiseCF}" />
+								</td>
 							</tr>
 							<tr>
 								<td>Housing (Landed)</td>
-								<td>${housingLandedCF}</td>
+								<td>
+									<fmt:formatNumber value="${housingLandedCF}" pattern="#,##0.00" var="housingLandedCF" />
+									<c:out value="${housingLandedCF}" />
+								</td>
 							</tr>
 							<tr>
 								<td>Institution</td>
-								<td>${institutionCF}</td>
+								<td>
+									<fmt:formatNumber value="${institutionCF}" pattern="#,##0.00" var="institutionCF" />
+									<c:out value="${institutionCF}" />
+								</td>
 							</tr>
 						</table>
 					</div>

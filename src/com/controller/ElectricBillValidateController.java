@@ -30,11 +30,7 @@ public class ElectricBillValidateController {
 		ElectricUserJoinDAO eu = new ElectricUserJoinDAO(); 
 		List<ElectricUserJoin> euList = eu.getAllPendingBill(); 
 		model.addAttribute("pendingValidateEList", euList);
-		
-//    	ElectricBillDAO ebilldao = new ElectricBillDAO();
-//    	List<ElectricBill> eList = ebilldao.getPendingElectricData();
-//    	model.addAttribute("pendingValidateEList", eList);
-    	
+
         return "validateBill/validateElectricBill";
     }
     

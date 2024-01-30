@@ -34,7 +34,7 @@
 <body>
     <div class="error-container">
         <h1>${errorMessage}</h1>
-       <a href="javascript:history.back()">Go back</a>
+       <a href="javascript:history.back()" class="retry-button">Go back</a>
     </div>
 </body>
 </html>

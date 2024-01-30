@@ -25,9 +25,9 @@ import dbUtil.UserDao;
 @Controller
 @RequestMapping("/bills")
 public class ElectricBillController {
+	
 	@RequestMapping("")
 	public String billSelectionPage(HttpSession session) {
-
 		return "bills";
 	}
 
