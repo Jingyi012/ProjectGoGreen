@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,7 +85,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
        #login-form div {
@@ -186,7 +187,14 @@
             align-items: center;
             margin-top: 30px;
         }
- 
+   
+    .errorMessage {
+        
+       
+        margin-left: 15px; 
+      
+        text-align: right; 
+    }
 
         
     </style>
@@ -210,6 +218,11 @@
     </div>
     <div id="line">
         <a href="#">LOG IN</a>
+          <c:if test="${not empty error}">
+                <div class="errorMessage">
+                    <p>${error}</p>
+                </div>
+            </c:if>
       <form id="login-form" method="post" action="<%= request.getContextPath() %>/login/submit" enctype="multipart/form-data">
    
    <div id="field">
