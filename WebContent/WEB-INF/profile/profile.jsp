@@ -69,11 +69,11 @@ label{
 <body>
 	<div class="pageContainer">
 		<div class="sideBarContainer">
-			<jsp:include page="sidebar.jsp" />
+			<jsp:include page="../sidebar.jsp" />
 		</div>
 
 		<div class="pageWrapper">
-			<jsp:include page="headerBar.jsp" />
+			<jsp:include page="../headerBar.jsp" />
 
 			<div class="pageContent">
 				<div class="pageNav">
