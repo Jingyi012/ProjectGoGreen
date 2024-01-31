@@ -110,8 +110,9 @@ label{
 							</div>
 
 							<div class="form-row">
-								<div class="form-group">
-									<label for="category">Category:</label> <br> 
+							
+<div class="form-group">
+									<label for="category">Category:${user.category}</label> <br> 
 									<select id="category" class="word" name="category" onchange="${user.category}" required>
 										<option value="Housing(High Rise)">Housing(High Rise)</option>
 										<option value="Housing(Landed)">Housing(Landed)</option>
@@ -119,7 +120,7 @@ label{
 									</select>
                     
 
-								</div>
+								</div> 
 
 								<div class="form-group">
 									<label for="numPeople">Number
@@ -145,7 +146,7 @@ label{
 
 							<div class="form-row">
 								<div class="form-group">
-									<label for="area">Area:</label> <br> 
+									<label for="area">Area:${user.area}</label> <br> 
 									<select id="area" class="word" name="area" onchange="${user.area}" required >
 										<option value="Pulai Indah">Pulai Indah</option>
 										<option value="Kangkar Pulai">Kangkar Pulai</option>
@@ -196,14 +197,14 @@ label{
 	</div>
 
 
-	<script>
-    function updateCategoryLabel() {
-        var categoryDropdown = document.getElementById("category");
-        var selectedCategoryLabel = document.getElementById("selectedCategory");
-        var selectedCategory = categoryDropdown.options[categoryDropdown.selectedIndex].text;
-
-      
-        selectedCategoryLabel.innerText = selectedCategory;
+<script>
+    function displayCategoryValue() {
+        var selectElement = document.getElementById("category");
+        var selectedValue = selectElement.value;
+        var selectedCategoryDisplay = document.getElementById("selectedCategoryDisplay");
+        
+        // Update the content of the span with the selected category value
+        selectedCategoryDisplay.textContent = " " + selectedValue;
     }
 </script>
 </body>

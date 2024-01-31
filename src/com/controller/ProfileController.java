@@ -88,13 +88,17 @@ public class ProfileController {
 		try {
 		if(residency == null) {
 			user.setFile(u.getFile());
-		}else {
+		}
+		else 
+		{
 			user.setFile(residency.getBytes());
 		}
 		
 		if(icproof == null) {
 			user.setIc_card(u.getIc_card());
-		} else {
+		} 
+		else 
+		{
 			user.setIc_card(icproof.getBytes());
 		}
 		

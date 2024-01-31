@@ -194,6 +194,8 @@ h1 {
 	background-color: #f0f0f0;
 }
 
+
+
 .form-group input {
 	width: 160px;
 	padding: 5px;
