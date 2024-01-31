@@ -94,10 +94,10 @@ public class UserDao {
 	// need check
 	public int updateUser(User user) {
 		try {
-			String sql = "update user set firstName = ?, lastName = ?, email = ?, phoneNo=?, address=?, category=?,file=?,ic_card=?,  area=?, people=? where id=?";
+			String sql = "update user set firstName = ?, lastName = ?, email = ?, phoneNo=?, address=?, category=?,area=?, people=? where id=?";
 
 			Object args[] = { user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhoneNo(),
-					user.getAddress(), user.getCategory(),user.getFile(),user.getIc_card(), user.getArea(), user.getPeople(), user.getId()};
+					user.getAddress(), user.getCategory(),user.getArea(), user.getPeople(), user.getId()};
 			int rowsAffected = jdbct.update(sql, args);
 
 			System.out.println("Rows affected: " + rowsAffected);

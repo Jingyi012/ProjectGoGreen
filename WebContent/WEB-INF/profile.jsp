@@ -154,7 +154,7 @@ label{
 									      <!-- display image -->
 									      
 									      	<img class="residencyImg" width="400px" src="data:image/*;base64,${Base64.getEncoder().encodeToString(user.file)}" alt="Image" />			      	
-									      
+									      <p>${user.file}</p>
 									      </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
