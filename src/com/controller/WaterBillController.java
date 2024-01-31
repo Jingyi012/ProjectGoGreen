@@ -130,7 +130,7 @@ public class WaterBillController {
 			WaterBillDAO wbilldao = new WaterBillDAO();
 			int row = wbilldao.add(bill);
 
-			redirectAttributes.addFlashAttribute("successMessage", "Water bill" + month + "updated successfully.");
+			redirectAttributes.addFlashAttribute("successMessage", "Water bill " + month + " updated successfully.");
 			return "redirect:/bills/waterBill";
 		} catch (Exception e) {
 			System.out.println(e);

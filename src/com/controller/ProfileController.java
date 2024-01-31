@@ -24,7 +24,7 @@ public class ProfileController {
 
 	@RequestMapping("/profile")
 	public ModelAndView getProfilePage(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView("profile");
+		ModelAndView model = new ModelAndView("profile/profile");
 
 		HttpSession session = request.getSession();
 
@@ -51,7 +51,7 @@ public class ProfileController {
 
 	@RequestMapping("/editProfile")
 	public ModelAndView getEditProfilePage(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView("editProfile");
+		ModelAndView model = new ModelAndView("profile/editProfile");
 
 		HttpSession session = request.getSession();
 
