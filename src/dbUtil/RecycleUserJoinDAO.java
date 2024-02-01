@@ -11,7 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import com.model.ElectricUserJoin;
 import com.model.RecycleUserJoin;
 
-public class RecycleUserJoinDTO {
+public class RecycleUserJoinDAO {
 	JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
 	
 	public DataSource getDataSource() {

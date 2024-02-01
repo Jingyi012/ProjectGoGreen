@@ -12,7 +12,7 @@ import com.model.RecycleBill;
 import com.model.RecycleUserJoin;
 
 import dbUtil.RecycleBillDAO;
-import dbUtil.RecycleUserJoinDTO;
+import dbUtil.RecycleUserJoinDAO;
 
 @Controller
 public class RecycleBillValidateController {
@@ -20,8 +20,8 @@ public class RecycleBillValidateController {
 	@RequestMapping("validateRecycleBill")
 	protected ModelAndView validateRecycleBillPage() {
 		
-		RecycleUserJoinDTO ruDTO = new RecycleUserJoinDTO(); 
-		List<RecycleUserJoin> ruList = ruDTO.getAllPendingBill(); 
+		RecycleUserJoinDAO ruDAO = new RecycleUserJoinDAO(); 
+		List<RecycleUserJoin> ruList = ruDAO.getAllPendingBill(); 
 		
 		ModelAndView modelAndView = new ModelAndView("validateBill/validateRecycleBill");
 		modelAndView.addObject("pendingValidateRList", ruList);
