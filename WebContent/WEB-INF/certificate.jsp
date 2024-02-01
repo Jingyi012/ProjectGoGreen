@@ -20,7 +20,7 @@
             font-family: 'Poppins', sans-serif;
             padding-top: 0px; /* Increased padding for a larger frame */
             width: 80%;
-            max-width: 650px; /* Increased max-width for a larger frame */
+            max-width: 680px; /* Increased max-width for a larger frame */
             text-align: center;
             margin: 30px auto; 
 }
@@ -65,7 +65,7 @@
 }
 
 .certificate-text h6 {
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: normal;
 	padding-bottom: 30px;
 }

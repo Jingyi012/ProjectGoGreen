@@ -3,6 +3,8 @@ package com.controller;
 import com.model.Certificate;
 import com.model.RecycleBill;
 import com.model.User;
+import com.model.WaterBill;
+
 import dbUtil.CertificateDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +54,7 @@ public class CertificateController {
 //
 //	    // Add the user object to the model
 //	    model.addObject("user", u);
+	    model.addObject("selectedYear", selectedYear);
 	    model.addObject("certificates", certificateList);
 	    model.addObject("certificateEligible", certificateEligible);
 

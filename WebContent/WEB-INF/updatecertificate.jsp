@@ -11,8 +11,8 @@
 							<p>This Certificate is Awarded to</p>
 							<h1>${username}</h1>
 							<h6>
-								Has successfully completed the requirement of providing a bill
-								lasting six consecutive months
+								Has successfully completed the requirement of providing a bill<br>
+								lasting six consecutive months in ${selectedYear} 
 							</h6>
 						</div>
 
