@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.model.ElectricUserJoin;
 import com.model.RecycleUserJoin;
 
 public class RecycleUserJoinDAO {
