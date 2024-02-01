@@ -11,25 +11,28 @@
 							<p>This Certificate is Awarded to</p>
 							<h1>${username}</h1>
 							<h6>
-								Has successfully completed the requirement of providing a bill
-								lasting six consecutive months
+								Has successfully completed the requirement of providing a bill<br>
+								lasting six consecutive months in ${selectedYear} 
 							</h6>
 						</div>
 
 					
 					</c:when>
 
-					<c:otherwise>
-						<h3><b><br><br>You are not eligible for a certificate. Please fulfill
-								the requirements.</b></h3>
-					</c:otherwise>
-					
+	<c:otherwise>
+		<h3>
+			<b><br>
+			<br>You are not eligible for a certificate. Please fulfill the
+				requirements.</b>
+		</h3>
+	</c:otherwise>
+
 </c:choose>
 
 
-					<c:if test="${certificateEligible}">
-					<div class="download">
-							<button type="button" id="btn" onclick="downloadPDF()">Download
-								PDF</button>
-								</div>
-											</c:if>
+<c:if test="${certificateEligible}">
+	<div class="download">
+		<button type="button" class="downloadBtn" onclick="downloadPDF()">Download
+			PDF</button>
+	</div>
+</c:if>

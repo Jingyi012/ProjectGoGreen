@@ -20,7 +20,7 @@
             font-family: 'Poppins', sans-serif;
             padding-top: 0px; /* Increased padding for a larger frame */
             width: 80%;
-            max-width: 650px; /* Increased max-width for a larger frame */
+            max-width: 680px; /* Increased max-width for a larger frame */
             text-align: center;
             margin: 30px auto; 
 }
@@ -65,7 +65,7 @@
 }
 
 .certificate-text h6 {
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: normal;
 	padding-bottom: 30px;
 }
@@ -78,7 +78,7 @@
     color: red !important;
 }
 
-#btn {
+.downloadBtn {
 	text-decoration: none;
 	padding: 15px;
 	background-color: #f2bc85;
@@ -88,8 +88,8 @@
 	cursor: pointer;
 }
 
-#btn:hover {
-	border: black solid 0.5px;
+.downloadBtn:hover {
+	background-color: #f0ab65;
 }
 
 .download {
@@ -99,15 +99,6 @@
 #content {
 	text-align: center;
 	margin: 50px auto;
-}
-
-#downloadBtn {
-	padding: 10px 20px;
-	background-color: #3498db;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
 }
 
 .calendarYear {

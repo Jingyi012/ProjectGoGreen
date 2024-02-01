@@ -36,28 +36,27 @@
 					<div class="monthFunc ${cssClass}">
 						<c:choose>
 							<c:when
-								test="${i + 1 lt currentMonth or selectedYear lt currentYear and status eq 'none'}">
+								test="${(i + 1 lt currentMonth or selectedYear lt currentYear) and status eq 'none'}">
 								<a class="uploadBtn"
 									href="${pageContext.request.contextPath}/bills/electricBill/${selectedYear}/${monthArray[i]}">Upload
 									Bill</a>
 							</c:when>
 							<c:when
-								test="${i + 1 lt currentMonth or selectedYear lt currentYear and status eq 'pending'}">
+								test="${(i + 1 lt currentMonth or selectedYear lt currentYear) and status eq 'pending'}">
 								<p>Pending validate</p>
 								<a class="uploadBtn"
 									href="${pageContext.request.contextPath}/bills/editElectricBill/${selectedYear}/${monthArray[i]}">Edit
 									Bill</a>
 							</c:when>
 							<c:when
-								test="${i + 1 lt currentMonth or selectedYear lt currentYear and status eq 'reject'}">
+								test="${(i + 1 lt currentMonth or selectedYear lt currentYear) and status eq 'reject'}">
 								<p>Bill rejected, please re-upload</p>
 								<a class="uploadBtn"
 									href="${pageContext.request.contextPath}/bills/editElectricBill/${selectedYear}/${monthArray[i]}">ReUpload
 									Bill</a>
 							</c:when>
 							<c:when
-								test="${i + 1 lt currentMonth or selectedYear lt currentYear and status eq 'approve'}">
-								<!-- <i class="bi bi-check-circle" style="color: green; font-size: 30px;"></i> -->
+								test="${(i + 1 lt currentMonth or selectedYear lt currentYear) and status eq 'approve'}">
 								<a class="uploadBtn"
 									href="${pageContext.request.contextPath}/bills/electricMonthReport/${selectedYear}/${monthArray[i]}">View
 									Report</a>

@@ -9,6 +9,10 @@
             "Selesa Jaya", "Sri Pulai", "Sri Skudai", "Skudai", "Skudai Baru",
             "Sutera Utama", "Taman Universiti", "Tanjung Kupang", "Tun Aminah"};
 	request.setAttribute("areaNames", areaName);
+	
+	String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}; 
+	request.setAttribute("monthArray", monthArray);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -36,13 +40,9 @@
         			<div class="monthYearSelect">
         				<i class="bi bi-calendar"></i>
         				<select id="monthSelect">
-        				<% 
-        				String[] monthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}; 
-            			request.setAttribute("monthArray", monthArray);
-            			%>
-        				<c:forEach var="month" items="${monthArray}" varStatus="loop">
-        					<option value="${loop.index + 1}">${month}</option>
-        				</c:forEach>
+	        				<c:forEach var="month" items="${monthArray}" varStatus="loop">
+	        					<option value="${loop.index + 1}">${month}</option>
+	        				</c:forEach>
         				</select>
         				<select id="yearSelect">
         					<option>2021</option>
@@ -252,4 +252,5 @@
 
     </script>
 </body>
+
 </html>

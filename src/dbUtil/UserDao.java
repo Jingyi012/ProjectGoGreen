@@ -78,26 +78,13 @@ public class UserDao {
 			return null;
 		}
 	}
-//
-//	public List<User> getUsersByIdAndName(int id, String firstName) {
-//		try {
-//			String sql = "SELECT * FROM user WHERE id=? AND firstName=?";
-//			Object[] args = { id, firstName };
-//			List<User> users = jdbct.query(sql, new BeanPropertyRowMapper<>(User.class), args);
-//			return users;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return Collections.emptyList();
-//		}
-//	}
 	
-	// need check
 	public int updateUser(User user) {
 		try {
-			String sql = "update user set firstName = ?, lastName = ?, email = ?, phoneNo=?, address=?, category=?,file=?,ic_card=?,  area=?, people=? where id=?";
+			String sql = "update user set firstName = ?, lastName = ?, email = ?, phoneNo=?, ic=?, ic_card=?, address=?, file=?, category=?, area=?, people=?, status=? where id=?";
 
-			Object args[] = { user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhoneNo(),
-					user.getAddress(), user.getCategory(),user.getFile(),user.getIc_card(), user.getArea(), user.getPeople(), user.getId()};
+			Object args[] = { user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhoneNo(), user.getIc(), user.getIc_card(),
+					user.getAddress(), user.getFile(), user.getCategory(),user.getArea(), user.getPeople(), user.getStatus(), user.getId()};
 			int rowsAffected = jdbct.update(sql, args);
 
 			System.out.println("Rows affected: " + rowsAffected);
@@ -124,16 +111,6 @@ public class UserDao {
 		}
 	}
 
-//	public List<String> getAllUserFirstNames() {
-//		try {
-//			String sql = "SELECT firstName FROM user WHERE status = 'pending'";
-//			return jdbct.queryForList(sql, String.class);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
-
 	public List<User> getUsersByStatus() {
 		try {
 			String sql = "SELECT * FROM user WHERE status = 'pending'";
@@ -143,29 +120,6 @@ public class UserDao {
 			return Collections.emptyList();
 		}
 	}
-
-//	public List<String> getAllUserLastNames() {
-//		try {
-//			String sql = "SELECT lastName FROM user WHERE status = 'pending'";
-//			return jdbct.queryForList(sql, String.class);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
-
-//	public List<Map<String, Object>> getUsersByUserNames(List<String> userNames) {
-//		try {
-//			String sql = "SELECT * FROM user WHERE userName IN (:userNames)";
-//			MapSqlParameterSource parameters = new MapSqlParameterSource();
-//			parameters.addValue("userNames", userNames);
-//
-//			return jdbct.queryForList(sql, parameters, new BeanPropertyRowMapper<User>(User.class));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return Collections.emptyList();
-//		}
-//	}
 
 	public int ResetPassword(User user) {
 		try {
@@ -182,12 +136,6 @@ public class UserDao {
 			return 0;
 		}
 	}
-
-//	public boolean isIcAndPasswordExists(String identificationCard, String password) {
-//		String sql = "SELECT COUNT(*) FROM user WHERE ic = ? AND password = ?";
-//		int count = jdbct.queryForObject(sql, Integer.class, identificationCard, password);
-//		return count > 0;
-//	}
 
 	public boolean isIcExists(String identificationCard) {
 		String sql = "SELECT COUNT(*) FROM user WHERE ic = ?";

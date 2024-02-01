@@ -44,6 +44,7 @@ public class LoginController {
 	        session.setAttribute("userRole", role);
 	        session.setAttribute("user_id", user.getId());
 	        session.setAttribute("username", user.getFirstName() + " " + user.getLastName());
+	        session.setAttribute("userStatus", user.getStatus());
 	        
 	        if(role.equals("user")) {
 	            return "redirect:/userDashboard";

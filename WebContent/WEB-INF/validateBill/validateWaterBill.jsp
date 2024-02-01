@@ -36,10 +36,15 @@
 	        				<th>Year</th>
 	        				<th>Month</th>
 	        				<th>Water Consumption</th>
+	        				<th>Carbon Footprint (kgCO<sub>2</sub>)</th>
 	        				<th>Bill</th>
 	        				<th colspan='2'>Action</th>
 	        			</tr>
-	        			
+	        			<c:if test="${ empty pendingValidateWList}" >
+	        			<tr>
+	        				<td colspan="10" style="text-align: center;">There is no bill to validate yet</td>
+	        			</tr>
+	        			</c:if>
 	        			<c:forEach var="wuList" items="${pendingValidateWList}" varStatus="loop">
 	        			<tr>
 	        				<td><c:out value="${loop.index + 1}" /></td>
@@ -49,6 +54,7 @@
 	        				<td><c:out value="${wuList.year}" /></td>
 	        				<td><c:out value="${wuList.month}" /></td>
 	        				<td><c:out value="${wuList.water_consumption}" /></td>
+	        				<td><c:out value="${wuList.carbon_footprint}" /></td>
 	        				<td>
 	        				<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#wbillModal${wuList.waterId}">
 							  View Bill

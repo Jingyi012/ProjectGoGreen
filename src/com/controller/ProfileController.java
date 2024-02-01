@@ -85,8 +85,12 @@ public class ProfileController {
 		
 		User u = userDao.getUserById((int)session.getAttribute("user_id"));
 		
+		if(!u.getStatus().equals("approve")) {
+			user.setStatus("pending");
+		}
+		
 		try {
-		if(residency == null) {
+		if(residency == null || residency.getOriginalFilename().equals("")) {
 			user.setFile(u.getFile());
 		}
 		else 
@@ -94,7 +98,7 @@ public class ProfileController {
 			user.setFile(residency.getBytes());
 		}
 		
-		if(icproof == null) {
+		if(icproof == null || icproof.getOriginalFilename().equals("")) {
 			user.setIc_card(u.getIc_card());
 		} 
 		else 

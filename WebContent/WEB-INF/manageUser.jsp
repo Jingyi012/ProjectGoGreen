@@ -150,7 +150,7 @@
 				  <c:if test="${not empty rejectMessage}">
 			        <div class='statusMessageBox'>
                             <div class='toast-content'>
-                            <i class='bi bi-check2 toast-icon redColor'></i>
+                            <i class='bi bi-check2 toast-icon greenColor'></i>
                             <div class='message'>
                                 <span class='message-text text-1'>Success</span>
                                 <span class='message-text text-2'>${rejectMessage}</span>
