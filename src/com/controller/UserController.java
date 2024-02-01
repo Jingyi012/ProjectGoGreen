@@ -54,7 +54,7 @@ public class UserController {
     
     @RequestMapping("/Approve")
     public String updateStatus(@RequestParam("userId") int userId, HttpSession session, HttpServletRequest request,RedirectAttributes redirectAttributes) {
-        userDao.updateUserStatus(userId, "approved");
+        userDao.updateUserStatus(userId, "approve");
     	redirectAttributes.addFlashAttribute("approveMessage", "Approved Successfully");
     	return "redirect:/manageUser";
     }

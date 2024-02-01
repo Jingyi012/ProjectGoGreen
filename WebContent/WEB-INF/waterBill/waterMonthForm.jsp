@@ -37,8 +37,8 @@
 				<div class="formContainer">
 					<form action="${pageContext.request.contextPath}/bills/waterMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm water">
-							<label for="wBill" class="form-label">Insert Water Consumption:</label>
-							<input type="text" id="wBill" class="form-control" name="wBill" placeholder="123m&sup3" required>
+							<label for="wBill" class="form-label">Insert Water Consumption (m&sup3):</label>
+							<input type="text" id="wBill" class="form-control" name="wBill" placeholder="123" required>
 						</div>
 						
 						<div class="billFile water">

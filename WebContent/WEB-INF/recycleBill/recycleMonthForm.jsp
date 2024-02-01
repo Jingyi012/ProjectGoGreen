@@ -37,8 +37,8 @@
 				<div class="formContainer">
 					<form action="${pageContext.request.contextPath}/bills/recycleMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm recycle">
-							<label for="recycle_weight" class="form-label">Insert Recycle Weight:</label>
-							<input type="text" id="recycle_weight" class="form-control" name="recycle_weight" placeholder="123Kg" required>
+							<label for="recycle_weight" class="form-label">Insert Recycle Weight (kg):</label>
+							<input type="text" id="recycle_weight" class="form-control" name="recycle_weight" placeholder="123" required>
 						</div>
 						
 						<div class="billFile recycle">

@@ -36,10 +36,15 @@
 	        				<th>Year</th>
 	        				<th>Month</th>
 	        				<th>Recycle Weight</th>
+	        				<th>Carbon Footprint (kgCO<sub>2</sub>)</th>
 	        				<th>Bill</th>
 	        				<th colspan='2'>Action</th>
 	        			</tr>
-	        			
+	        			<c:if test="${ empty pendingValidateRList}" >
+	        			<tr>
+	        				<td colspan="10" style="text-align: center;">There is no bill to validate yet</td>
+	        			</tr>
+	        			</c:if>
 	        			<c:forEach var="ruList" items="${pendingValidateRList}" varStatus="loop">
 	        			<tr>
 	        				<td><c:out value="${loop.index + 1}" /></td>
@@ -49,6 +54,7 @@
 	        				<td><c:out value="${ruList.year}" /></td>
 	        				<td><c:out value="${ruList.month}" /></td>
 	        				<td><c:out value="${ruList.recycle_weight}" /></td>
+	        				<td><c:out value="${ruList.carbon_footprint}" /></td>
 	        				<td>
 	        				<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#ebillModal${ruList.rid}">
 							  View Bill

@@ -13,7 +13,7 @@
 		line-height: normal;
 	}
 	*{
-		box-sizing: inherit;
+		box-sizing: border-box;
 	}
 	.hideSideBar{
 		width: 0 !important;
@@ -41,8 +41,8 @@
 	}
 	
 	.logo{
-		width: 65px;
-		height: 65px;
+		width: 75px;
+		height: 75px;
 		background-color: white;
 		border-radius: 50%;
 		padding: 5px;
@@ -120,13 +120,24 @@
 		<% } else { %>
 			<a href="${pageContext.request.contextPath}/profile" class="navItem"><i class="bi bi-person-circle"></i> Profile</a>
 			<a href="${pageContext.request.contextPath}/userDashboard" class="navItem"><i class="bi bi-speedometer2"></i> Dashboard</a>
-			<a href="${pageContext.request.contextPath}/bills" class="navItem"><i class="bi bi-receipt"></i> Bills</a>
-			<a href="${pageContext.request.contextPath}/certificate/certificate" class="navItem"><i class="bi bi-award"></i> Certificate</a>
+			<a href="${pageContext.request.contextPath}/bills" class="navItem" onclick="checkStatus('${userStatus}')"><i class="bi bi-receipt"></i> Bills</a>
+			<a href="${pageContext.request.contextPath}/certificate/certificate" class="navItem" onclick="checkStatus('${userStatus}')"><i class="bi bi-award"></i> Certificate</a>
 		
 		<% } %>
 		
 		</div>
 		
 	</div>
+	<script>
+
+	    function checkStatus(userStatus) {
+	        if (userStatus !== "approve") {
+	            
+	            event.preventDefault();
+	
+	            alert("Your status is not approved. You cannot access this page.");
+	        }
+	    }
+	</script>
 </body>
 </html>
