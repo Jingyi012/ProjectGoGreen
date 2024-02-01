@@ -46,6 +46,7 @@
                     </div>
                     <div class="itemblock yellow">
                         <span>Total Carbon Emission</span>
+                        <fmt:formatNumber value="${totalCF}" pattern="#,##0.00" var="totalCF" />
                         <p>${totalCF} kgCO<sub>2</sub></p>
                     </div>
         		</div>
@@ -67,17 +68,7 @@
 									<th>Total Participant (people)</th>
 									<th>Total Carbon Footprint (kgCO<sub>2</sub>)</th>
 								</tr>
-								
-								<%-- <c:forEach var="areaCarbonList" items="${areaCarbonList}">
-								<tr>
-									<td><c:out value="${areaCarbonList.area}"/></td>
-									<td><c:out value="${areaCarbonList.water_consumption}"/></td>
-									<td><c:out value="${areaCarbonList.electric_consumption}"/></td>
-									<td><c:out value="${areaCarbonList.recycle_weight}"/></td>
-									<td><c:out value="${areaCarbonList.num_participant}"/></td>
-									<td><c:out value="${areaCarbonList.sum_cf}"/></td>
-								</tr>
-								</c:forEach> --%>
+
 								<c:forEach var="areaName" items="${areaNames}">
 								
 								    <c:set var="found" value="false" />
@@ -128,15 +119,24 @@
 						<table>
 							<tr>
 								<td>Housing (High Rise)</td>
-								<td>${housingHighRiseCF}</td>
+								<td>
+									<fmt:formatNumber value="${housingHighRiseCF}" pattern="#,##0.00" var="housingHighRiseCF" />
+									<c:out value="${housingHighRiseCF}" />
+								</td>
 							</tr>
 							<tr>
 								<td>Housing (Landed)</td>
-								<td>${housingLandedCF}</td>
+								<td>
+									<fmt:formatNumber value="${housingLandedCF}" pattern="#,##0.00" var="housingLandedCF" />
+									<c:out value="${housingLandedCF}" />
+								</td>
 							</tr>
 							<tr>
 								<td>Institution</td>
-								<td>${institutionCF}</td>
+								<td>
+									<fmt:formatNumber value="${institutionCF}" pattern="#,##0.00" var="institutionCF" />
+									<c:out value="${institutionCF}" />
+								</td>
 							</tr>
 						</table>
 					</div>

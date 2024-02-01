@@ -12,7 +12,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.model.AreaCarbon;
-import com.model.ElectricUserJoin;
 import com.model.MonthlyCarbonFootprint;
 
 public class AreaCarbonDAO {

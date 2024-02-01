@@ -24,7 +24,7 @@ public class ProfileController {
 
 	@RequestMapping("/profile")
 	public ModelAndView getProfilePage(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView("profile");
+		ModelAndView model = new ModelAndView("profile/profile");
 
 		HttpSession session = request.getSession();
 
@@ -51,7 +51,7 @@ public class ProfileController {
 
 	@RequestMapping("/editProfile")
 	public ModelAndView getEditProfilePage(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView("editProfile");
+		ModelAndView model = new ModelAndView("profile/editProfile");
 
 		HttpSession session = request.getSession();
 
@@ -85,16 +85,24 @@ public class ProfileController {
 		
 		User u = userDao.getUserById((int)session.getAttribute("user_id"));
 		
+		if(!u.getStatus().equals("approve")) {
+			user.setStatus("pending");
+		}
+		
 		try {
-		if(residency == null) {
+		if(residency == null || residency.getOriginalFilename().equals("")) {
 			user.setFile(u.getFile());
-		}else {
+		}
+		else 
+		{
 			user.setFile(residency.getBytes());
 		}
 		
-		if(icproof == null) {
+		if(icproof == null || icproof.getOriginalFilename().equals("")) {
 			user.setIc_card(u.getIc_card());
-		} else {
+		} 
+		else 
+		{
 			user.setIc_card(icproof.getBytes());
 		}
 		
@@ -103,7 +111,7 @@ public class ProfileController {
 			
 		} catch (IOException e){
 			e.printStackTrace();
-			return "redirect:/error";
+			return "redirect:/errorPage";
 		}
 
 	}

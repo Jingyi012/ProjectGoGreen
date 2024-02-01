@@ -53,13 +53,13 @@ public class passwordController {
 
 			} else {
 
-				model.addAttribute("error", "User not found with the provided IC and email.");
-				return "errorPage";
+				model.addAttribute("errorMessage", "User not found with the provided IC and email.");
+				return "/errorPage";
 			}
 		} else {
 
-			model.addAttribute("error", "Session error: User ID not available.");
-			return "errorPage";
+			model.addAttribute("errorMessage", "Session error: User ID not available.");
+			return "/errorPage";
 		}
 
 		return "login";

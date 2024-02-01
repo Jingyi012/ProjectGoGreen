@@ -7,6 +7,8 @@
 <title>GoGreen</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/billForm.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 <style>
     .pageContent{
         padding: 30px 60px;
@@ -35,14 +37,16 @@
 				<div class="formContainer">
 					<form action="${pageContext.request.contextPath}/bills/recycleMonthForm/submit" method="post" enctype="multipart/form-data">
 						<div class="billForm recycle">
-							<label for="recycle_weight">Insert Recycling Consumption:</label>
-							<input type="text" id="recycle_weight" name="recycle_weight" placeholder="123Kg" required>
+							<label for="recycle_weight" class="form-label">Insert Recycle Weight (kg):</label>
+							<input type="text" id="recycle_weight" class="form-control" name="recycle_weight" placeholder="123" required>
 						</div>
 						
 						<div class="billFile recycle">
-							<span>Upload Recycling Bill as proof:</span>
-							<label for="rFile" class="fileBox"><br>Choose File &nbsp<i class="fa fa-upload"></i></label>
-							<input type="file" id="rFile" name="rFile" accept="image/*" placeholder="Choose file" required>
+							<label class="form-label">Upload Recycling Bill as proof:</label>
+							<input type="file" id="rFile" class="form-control" name="rFile" accept="image/*" placeholder="Choose file" required aria-describedby="fileHelp">
+							<div id="fileHelp" class="form-text">
+								The image must less than 1 mb.
+							</div>
 						</div>
 						
 						<div class="submitButton">
@@ -61,4 +65,17 @@
     </div>
 
 </body>
+<script>
+    document.getElementById('eFile').addEventListener('change', function() {
+        var file = this.files[0];
+        if (file.size > 1048576) { // 1MB in bytes
+            alert('File size exceeds 1MB. Please choose a smaller file.');
+            this.value = ''; // Clear the file input
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
 </html>

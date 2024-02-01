@@ -19,17 +19,20 @@
 					
 					</c:when>
 
-					<c:otherwise>
-						<h3><b><br><br>You are not eligible for a certificate. Please fulfill
-								the requirements.</b></h3>
-					</c:otherwise>
-					
+	<c:otherwise>
+		<h3>
+			<b><br>
+			<br>You are not eligible for a certificate. Please fulfill the
+				requirements.</b>
+		</h3>
+	</c:otherwise>
+
 </c:choose>
 
 
-					<c:if test="${certificateEligible}">
-					<div class="download">
-							<button type="button" id="btn" onclick="downloadPDF()">Download
-								PDF</button>
-								</div>
-											</c:if>
+<c:if test="${certificateEligible}">
+	<div class="download">
+		<button type="button" class="downloadBtn" onclick="downloadPDF()">Download
+			PDF</button>
+	</div>
+</c:if>

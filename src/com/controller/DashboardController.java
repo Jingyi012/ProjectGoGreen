@@ -15,11 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.model.ElectricBill;
 import com.model.MonthlyCarbonFootprint;
 import com.model.RecycleBill;
+import com.model.WaterBill;
 import com.model.AreaCarbon;
 
 import dbUtil.AreaCarbonDAO;
 import dbUtil.ElectricBillDAO;
 import dbUtil.RecycleBillDAO;
+import dbUtil.WaterBillDAO;
 
 @Controller
 public class DashboardController {
@@ -76,6 +78,8 @@ public class DashboardController {
 		ElectricBill ebill = ebilldao.getApprovedElectricDataByMonthYear(user_id, month, year);
 		RecycleBillDAO rbilldao = new RecycleBillDAO();
 		RecycleBill rbill = rbilldao.getApprovedRecycleDataByMonthYear(user_id, month, year);
+		WaterBillDAO wbilldao = new WaterBillDAO();
+		WaterBill wbill = wbilldao.getApprovedWaterDataByMonthYear(user_id, month, year);
 				
 		if (ebill != null) {
 	        double eConsump = ebill.getElectric_consumption();
@@ -93,9 +97,13 @@ public class DashboardController {
         	model.addAttribute("recycle_weight", 0);
         }
 		
-	        // Later add water and recycle
-	    
-	    model.addAttribute("water_consumption", 0);
+		if (wbill != null) {
+	        double wConsump = wbill.getWater_consumption();
+	        model.addAttribute("water_consumption", wConsump);
+	        totalCF += wbill.getCarbon_footprint();
+		}else {
+        	model.addAttribute("water_consumption", 0);
+        }
 	    
 	    DecimalFormat df = new DecimalFormat("0.00");
 	    model.addAttribute("carbon_footprint", df.format(totalCF));

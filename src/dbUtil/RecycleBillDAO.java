@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
-import com.model.ElectricBill;
 import com.model.RecycleBill;
 
 import java.util.HashMap;

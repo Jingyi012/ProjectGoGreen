@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.model.User;
 
@@ -51,14 +53,16 @@ public class UserController {
 
     
     @RequestMapping("/Approve")
-    public String updateStatus(@RequestParam("userId") int userId, HttpSession session, HttpServletRequest request) {
-        userDao.updateUserStatus(userId, "approved");
-        return "redirect:/manageUser";
+    public String updateStatus(@RequestParam("userId") int userId, HttpSession session, HttpServletRequest request,RedirectAttributes redirectAttributes) {
+        userDao.updateUserStatus(userId, "approve");
+    	redirectAttributes.addFlashAttribute("approveMessage", "Approved Successfully");
+    	return "redirect:/manageUser";
     }
     
     @RequestMapping("/Reject")
-    public String updateStatus1(@RequestParam("userId") int userId, HttpSession session, HttpServletRequest request) {
+    public String updateStatus1(@RequestParam("userId") int userId, HttpSession session, HttpServletRequest request,RedirectAttributes redirectAttributes) {
         userDao.updateUserStatus(userId, "reject");
+        redirectAttributes.addFlashAttribute("rejectMessage", "Reject Successfully");
         return "redirect:/manageUser";
     }
 

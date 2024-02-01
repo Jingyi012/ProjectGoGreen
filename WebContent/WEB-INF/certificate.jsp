@@ -78,7 +78,7 @@
     color: red !important;
 }
 
-#btn {
+.downloadBtn {
 	text-decoration: none;
 	padding: 15px;
 	background-color: #f2bc85;
@@ -88,8 +88,8 @@
 	cursor: pointer;
 }
 
-#btn:hover {
-	border: black solid 0.5px;
+.downloadBtn:hover {
+	background-color: #f0ab65;
 }
 
 .download {
@@ -99,15 +99,6 @@
 #content {
 	text-align: center;
 	margin: 50px auto;
-}
-
-#downloadBtn {
-	padding: 10px 20px;
-	background-color: #3498db;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
 }
 
 .calendarYear {

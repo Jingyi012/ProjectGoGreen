@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Error Page</title>
+    <title>Error</title>
     <style>
         body {
             display: flex;
@@ -33,8 +33,8 @@
 </head>
 <body>
     <div class="error-container">
-        <h1>User not found with the provided IC and email.</h1>
-       <a href="<%= request.getContextPath() %>/forgotPassword"class="retry-button">Retry</a>
+        <h1>${errorMessage}</h1>
+       <a href="javascript:history.back()" class="retry-button">Go back</a>
     </div>
 </body>
 </html>

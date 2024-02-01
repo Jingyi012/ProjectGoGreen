@@ -36,8 +36,8 @@ public class WaterBillDAO {
 
     public int add(WaterBill bill) {
         String sql = "INSERT INTO waterbill(water_consumption, water_proof, year, month, carbon_footprint, user_id, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        Object args[] = { bill.getWaterConsumption(), bill.getWaterProof(), bill.getYear(), bill.getMonth(),
-                bill.getCarbonFootprint(), bill.getUserId(), bill.getStatus() };
+        Object args[] = { bill.getWater_consumption(), bill.getWater_proof(), bill.getYear(), bill.getMonth(),
+                bill.getCarbon_footprint(), bill.getUser_id(), bill.getStatus() };
         int rowAffected = jdbct.update(sql, args);
         return rowAffected;
     }
@@ -61,8 +61,8 @@ public class WaterBillDAO {
 
     public int updateWaterBill(WaterBill bill) {
         String sql = "UPDATE waterbill SET water_consumption=?, water_proof=?, carbon_footprint=?, status=? WHERE user_id=? AND month=? AND year=?";
-        Object args[] = { bill.getWaterConsumption(), bill.getWaterProof(), bill.getCarbonFootprint(), bill.getStatus(),
-                bill.getUserId(), bill.getMonth(), bill.getYear() };
+        Object args[] = { bill.getWater_consumption(), bill.getWater_proof(), bill.getCarbon_footprint(), bill.getStatus(),
+                bill.getUser_id(), bill.getMonth(), bill.getYear() };
         int rowAffect = jdbct.update(sql, args);
         return rowAffect;
     }
@@ -102,4 +102,15 @@ public class WaterBillDAO {
 
         return result;
     }
+    
+    public WaterBill getApprovedWaterDataByMonthYear(int userId, int month, int year) {
+		try {
+			String sql = "select * from waterbill where user_id=? and month=? and year=? and status='approve'";
+			Object args[] = {userId, month, year};
+			WaterBill wbill = jdbct.queryForObject(sql, new BeanPropertyRowMapper<WaterBill>(WaterBill.class), args);
+			return wbill;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 }

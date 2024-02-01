@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,11 +55,13 @@
 						</tr>
 						<tr>
 							<th>Recycle Weight(Kg):</th>
-							<td id="recycleWeight">${recycleBill.recycle_weight}</td>
+							<fmt:formatNumber value="${recycleBill.recycle_weight}" pattern="#,##0.00" var="recycle_weight" />
+							<td id="recycleWeight">${recycle_weight}</td>
 						</tr>
 						<tr>
-							<th>Carbon Footprint(kWhCO2):</th>
-							<td id=CarbonFootprint>${recycleBill.carbon_footprint}</td>
+							<th>Carbon Footprint(kgCO2):</th>
+							<fmt:formatNumber value="${recycleBill.carbon_footprint}" pattern="#,##0.00" var="carbon_footprint" />
+							<td id=CarbonFootprint>${carbon_footprint}</td>
 						</tr>
 					</table>
 					

@@ -14,6 +14,7 @@ import com.model.MonthlyCarbonFootprint;
 import dbUtil.AreaCarbonDAO;
 import dbUtil.ElectricBillDAO;
 import dbUtil.RecycleBillDAO;
+import dbUtil.WaterBillDAO;
 
 @Controller
 public class AdminReportController {
@@ -35,14 +36,16 @@ public class AdminReportController {
 		RecycleBillDAO rbilldao = new RecycleBillDAO();
 		Map<String, Double> recycle = rbilldao.getRecycleWeightAndTotalCF(year, month);
 		totalCF += recycle.get("recycle_CF");
-		//add water and recycle
 		
-		
+		WaterBillDAO wbilldao = new WaterBillDAO();
+		Map<String, Double> water = wbilldao.getWaterConsumpAndTotalCF(year, month);
+		totalCF += water.get("water_CF");
 		
 		model.addObject("month", months[month-1]);
 		model.addObject("year", year);
 		model.addObject("electric", electric);
 		model.addObject("recycle", recycle);
+		model.addObject("water", water);
 		model.addObject("totalCF", totalCF);
 		return model;
 	}
@@ -83,5 +86,6 @@ public class AdminReportController {
 
 		return model;
 	}
-	
 }
+
+

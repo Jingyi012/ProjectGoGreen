@@ -1,12 +1,5 @@
 package com.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Arrays;
-
 public class User {
 	private int id;
 	private String firstName;
@@ -16,7 +9,7 @@ public class User {
 	private String category;
 	private String Address;
 	private byte[] file;
-	private static String status;
+	private String status;
 	private String lastName;
 	private String password;
 	private String role;
@@ -145,3 +138,4 @@ public class User {
 	}
 
 }
+

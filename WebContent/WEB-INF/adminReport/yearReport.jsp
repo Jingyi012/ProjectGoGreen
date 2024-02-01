@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"
 	import="java.text.SimpleDateFormat, java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 	String[] areaName = {"Bukit Horizon", "Bukit Indah", "Gelang Patah", "Impian Emas", "Kangkar Pulai",
             "Kota Iskandar", "Leisure Farm", "Lima Kedai", "Medini Iskandar", "Mutiara Rini",
@@ -96,6 +97,7 @@
 	                    </div>
 	                    <div class="itemblock yellow">
 	                        <span>Total Carbon Emission</span>
+	                        <fmt:formatNumber value="${totalCF}" pattern="#,##0.00" var="totalCF" />
 	                        <p>${totalCF} kgCO<sub>2</sub></p>
 	                    </div>
 	        		</div>
@@ -117,19 +119,28 @@
 						<div class="categoryAvg">
 							<h3>User Average Carbon Footprint ${year} (kgCO<sub>2</sub>)</h3>
 							<table>
-								<tr>
-									<td>Housing (High Rise)</td>
-									<td>${housingHighRiseCF}</td>
-								</tr>
-								<tr>
-									<td>Housing (Landed)</td>
-									<td>${housingLandedCF}</td>
-								</tr>
-								<tr>
-									<td>Institution</td>
-									<td>${institutionCF}</td>
-								</tr>
-							</table>
+							<tr>
+								<td>Housing (High Rise)</td>
+								<td>
+									<fmt:formatNumber value="${housingHighRiseCF}" pattern="#,##0.00" var="housingHighRiseCF" />
+									<c:out value="${housingHighRiseCF}" />
+								</td>
+							</tr>
+							<tr>
+								<td>Housing (Landed)</td>
+								<td>
+									<fmt:formatNumber value="${housingLandedCF}" pattern="#,##0.00" var="housingLandedCF" />
+									<c:out value="${housingLandedCF}" />
+								</td>
+							</tr>
+							<tr>
+								<td>Institution</td>
+								<td>
+									<fmt:formatNumber value="${institutionCF}" pattern="#,##0.00" var="institutionCF" />
+									<c:out value="${institutionCF}" />
+								</td>
+							</tr>
+						</table>
 						</div>
 					</div>
 				</div>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.model.User;
 
 import dbUtil.UserDao;
@@ -38,23 +39,28 @@ public class LoginController {
 	    User user = userDao.getUserByIcAndPassword(nric, password);
 
 	    if(user != null) {
-	    	String role = user.getRole();
+	        String role = user.getRole();
 
-	    	session.setAttribute("userRole", role);
-	    	session.setAttribute("user_id", user.getId());
-            session.setAttribute("username", user.getFirstName() + " " + user.getLastName());
-            
-            if(role.equals("user")) {
-            	return "redirect:/userDashboard";
-            } else if(role.equals("admin")) {
-            	return "redirect:/adminDashboard";
-            } else {
-            	return "redirect:/login";
-            }
-	    } else {
-	    	return "redirect:/login";
+	        session.setAttribute("userRole", role);
+	        session.setAttribute("user_id", user.getId());
+	        session.setAttribute("username", user.getFirstName() + " " + user.getLastName());
+	        session.setAttribute("userStatus", user.getStatus());
+	        
+	        if(role.equals("user")) {
+	            return "redirect:/userDashboard";
+	        } else if(role.equals("admin")) {
+	            return "redirect:/adminDashboard";
+	        } else {
+	            return "redirect:/login";
+	        }
+	    } 
+	    else 
+	    {
+	        model.addAttribute("error", "Invalid credentials. Please try again.");
+	        return "forward:/login";
 	    }
 	}
+
 
 	 
 

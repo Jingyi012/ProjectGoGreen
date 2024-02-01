@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>GoGreen</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <style>
 body {
 	margin: 0;
@@ -14,11 +15,12 @@ body {
 
 header {
 	background-color: #045BAC;
-	padding: 15px;
+	padding: 10px 15px;
 	text-align: center;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	color: white;
 }
 
 h1 {
@@ -39,140 +41,49 @@ h1 {
 	border-radius: 5px;
 }
 
-#image1 {
+.logo{
 	display: flex;
-	align-items: center;
-	margin-right: 10px;
-	width: 40px;
-	height: 40px;
+ 			align-items: center;
+}
+
+.logo img {
+	background-color: white;
 	border-radius: 50%;
-	background-color: white
+	margin: 0 20px;
+	padding: 2px;
 }
 
-#image1 img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 50%;
-	margin-right: 20px;
+.logo span{
+	font-size: 20px;
 }
 
-#image1 h1 {
-	color: white;
-	margin-right: 10px;
-}
-
-#content {
+.content {
 	display: flex;
-	margin-left: 30px;
+	justify-content: space-around;
+	padding: 10px 30px;
 }
 
-#form1 {
-	margin-left: 10px;
+.formContainer {
+	padding: 20px;
 }
 
-#form1 h1 {
+.formContainer h2 {
 	color: #045BAC;
-	margin-left: 480px;
+	text-align: center;
 }
 
-#field1 {
+.field{
 	display: flex;
-	width: 100%;
-	height: 80px;
-	margin-left: 300px;
-	margin-bottom: -30px;
+	gap: 30px;
 }
 
-#field2 {
-	display: flex;
-	width: 100%;
-	height: 80px;
-	margin-left: 300px;
-	margin-bottom: -30px;
+.form-group{
+	flex: 1;
+	margin-bottom: 10px;
 }
 
-#field3 {
-	display: flex;
-	width: 100%;
-	height: 80px;
-	margin-left: 300px;
-	margin-bottom: -30px;
-}
-
-#field4 {
-	display: flex;
-	width: 100%;
-	height: 80px;
-	margin-left: 300px;
-	margin-bottom: -30px;
-}
-
-#field5 {
-	display: flex;
-	width: 100%;
-	height: 80px;
-	margin-left: 300px;
-	margin-bottom: -30px;
-}
-
-#field6 {
-	display: flex;
-	width: 100%;
-	height: 80px;
-	margin-left: 300px;
-	margin-bottom: -30px;
-}
-
-#field7 {
-	display: flex;
-	width: 100%;
-	height: 80px;
-	margin-left: 300px;
-	margin-bottom: -30px;
-}
-
-.form-group input[type="text"] {
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #f0f0f0;
-	color: #333;
-}
-
-.form-group input[type="email"] {
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #f0f0f0;
-	color: #333;
-}
-
-.form-group input[type="tel"] {
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #f0f0f0;
-	color: #333;
-}
-
-.form-group input[type="password"] {
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #f0f0f0;
-	color: #333;
-}
-
-.form-group input[type="number"] {
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #f0f0f0;
-	color: #333;
-}
-
-.form-group {
-	display: inline-block;
-	margin-right: 150px;
-}
-
-#termsForm {
-	margin-left: 380px;
+.form-label{
+	margin: 0;
 }
 
 #login-button {
@@ -181,35 +92,16 @@ h1 {
 	padding: 10px 20px;
 	border: none;
 	border-radius: 5px;
-	cursor: pointer;
-	margin-left: 520px;
 }
 
-#category {
-	width: 173px;
-	font-size: 13px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #f0f0f0;
-}
-
-.form-group input {
-	width: 160px;
-	padding: 5px;
-}
-
-.form-group input[type="file"] {
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #f0f0f0;
+#login-button:hover {
+	background-color: #fbbf7b;
 }
 
 #image2 {
-	max-width: 900px;
-	height: 500px;
-	margin-left: 80px;
-	margin-top: 130px;
+	max-width: 500px;
+	margin-top: 150px;
+	height: 270px;
 }
 
 #content {
@@ -223,83 +115,76 @@ h1 {
 </head>
 <body>
 	<header>
-		<div id="image1">
-			<img
-				src="${pageContext.request.contextPath}/resources/images/mbip.png"
-				alt="" style="max-width: 100%; height: auto;">
-			<h1>Iskandar</h1>
-			<h1>Puteri</h1>
+		<div class="logo">
+			<img src="${pageContext.request.contextPath}/resources/images/mbip.png" alt="logo" width="45px">
+			<span>Iskandar Puteri</span>
 		</div>
+		
 		<div id="button-container">
 			<a href="<%=request.getContextPath()%>/login" id="login">Login</a>
-			<a href="<%=request.getContextPath()%>/register" id="signup">Sign
-				Up</a>
+			<a href="<%=request.getContextPath()%>/register" id="signup">Sign Up</a>
 		</div>
 	</header>
-	<div id="content">
+	<div class="content">
 
 		<img id="image2"
 			src="${pageContext.request.contextPath}/resources/images/iskandar_logo.png"
-			alt="" style="max-width: 600px; height: 300px;">
+			alt="logo">
 
-		<div id="form1">
-			<h1>Sign up</h1>
-			<form id="registrationForm" method="post"
-				action="<%=request.getContextPath()%>/register/submit"
-				enctype="multipart/form-data">
-				<div id="field1">
+		<div class="formContainer">
+			<h2>Sign up</h2>
+			<form id="registrationForm" method="post" action="<%=request.getContextPath()%>/register/submit" enctype="multipart/form-data">
+				<div class="field">
 					<div class="form-group">
-						<label for="firstName">First Name:</label> </br> <input type="text"
-							id="firstName" name="firstName" required>
+						<label for="firstName" class="form-label">First Name:</label>
+						<input type="text" id="firstName" class="form-control" name="firstName" required>
 					</div>
 
 					<div class="form-group">
-						<label for="lastName">Last Name:</label> </br> <input type="text"
-							id="lastName" name="lastName" required>
+						<label for="lastName" class="form-label">Last Name:</label>
+						<input type="text" id="lastName" class="form-control" name="lastName" required>
 					</div>
 				</div>
-				</br>
-				<div id="field2">
+				
+				<div class="field">
 					<div class="form-group">
-						<label for="NRIC">NRIC:</label> </br> <input type="text"
-							id="Identification_Card" name="Identification_Card" required>
+						<label for="NRIC" class="form-label">NRIC:</label> 
+						<input type="text" id="Identification_Card" class="form-control" name="Identification_Card" required>
 					</div>
-
+					
 					<div class="form-group">
-						<label for="Address">Address:</label> <br> <input type="text"
-							id="Address" name="Address" required>
+						<label for="Address" class="form-label">Address:</label>
+						<input type="text" id="Address" class="form-control" name="Address" required>
 					</div>
+					
 				</div>
-				</br>
-				<div id="field3">
+				
+				<div class="field">
 					<div class="form-group">
-						<label for="email">Email:</label> <br> <input type="email"
-							id="email" name="email" required>
+						<label for="email" class="form-label">Email:</label>
+						<input type="email" id="email" class="form-control" name="email" required>
 					</div>
 
 					<div class="form-group">
-						<label for="phoneNo">Phone Number:</label> <br> <input
-							type="tel" id="phoneNo" name="phoneNo" pattern="[0-9]{11}"
-							required>
+						<label for="phoneNo" class="form-label">Phone Number:</label>
+						<input type="tel" id="phoneNo" class="form-control" name="phoneNo" pattern="[0-9]{11}" required>
 					</div>
 
 				</div>
-				<br>
-				<div id="field4">
+
+				<div class="field">
 					<div class="form-group">
-						<label for="category">Category:</label> <br> <select
-							id="category" name="category" required
-							style="width: 170px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f0f0f0;">
-							<option value="Housing(High Rise)">Housing(High Rise)</option>
-							<option value="Housing(Landed)">Housing(Landed)</option>
+						<label for="category" class="form-label">Category:</label>
+						<select id="category" class="form-select" name="category" required>
+							<option value="Housing (High Rise)">Housing (High Rise)</option>
+							<option value="Housing (Landed)">Housing (Landed)</option>
 							<option value="Institution">Institution</option>
 						</select>
 					</div>
 
 					<div class="form-group">
-						<label for="Area">Area:</label> </br> <select id="area" name="area"
-							required
-							style="width: 170px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f0f0f0;">
+						<label for="area" class="form-label">Area:</label>
+						<select id="area" class="form-select" name="area" required>
 							<option value="Pulai Indah">Pulai Indah</option>
 							<option value="Kangkar Pulai">Kangkar Pulai</option>
 							<option value="Pulai Utama">Pulai Utama</option>
@@ -328,63 +213,55 @@ h1 {
 					</div>
 				</div>
 
-				<br>
-				<div id="field5">
+				<div class="field">
 					<div class="form-group">
-						<label for="Identification Card">Identification Card:</label> 
-						</br> 
-						<input
-							type="file" id="ic_card" name="ic_card"
-							accept="image/*" required>
+						<label for="ic_card" class="form-label">Identification Card:</label> 
+						<input type="file" id="ic_card" class="form-control" name="ic_card" accept="image/*" required>
 					</div>
-
-
-
+					
 					<div class="form-group">
-						<label for="fileUpload">Proof of residency:</label> 
-						<br> 
-						<input
-							type="file" id="fileUpload" name="fileUpload"
-							accept="image/*" required>
+						<label for="fileUpload" class="form-label">Proof of residency:</label> 
+						<input type="file" id="fileUpload" class="form-control" name="fileUpload" accept="image/*" required>
 					</div>
 				</div>
 
-				<br>
-				<div id="field6">
+				<div class="field">
 					<div class="form-group">
-						<label for="password">PASSWORD:</label> <br> <input
-							type="password" id="password" name="password"
-							placeholder="Enter your password">
+						<label for="password" class="form-label">PASSWORD:</label>
+						<input type="password" id="password" class="form-control" name="password" placeholder="Enter your password" required>
 					</div>
 
 
 					<div class="form-group">
-						<label for="Cpassword">CONFRIM PASSWORD:</label> <br> <input
-							type="password" id="Cpassword" name="Cpassword"
-							placeholder="Confirm your password">
+						<label for="Cpassword" class="form-label">CONFRIM PASSWORD:</label> 
+						<input type="password" id="Cpassword" class="form-control" name="Cpassword" placeholder="Confirm your password" required>
 					</div>
 
 				</div>
-				<br>
-				<div id="field7">
+
+				<div class="field">
 					<div class="form-group">
-						<label for="people">Number Of People Living:</label> <br> <input
-							type="number" " id="people" name="people" required>
+						<label for="people" class="form-label">Number Of People Living:</label>
+						<input type="number" id="people" class="form-control" name="people" required>
+					</div>
+					<div class="form-group">
+						
 					</div>
 				</div>
-				<br> <br>
-				<div id="termsForm">
+
+				<div class="submitField" style="text-align: center">
 					<div>
-						<label> <input type="checkbox" id="agreeTerms"
-							name="agreeTerms" required> I agree to all the statements
-							in Terms of Service
+						<label class="form-label" style="margin: 20px 0;"> 
+							<input type="checkbox" id="agreeTerms" name="agreeTerms" required> I agree to all the statements in Terms of Service
 						</label>
 					</div>
-
+					<button type="submit" id="login-button">Sign Up</button>
+					<div style="margin: 20px 0;">
+						<span>Already have an account?</span>
+						<a href="<%= request.getContextPath() %>/login" style="color: #045BAC;">Login here</a>
+					</div>
 				</div>
 
-				<br>
-				<button type="submit" id="login-button">Sign Up</button>
 			</form>
 		</div>
 		<script>
@@ -409,11 +286,10 @@ h1 {
 				});
 			});
 		</script>
-
-
 	</div>
-
-
-
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
 </html>

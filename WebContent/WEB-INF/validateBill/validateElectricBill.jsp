@@ -35,10 +35,17 @@
 	        				<th>Category</th>
 	        				<th>Year</th>
 	        				<th>Month</th>
-	        				<th>Electric Consumption</th>
+	        				<th>Electric Consumption (kWh)</th>
+	        				<th>Carbon Footprint (kgCO<sub>2</sub>)</th>
 	        				<th>Bill</th>
 	        				<th colspan='2'>Action</th>
 	        			</tr>
+	        			
+	        			<c:if test="${ empty pendingValidateEList}" >
+	        			<tr>
+	        				<td colspan="10" style="text-align: center;">There is no bill to validate yet</td>
+	        			</tr>
+	        			</c:if>
 	        			
 	        			<c:forEach var="euList" items="${pendingValidateEList}" varStatus="loop">
 	        			<tr>
@@ -47,8 +54,9 @@
 	        				<td><c:out value="${euList.address}" /> </td>
 	        				<td><c:out value="${euList.category}" /> </td>
 	        				<td><c:out value="${euList.year}" /></td>
-	        				<td><c:out value="${euList.month}" /></td>
+	        				<td><c:out value="${euList.month}" /></td>   				
 	        				<td><c:out value="${euList.electric_consumption}" /></td>
+	        				<td><c:out value="${euList.carbon_footprint}" /></td>
 	        				<td>
 	        				<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#ebillModal${euList.eid}">
 							  View Bill

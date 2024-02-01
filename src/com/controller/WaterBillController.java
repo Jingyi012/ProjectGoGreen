@@ -29,8 +29,6 @@ import dbUtil.WaterBillDAO;
 
 public class WaterBillController {
 
-	
-
 	@RequestMapping("/waterBill")
 	protected ModelAndView waterBillPage() {
 		ModelAndView model = new ModelAndView("waterBill/waterBill");
@@ -116,27 +114,28 @@ public class WaterBillController {
 			int imonth = monthStringConvertToInt(month);
 
 			WaterBill bill = new WaterBill();
-			bill.setWaterConsumption(wBill);
+			bill.setWater_consumption(wBill);
 
 			if (!wFile.isEmpty()) {
 				byte[] fileBytes = wFile.getBytes();
-				bill.setWaterProof(fileBytes);
+				bill.setWater_proof(fileBytes);
 			}
 
 			bill.setYear(year);
 			bill.setMonth(imonth);
-			bill.setCarbonFootprint(wBill * 0.584);
+			bill.setCarbon_footprint(wBill * 0.419);
 			bill.setStatus("pending");
-			bill.setUserId((int) session.getAttribute("user_id"));
+			bill.setUser_id((int) session.getAttribute("user_id"));
 
 			WaterBillDAO wbilldao = new WaterBillDAO();
 			int row = wbilldao.add(bill);
 
-			redirectAttributes.addFlashAttribute("successMessage", "Water bill" + month + "updated successfully.");
+			redirectAttributes.addFlashAttribute("successMessage", "Water bill " + month + " updated successfully.");
 			return "redirect:/bills/waterBill";
 		} catch (Exception e) {
 			System.out.println(e);
-			return "redirect:/errorPage";
+			redirectAttributes.addFlashAttribute("errorMessage", "Water bill "+ month +" updated failed.");
+			return "redirect:/bills/waterBill";
 		}
 	}
 
@@ -149,14 +148,14 @@ public class WaterBillController {
 
 			WaterBillDAO wbilldao = new WaterBillDAO();
 			WaterBill bill = wbilldao.getWaterDataByMonthYear((int) session.getAttribute("user_id"), imonth, year);
-			bill.setWaterConsumption(wBill);
+			bill.setWater_consumption(wBill);
 
 			if (!wFile.isEmpty()) {
 				byte[] fileBytes = wFile.getBytes();
-				bill.setWaterProof(fileBytes);
+				bill.setWater_proof(fileBytes);
 			}
 
-			bill.setCarbonFootprint(wBill * 0.584);
+			bill.setCarbon_footprint(wBill * 0.419);
 			bill.setStatus("pending");
 
 			int row = wbilldao.updateWaterBill(bill);
@@ -164,7 +163,8 @@ public class WaterBillController {
 			return "redirect:/bills/waterBill";
 
 		} catch (Exception e) {
-			return "redirect:/errorPage";
+			redirectAttributes.addFlashAttribute("errorMessage", "Water bill "+ month +" updated failed.");
+			return "redirect:/bills/waterBill";
 		}
 	}
 
