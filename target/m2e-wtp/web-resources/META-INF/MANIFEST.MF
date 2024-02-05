@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
 Built-By: jingy
 Build-Jdk: 1.8.0_181
->>>>>>> f3bd2ad49b53313319b7a1abd1ce1222869cdc00
 Created-By: Maven Integration for Eclipse
 

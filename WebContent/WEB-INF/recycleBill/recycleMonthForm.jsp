@@ -68,7 +68,7 @@
 <script>
     document.getElementById('eFile').addEventListener('change', function() {
         var file = this.files[0];
-        if (file.size > 1048576) { // 1MB in bytes
+        if (file.size > 100000) { // 100kb in bytes
             alert('File size exceeds 1MB. Please choose a smaller file.');
             this.value = ''; // Clear the file input
         }

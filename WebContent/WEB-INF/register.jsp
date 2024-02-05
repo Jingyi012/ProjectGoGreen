@@ -233,7 +233,7 @@ h1 {
 
 
 					<div class="form-group">
-						<label for="Cpassword" class="form-label">CONFRIM PASSWORD:</label> 
+						<label for="Cpassword" class="form-label">CONFIRM PASSWORD:</label> 
 						<input type="password" id="Cpassword" class="form-control" name="Cpassword" placeholder="Confirm your password" required>
 					</div>
 
