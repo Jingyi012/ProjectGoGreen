@@ -135,7 +135,7 @@
 	            
 	            event.preventDefault();
 	
-	            alert("Your status is not approved. You cannot access this page.");
+	            alert("Your user status is not approved. You cannot access this page. ");
 	        }
 	    }
 	</script>
