@@ -2,6 +2,13 @@
 	pageEncoding="ISO-8859-1" import="java.util.*"%>
 <%@ page import="com.model.User"%>
 
+<%
+	User user = (User) request.getAttribute("user");
+	if (user != null) {
+		String status = user.getStatus();
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -197,9 +204,16 @@ label{
 								</div>
 							</div>
 
+							<%
+								String status = user.getStatus();
+								if ("pending".equals(status)) {
+							%>
 							<div class="text-center mt-3">
 								<input type="submit" class="edit-btn" value="Edit" id="edit-button">
 							</div>
+							<%
+								}
+							%>
 
 						</form>
 					</div>
