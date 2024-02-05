@@ -94,7 +94,8 @@ label{
 								</div>
 								<div class="form-group" class="form-label">
 									<label for="email">Email:</label>  
-									<input type="text" id="email" class="form-control" name="email" value="${user.email}" />
+						
+										<input type="email" id="email" class="form-control" name="email" value="${user.email}" required>
 								</div>
 							</div>
 
