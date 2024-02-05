@@ -204,16 +204,11 @@ label{
 								</div>
 							</div>
 
-							<%
-								String status = user.getStatus();
-								if ("pending".equals(status)) {
-							%>
+							
 							<div class="text-center mt-3">
 								<input type="submit" class="edit-btn" value="Edit" id="edit-button">
 							</div>
-							<%
-								}
-							%>
+							
 
 						</form>
 					</div>

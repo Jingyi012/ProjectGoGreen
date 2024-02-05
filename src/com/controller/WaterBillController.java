@@ -72,7 +72,7 @@ public class WaterBillController {
 		Calendar cal = Calendar.getInstance();
 		int currentYear = cal.get(Calendar.YEAR);
 		int currentMonth = cal.get(Calendar.MONTH) + 1;
-		String[] monthArray = { "January", "February", "March", "April", "May", "June", "August", "September",
+		String[] monthArray = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
 				"October", "November", "December" };
 		model.addObject("selectedYear", selectedYear);
 		model.addObject("currentYear", currentYear);

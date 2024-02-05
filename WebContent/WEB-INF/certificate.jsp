@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+  pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -9,11 +9,11 @@
 <title>GoGreen Certificate</title>
 <style>
 .pageContent {
-	padding: 30px 60px;
+  padding: 30px 60px;
 }
 
 .hero {
-	position: relative;
+  position: relative;
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
@@ -26,10 +26,10 @@
 }
 
 .hero img {
-	width: 100%;
-	height: auto;
-	display: block;
-	margin: 0 auto;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .certificate-text {
@@ -45,29 +45,29 @@
 }
 
 .certificate-text h2 {
-	font-size: 80px;
-	margin-bottom: 0;
-	padding-top: 0;
-	margin-top: 0;
-	line-height: 1;
+  font-size: 80px;
+  margin-bottom: 0;
+  padding-top: 0;
+  margin-top: 0;
+  line-height: 1;
 }
 
 .certificate-text h1 {
-	font-size: 28px;
+  font-size: 28px;
 }
 
 .certificate-text .bold {
-	font-weight: bold;
-	display: inline-block;
-	font-size: 24px;
-	padding-bottom: 15px;
-	margin-bottom: 20px;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 24px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .certificate-text h6 {
-	font-size: 13px;
-	font-weight: normal;
-	padding-bottom: 30px;
+  font-size: 13px;
+  font-weight: normal;
+  padding-bottom: 30px;
 }
 
 .certificate-text h3 {
@@ -79,100 +79,105 @@
 }
 
 .downloadBtn {
-	text-decoration: none;
-	padding: 15px;
-	background-color: #f2bc85;
-	color: white;
-	border-radius: 15px;
-	border: none;
-	cursor: pointer;
+  text-decoration: none;
+  padding: 15px;
+  background-color: #f2bc85;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
 }
 
 .downloadBtn:hover {
-	background-color: #f0ab65;
+  background-color: #f0ab65;
 }
 
 .download {
-	text-align: center;
+  text-align: center;
 }
 
 #content {
-	text-align: center;
-	margin: 50px auto;
+  text-align: center;
+  margin: 50px auto;
 }
 
 .calendarYear {
-	text-align: center;
-	margin: 10px 0 20px 0;
-	cursor: pointer;
-	font-size: 20px;
+  text-align: center;
+  margin: 10px 0 20px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 #yearSelect {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 </style>
 </head>
 
 <body>
-	<div class="pageContainer">
-		<div class="sideBarContainer">
-			<jsp:include page="sidebar.jsp" />
-		</div>
+  <div class="pageContainer">
+    <div class="sideBarContainer">
+      <jsp:include page="sidebar.jsp" />
+    </div>
 
-		<div class="pageWrapper">
-			<jsp:include page="headerBar.jsp" />
+    <div class="pageWrapper">
+      <jsp:include page="headerBar.jsp" />
 
-			<div class="pageContent">
-				<div class="pageNav">
-					Home > <a href="${pageContext.request.contextPath}/certificate">Certificate</a>
-				</div>
-					<div id="calendarYear" class="calendarYear">
-						<i class="bi bi-caret-left-fill" class="carousel-control-prev" type="button" data-bs-target="#calendarContainer" data-bs-slide="prev"></i> 
-						<select id="yearSelect">
-							<option>2021</option>
-							<option>2022</option>
-							<option selected>2023</option>
-						</select> <i class="bi bi-caret-right-fill"></i>
-					
+      <div class="pageContent">
+        <div class="pageNav">
+          Home > <a href="${pageContext.request.contextPath}/certificate">Certificate</a>
+        </div>
+          <div id="calendarYear" class="calendarYear">
+            <i class="bi bi-caret-left-fill" class="carousel-control-prev" type="button" data-bs-target="#calendarContainer" data-bs-slide="prev"></i> 
+            <select id="yearSelect">
+              <option>2021</option>
+              <option>2022</option>
+              <option selected>2023</option>
+            </select> <i class="bi bi-caret-right-fill"></i>
+          
 
-				</div>
+        </div>
+        
 
-				<div class="hero" id="hero">
+        <div class="hero" id="hero">
 
-	
-				</div>
-				
-			
-			</div>
-		</div>
-		
-		<script
-			src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-		<script>
-			function downloadPDF() {
-				var element = document.querySelector('.hero');
-				
+  
+        </div>
+  <div class="download">
+    <button type="button" class="downloadBtn" onclick="downloadPDF()">Download
+      PDF</button>
+  </div>
+        
+      
+      </div>
+    </div>
+    
+    <script
+      src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script>
+      function downloadPDF() {
+        var element = document.querySelector('.hero');
+        
 
-				html2pdf(element, {
-					margin : 10,
-					filename : 'Certificate.pdf',
-					image : {
-						type : 'jpeg',
-						quality : 0.98
-					},
-					html2canvas : {
-						scale : 2
-					},
-					jsPDF : {
-						unit : 'mm',
-						format : 'a4',
-						orientation : 'portrait'
-					}
-				});
-			}
-		</script>
+        html2pdf(element, {
+          margin : 10,
+          filename : 'Certificate.pdf',
+          image : {
+            type : 'jpeg',
+            quality : 0.98
+          },
+          html2canvas : {
+            scale : 2
+          },
+          jsPDF : {
+            unit : 'mm',
+            format : 'a4',
+            orientation : 'portrait'
+          }
+        });
+      }
+    </script>
 <script>
 $(document).ready(function () {
     updateCalendar(2023);
@@ -185,7 +190,6 @@ $(document).ready(function () {
 
     $('.bi-caret-left-fill').click(decrementSelect);
     $('.bi-caret-right-fill').click(incrementSelect);
-
     function updateCalendar(year) {
         $.ajax({
             type: 'GET',
