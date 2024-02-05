@@ -180,7 +180,8 @@
 									<td>${user.firstName} ${user.lastName}</td>
 									<td><a
 										href="${pageContext.request.contextPath}/manageUserProfile?id=${user.id}">
-											<i class="bi bi-check-circle validation-icon"></i>
+											<i class="bi bi-info-circle validation-icon"></i>
+
 									</a></td>
 								</tr>
 							</c:forEach>
