@@ -147,10 +147,13 @@ label{
 	   									<option value="Housing (Landed)" ${user.category.equals("Housing (Landed)") ? "selected" : ""}>Housing (Landed)</option>
 	   									<option value="Institution" ${user.category.equals("Institution") ? "selected" : ""}>Institution</option>
 									</select>
+									<c:if test="${user.status.equals('approve')}">
+										<input type="hidden" name="category" value="${user.category}"/>
+									</c:if>
 								</div> 
 								<div class="form-group">
 									<label for="area" class="form-label">Area:</label>  
-									<select id="area" class="form-select" name="area" onchange="${user.area}" required ${user.status.equals("approve") ? "disabled" : ""}>
+									<select id="area" class="form-select" name="area" required ${user.status.equals("approve") ? "disabled" : ""}>
 										<option value="Pulai Indah" ${user.area.equals("Pulai Indah") ? "selected" : ""}>Pulai Indah</option>
 									    <option value="Kangkar Pulai" ${user.area.equals("Kangkar Pulai") ? "selected" : ""}>Kangkar Pulai</option>
 									    <option value="Pulai Utama" ${user.area.equals("Pulai Utama") ? "selected" : ""}>Pulai Utama</option>
@@ -176,6 +179,9 @@ label{
 									    <option value="Sutera Utama" ${user.area.equals("Sutera Utama") ? "selected" : ""}>Sutera Utama</option>
 									    <option value="Perling" ${user.area.equals("Perling") ? "selected" : ""}>Perling</option>
 									</select>
+									<c:if test="${user.status.equals('approve')}">
+										<input type="hidden" name="area" value="${user.area}"/>
+									</c:if>
 								</div>
 							</div>
 							
@@ -183,6 +189,9 @@ label{
 								<div class="form-group">
 									<label for="Address" class="form-label">Address:</label>  
 									<input type="text" id="Address" class="form-control" name="address" value="${user.address}" ${user.status.equals("approve") ? "disabled" : ""}/>
+									<c:if test="${user.status.equals('approve')}">
+										<input type="hidden" name="address" value="${user.address}"/>
+									</c:if>
 								</div>
 
 								<c:if test="${user.status.equals('approve')}">
@@ -228,6 +237,8 @@ label{
 							</div>
 							
 							<input type="hidden" name="id" value="${user.id}" />
+							<input type="hidden" name="status" value="${user.status}" />
+							
 							<div style="text-align: center; margin-top: 30px;">
 								<input type="submit" class="btn edit-btn" value="Update Profile">
 							</div>

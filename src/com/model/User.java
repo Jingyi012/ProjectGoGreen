@@ -7,7 +7,7 @@ public class User {
 	private String email;
 	private String phoneNo;
 	private String category;
-	private String Address;
+	private String address;
 	private byte[] file;
 	private String status;
 	private String lastName;
@@ -90,11 +90,11 @@ public class User {
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 
 	public byte[] getFile() {
