@@ -25,7 +25,7 @@ public class UserController {
 	private UserDao userDao=new UserDao();
 	@RequestMapping("/manageUser")
 	public ModelAndView getManageUserPage(HttpServletRequest request) {
-	    ModelAndView model = new ModelAndView("manageUser");
+	    ModelAndView model = new ModelAndView("userManage/manageUser");
 
 	    List<User> users = userDao.getUsersByStatus();
 
@@ -36,7 +36,7 @@ public class UserController {
     
     @RequestMapping("/manageUserProfile")
     public ModelAndView getManageUserProfilePage(HttpServletRequest request) {
-        ModelAndView model = new ModelAndView("manageUserProfile");
+        ModelAndView model = new ModelAndView("userManage/manageUserProfile");
 
         int id = Integer.parseInt(request.getParameter("id"));
 

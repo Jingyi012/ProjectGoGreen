@@ -118,11 +118,11 @@
 <body>
   <div class="pageContainer">
     <div class="sideBarContainer">
-      <jsp:include page="sidebar.jsp" />
+      <jsp:include page="../sidebar.jsp" />
     </div>
 
     <div class="pageWrapper">
-      <jsp:include page="headerBar.jsp" />
+      <jsp:include page="../headerBar.jsp" />
 
       <div class="pageContent">
         <div class="pageNav">
@@ -144,12 +144,7 @@
 
   
         </div>
-  <div class="download">
-    <button type="button" class="downloadBtn" onclick="downloadPDF()">Download
-      PDF</button>
-  </div>
-        
-      
+ 
       </div>
     </div>
     
@@ -158,9 +153,9 @@
     <script>
       function downloadPDF() {
         var element = document.querySelector('.hero');
-        
-
-        html2pdf(element, {
+        var button = document.querySelector(".downloadBtn");
+        button.style.display = "none";
+        var opt = {
           margin : 10,
           filename : 'Certificate.pdf',
           image : {
@@ -175,6 +170,10 @@
             format : 'a4',
             orientation : 'portrait'
           }
+        };
+        
+        html2pdf().set(opt).from(element).save().then(() => {
+            button.style.display = "";
         });
       }
     </script>

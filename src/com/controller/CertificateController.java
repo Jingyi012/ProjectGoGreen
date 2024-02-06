@@ -26,7 +26,7 @@ public class CertificateController {
 	
 	@RequestMapping("/certificate")
 	protected ModelAndView certPage() {
-		ModelAndView model = new ModelAndView("certificate");
+		ModelAndView model = new ModelAndView("certificate/certificate");
 		return model;
 	}
 
@@ -42,18 +42,12 @@ public class CertificateController {
 	    }
 
 	    boolean databaseError = false;
-	    ModelAndView model = new ModelAndView("updatecertificate"); // Assuming "updatecertificate" is your JSP file name
+	    ModelAndView model = new ModelAndView("certificate/updatecertificate"); // Assuming "updatecertificate" is your JSP file name
 	    CertificateDAO certDAO = new CertificateDAO();
 	    List<Certificate> certificateList = certDAO.getUserCertByYear((int) session.getAttribute("user_id"), selectedYear);
 
 	    boolean certificateEligible = checkCertificateEligibility(certificateList);
 
-//	 
-//	    // Assuming "u" is your user object retrieved from the session
-//	    User u = (User) session.getAttribute("user");
-//
-//	    // Add the user object to the model
-//	    model.addObject("user", u);
 	    model.addObject("selectedYear", selectedYear);
 	    model.addObject("certificates", certificateList);
 	    model.addObject("certificateEligible", certificateEligible);
@@ -61,48 +55,8 @@ public class CertificateController {
 	    return model;
 	}
 
-    /*public ModelAndView getCertificatePage(@RequestParam(value = "selectedYear", required = false) Integer selectedYear, HttpSession session) {
-        ModelAndView model = new ModelAndView("certificate");
-
-        // Retrieve user from the session
-       // User user = (User) model.getModel().get("user");
-        User user=(User) session.getAttribute("user");
-
-        if (user != null) {
-            int userId = user.getId();
-
-
-            // Initialize CertificateDAO
-            CertificateDAO certDAO = new CertificateDAO();
-            List<Certificate> certificateList = certDAO.getUserCertByYear(userId, selectedYear);
-            boolean certificateEligible = checkCertificateEligibility(certificateList);
-*/
-           /* if (selectedYear != null) {
-                certificateList = certDAO.getUserCertByYear(userId, selectedYear);
-                certificateEligible = checkCertificateEligibility(userId, selectedYear);
-            } else {
-                // If no year is selected, get certificates for the current year
-                certificateList = certDAO.getUserCertByYear(userId, null); // Pass null for the year
-            }
-            */
-    
-            
-/*
-            // Add the certificates and eligibility status to the model
-            model.addObject("certificates", certificateList);
-            model.addObject("certificateEligible", certificateEligible);
-        }
-
-        return model;
-    }
-*/
     private boolean checkCertificateEligibility(List<Certificate> certificates) {
     	
-//        CertificateDAO certDAO = new CertificateDAO();
-//
-//        // Fetch certificates for the selected year and user
-//        List<Certificate> certificates = certDAO.getUserCertByYear(userId, selectedYear);
-//
 //        // Check if the user has certificates for at least 6 months in the selected year
         return certificates != null && certificates.size() >= 6;
     }

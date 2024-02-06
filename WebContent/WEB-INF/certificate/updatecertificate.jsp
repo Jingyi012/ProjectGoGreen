@@ -16,7 +16,12 @@
 							</h6>
 						</div>
 
-					
+						<c:if test="${certificateEligible}">
+							<div class="download">
+								<button type="button" class="downloadBtn" onclick="downloadPDF()">Download
+									PDF</button>
+							</div>
+						</c:if>
 					</c:when>
 
 	<c:otherwise>
@@ -28,11 +33,3 @@
 	</c:otherwise>
 
 </c:choose>
-
-
-<c:if test="${certificateEligible}">
-	<div class="download">
-		<button type="button" class="downloadBtn" onclick="downloadPDF()">Download
-			PDF</button>
-	</div>
-</c:if>

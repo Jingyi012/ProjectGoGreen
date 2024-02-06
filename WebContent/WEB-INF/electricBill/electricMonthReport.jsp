@@ -88,7 +88,7 @@
 	
 	        html2pdf().set(opt).from(element).save().then(() => {
                 element.removeChild(titleCopy);
-            });;
+            });
 	    }
 	</script>
 </body>
