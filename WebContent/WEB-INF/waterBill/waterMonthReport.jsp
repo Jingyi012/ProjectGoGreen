@@ -89,7 +89,7 @@
 	        titleCopy.style.display = ""
 	        const opt = {
        		margin: 1,
-       		  filename: 'proof.pdf',
+       		  filename: 'waterReport_${month}_${year}.pdf',
        		  image: { type: 'jpeg', quality: 0.98 },
        		  jsPDF: { unit: 'mm', format: 'A4', orientation: 'portrait' }
        		};
